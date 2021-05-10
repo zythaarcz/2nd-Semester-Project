@@ -33,6 +33,7 @@ public class Authentication extends JFrame {
 	private JTextField emailTextField;
 	private JPasswordField passwordField;
 	private JLabel hyperlink;
+	private JLabel logoImage;
 
 	/**
 	 * Launch the application.
@@ -58,28 +59,27 @@ public class Authentication extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.decode("#F0F0F0"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		contentPane.add(new JLabel(new ImageIcon("C:/Users/neagu/Desktop/Untitled.png")));
-		
-		JLabel lblNewLabel = new JLabel("Email");
-		lblNewLabel.setBounds(117, 229, 171, 17);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel emailLabel = new JLabel("Email");
+		emailLabel.setBounds(117, 229, 171, 17);
+		emailLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		emailTextField = new JTextField();
 		emailTextField.setBounds(117, 256, 213, 30);
 		emailTextField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(117, 296, 105, 17);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel passwordLabel = new JLabel("Password");
+		passwordLabel.setBounds(117, 296, 105, 17);
+		passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(117, 323, 213, 31);
 		contentPane.setLayout(null);
-		contentPane.add(lblNewLabel_1);
-		contentPane.add(lblNewLabel);
+		contentPane.add(passwordLabel);
+		contentPane.add(emailLabel);
 		contentPane.add(emailTextField);
 		contentPane.add(passwordField);
 		
@@ -100,6 +100,10 @@ public class Authentication extends JFrame {
 		hyperlink.setForeground(Color.BLUE.darker());
 		hyperlink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		hyperlink.setText("<html><a href=''>Create new account?</a></html>");
+		
+		logoImage = new JLabel(new ImageIcon(Authentication.class.getResource("/images/logo.png")));
+		logoImage.setBounds(71, 92, 295, 95);
+		contentPane.add(logoImage);
 		
 		hyperlink.addMouseListener(new MouseAdapter() {
 			@Override
