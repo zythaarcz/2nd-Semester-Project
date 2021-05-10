@@ -10,9 +10,9 @@ public class Customer extends Person {
 	private String healthIssue;
 	private String timeToRemind;
 
-	public Customer(String firstName, String lastName, String phoneNumber, String email, String password, String address, String company,
+	public Customer(String firstName, String lastName, String phoneNumber, String email, String address, String company,
 			Date dateOfBirth, String healthIssue, String timeToRemind) {
-		super(firstName, lastName, phoneNumber, email, password);
+		super(firstName, lastName, phoneNumber, email);
 		this.address = address;
 		this.company = company;
 		this.dateOfBirth = dateOfBirth;

@@ -4,8 +4,8 @@ public class Employee extends Person{
 
 	private String position;
 
-	public Employee(String firstName, String lastName, String phoneNumber, String email, String password, String position) {
-		super(firstName, lastName, phoneNumber, email, password);
+	public Employee(String firstName, String lastName, String phoneNumber, String email, String position) {
+		super(firstName, lastName, phoneNumber, email);
 		this.position = position;
 	}
 	
