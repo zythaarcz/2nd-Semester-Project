@@ -12,15 +12,12 @@ public class Video {
 	private Employee employee;
 	private ArrayList<Customer> listOfCustomers;
 	
-	public Video(String url, String header, String shortDescription, String category, int pointsForCompletion,
-			Employee employee, ArrayList<Customer> listOfCustomers) {
+	public Video(String url, String header, String shortDescription, String category, int pointsForCompletion) {
 		this.url = url;
 		this.header = header;
 		this.shortDescription = shortDescription;
 		this.category = category;
 		this.pointsForCompletion = pointsForCompletion;
-		this.employee = employee;
-		this.listOfCustomers = listOfCustomers;
 	}
 
 	public String getUrl() {
