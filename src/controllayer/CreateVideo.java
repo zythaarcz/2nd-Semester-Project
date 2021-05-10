@@ -19,12 +19,12 @@ public class CreateVideo {
 	}
 	
 	public void createVideo(String url, String header, String shortDescription, String category, int pointsForCompletion) {
-		
-		try {
-			createVideoDAO.insertVideo(url, header, shortDescription, category, pointsForCompletion, AuthenticatedUser.getInstance().getID());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// TODO: Uncomment when singleton is created
+//		try {
+//			createVideoDAO.insertVideo(url, header, shortDescription, category, pointsForCompletion, AuthenticatedUser.getInstance().getID());
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public class Video {
 	
+	private int id;
 	private String url;
 	private String header;
 	private String shortDescription;
 	private String category;
 	private int pointsForCompletion;
 	private Employee employee;
+	// TODO: Maybe delete this? Do we need it? I don't think so
 	private ArrayList<Customer> listOfCustomers;
 	
 	public Video(String url, String header, String shortDescription, String category, int pointsForCompletion) {
@@ -74,6 +76,14 @@ public class Video {
 	
 	public void setListOfCustomers(ArrayList<Customer> listOfCustomers) {
 		this.listOfCustomers = listOfCustomers;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 	
 	
