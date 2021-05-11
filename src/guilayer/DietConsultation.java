@@ -69,7 +69,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(BookDietConsultationLabel);
 		
 		JLabel firstNameLabel = new JLabel("First name");
-		firstNameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		firstNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		firstNameLabel.setBounds(39, 215, 370, 17);
 		contentPane.add(firstNameLabel);
 		
@@ -79,7 +79,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(firstNameTextField);
 		
 		JLabel lastNameLabel = new JLabel("Last name");
-		lastNameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lastNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lastNameLabel.setBounds(39, 280, 380, 17);
 		contentPane.add(lastNameLabel);
 		
@@ -89,7 +89,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(lastNameTextField);
 		
 		JLabel companyNameLabel = new JLabel("Company name");
-		companyNameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		companyNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		companyNameLabel.setBounds(39, 345, 380, 17);
 		contentPane.add(companyNameLabel);
 		
@@ -99,7 +99,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(companyNameTextField);
 		
 		JLabel reasonLabel = new JLabel("Reason for consultation");
-		reasonLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		reasonLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		reasonLabel.setBounds(39, 410, 380, 17);
 		contentPane.add(reasonLabel);
 		
@@ -109,7 +109,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(reasonTextField);
 		
 		JLabel availableDateLabel = new JLabel("Choose available date");
-		availableDateLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		availableDateLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		availableDateLabel.setBounds(39, 475, 370, 17);
 		contentPane.add(availableDateLabel);
 		
@@ -133,7 +133,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 				calendarWindow.setVisible(true);
 			}
 		});
-		chooseButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		chooseButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chooseButton.setBackground(new Color(255, 208, 32));
 		chooseButton.setBounds(277, 502, 94, 25);
 		contentPane.add(chooseButton);
@@ -144,7 +144,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 				JOptionPane.showMessageDialog(null, "Not implemented yet.");
 			}
 		});
-		bookConsultationButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		bookConsultationButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		bookConsultationButton.setBackground(new Color(255, 208, 32));
 		bookConsultationButton.setBounds(255, 624, 171, 38);
 		contentPane.add(bookConsultationButton);
@@ -155,7 +155,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 				JOptionPane.showMessageDialog(null, "Not implemented yet.");
 			}
 		});
-		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		cancelButton.setBackground(new Color(255, 208, 32));
 		cancelButton.setBounds(100, 624, 145, 38);
 		contentPane.add(cancelButton);
