@@ -40,6 +40,7 @@ public class Profile extends JFrame {
 	private String emailString;
 	private String phoneNumberString;
 	private String companyNameString;
+	private String healthIssueString;
 	
 
 	/**
@@ -191,7 +192,7 @@ public class Profile extends JFrame {
 
 			}
 		});
-		btnChangePhoto.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnChangePhoto.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnChangePhoto.setForeground(Color.BLACK);
 		btnChangePhoto.setBackground(new Color(255, 208, 32));
 		btnChangePhoto.setBounds(125, 224, 200, 31);
@@ -244,6 +245,12 @@ public class Profile extends JFrame {
 		
 		String[] filterStrings = {"Health issue: none","Back pain", "Neck pain", "Knees injury", "Arm injury"};
 		JComboBox healthIssuesComboBox = new JComboBox(filterStrings);
+		healthIssuesComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				healthIssueString = String.valueOf(healthIssuesComboBox.getSelectedItem());
+				System.out.println(healthIssueString);
+			}
+		});
 		healthIssuesComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		healthIssuesComboBox.setBounds(103, 544, 240, 43);
 		((JLabel)healthIssuesComboBox.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
@@ -256,20 +263,15 @@ public class Profile extends JFrame {
 			}
 		});
 		btnChangePassword.setForeground(Color.BLACK);
-		btnChangePassword.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnChangePassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnChangePassword.setBackground(new Color(255, 208, 32));
 		btnChangePassword.setBounds(125, 619, 200, 31);
 		contentPane.add(btnChangePassword);	
 	}
 	
 	private void changePassword() {
-		try {
-			passwordChangeDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			passwordChangeDialog.setLocationRelativeTo(this);
-			passwordChangeDialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		passwordChangeDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		passwordChangeDialog.setLocationRelativeTo(this);
+		passwordChangeDialog.setVisible(true);
 	}
 }
