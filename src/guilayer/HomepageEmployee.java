@@ -111,7 +111,7 @@ public class HomepageEmployee extends JFrame {
 		JLabel easyAccessLabel = new JLabel("Easy Access");
 		easyAccessLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		JButton manageVideosButton = new JButton("ManageVideos");
+		JButton manageVideosButton = new JButton("Manage Videos");
 		manageVideosButton.setBorderPainted(false);
 		manageVideosButton.setSelected(true);
 		manageVideosButton.setFont(new Font("Tahoma", Font.BOLD, 10));
