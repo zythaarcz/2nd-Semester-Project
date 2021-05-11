@@ -42,7 +42,7 @@ public class PasswordChange extends JDialog {
 	public PasswordChange() {
 		setAlwaysOnTop(true);
 		setResizable(false);
-		setBounds(100, 100, 329, 157);
+		setBounds(100, 100, 330, 160);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -51,14 +51,7 @@ public class PasswordChange extends JDialog {
 			JButton btnConfirmPassword = new JButton("Confirm password");
 			btnConfirmPassword.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					newPasswordString = newPasswordField.getText();
-					confirmPasswordString = confirmPasswordField.getText();
-					
-					System.out.println(newPasswordString);
-					System.out.println(confirmPasswordString);
-					
-					newPasswordField.setText("");
-					confirmPasswordField.setText("");
+					getNewPassword();
 				}
 			});
 			btnConfirmPassword.setForeground(Color.BLACK);
@@ -89,5 +82,18 @@ public class PasswordChange extends JDialog {
 			confirmPasswordField.setBounds(165, 36, 128, 26);
 			contentPanel.add(confirmPasswordField);
 		}
+	}
+	
+	private void getNewPassword() {
+		newPasswordString = newPasswordField.getText();
+		confirmPasswordString = confirmPasswordField.getText();
+		
+		System.out.println(newPasswordString);
+		System.out.println(confirmPasswordString);
+		
+		newPasswordField.setText("");
+		confirmPasswordField.setText("");
+		
+		dispose();
 	}
 }
