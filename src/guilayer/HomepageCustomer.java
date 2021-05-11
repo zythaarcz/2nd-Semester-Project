@@ -45,15 +45,15 @@ public class HomepageCustomer extends JFrame {
 	 * Create the frame.
 	 */
 	public HomepageCustomer() {
+		setTitle("Homepage");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
-		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		contentPane.setForeground(Color.LIGHT_GRAY);
 		setContentPane(contentPane);
 		
-		SideBarEmployee sidebar = new SideBarEmployee();
+		SideBarCustomer sidebar = new SideBarCustomer();
 		sidebar.setSize(0, 740);
 		contentPane.add(sidebar);
 		sidebar.setVisible(false);
@@ -80,20 +80,20 @@ public class HomepageCustomer extends JFrame {
 			}
 		});
 		sidebarButton.setBackground(SystemColor.controlHighlight);
-		sidebarButton.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/sidebarIconDS.png")));
+		sidebarButton.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/sidebarIcon35px.png")));
 		sidebarButton.setSelectedIcon(null);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(sidebarButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-							.addComponent(logoLabel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE))
-						.addComponent(statisticsPanel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 426, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(statisticsPanel, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(sidebarButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+							.addComponent(logoLabel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -108,7 +108,7 @@ public class HomepageCustomer extends JFrame {
 					.addComponent(statisticsPanel, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(133, Short.MAX_VALUE))
+					.addContainerGap(135, Short.MAX_VALUE))
 		);
 		
 		JLabel dailyBlogLabel = new JLabel("Daily Blog");

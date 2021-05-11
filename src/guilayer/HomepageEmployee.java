@@ -22,6 +22,7 @@ public class HomepageEmployee extends JFrame {
 	private JPanel contentPane;
 	private SideBarEmployee sidebar;
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -43,6 +44,7 @@ public class HomepageEmployee extends JFrame {
 	 * Create the frame.
 	 */
 	public HomepageEmployee() {
+		setTitle("Homepage");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -77,35 +79,39 @@ public class HomepageEmployee extends JFrame {
 			}
 		});
 		sidebarButton.setBackground(SystemColor.controlHighlight);
-		sidebarButton.setIcon(new ImageIcon(HomepageEmployee.class.getResource("/images/sidebarIconDS.png")));
+		sidebarButton.setIcon(new ImageIcon(HomepageEmployee.class.getResource("/images/sidebarIcon35px.png")));
 		sidebarButton.setSelectedIcon(null);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
+					.addGap(11)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+					.addGap(11))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(sidebarButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+							.addContainerGap()
+							.addComponent(sidebarButton, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
 							.addComponent(logoLabel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE))
-						.addComponent(statisticsPanel, GroupLayout.PREFERRED_SIZE, 416, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
-					.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(15)
+							.addComponent(statisticsPanel, GroupLayout.PREFERRED_SIZE, 417, Short.MAX_VALUE)))
+					.addGap(14))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(logoLabel, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(sidebarButton)))
-					.addGap(18)
+						.addComponent(sidebarButton)
+						.addComponent(logoLabel, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
+					.addGap(8)
 					.addComponent(statisticsPanel, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(211, Short.MAX_VALUE))
+					.addContainerGap(221, Short.MAX_VALUE))
 		);
 		
 		JLabel easyAccessLabel = new JLabel("Easy Access");
@@ -211,7 +217,7 @@ public class HomepageEmployee extends JFrame {
 					.addGroup(gl_statisticsPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_statisticsPanel.createSequentialGroup()
 							.addComponent(statisticsLabel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-							.addGap(204)
+							.addGap(194)
 							.addComponent(calendarButton)
 							.addContainerGap())
 						.addGroup(gl_statisticsPanel.createSequentialGroup()
