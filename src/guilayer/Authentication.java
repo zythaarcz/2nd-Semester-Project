@@ -57,10 +57,11 @@ public class Authentication extends JFrame {
 	public Authentication() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 750);
+		setBounds(100, 100, 450, 751);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.decode("#F0F0F0"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setTitle("Authentication");
 		setContentPane(contentPane);
 		
 		JLabel emailLabel = new JLabel("Email");
@@ -84,6 +85,7 @@ public class Authentication extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton signInButton = new JButton("Sign in");
+		signInButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		signInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO
