@@ -79,59 +79,60 @@ public class CreateVideo extends JFrame {
 		
 		textFieldUrl = new JTextField();
 		textFieldUrl.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textFieldUrl.setBounds(75, 171, 300, 43);
+		textFieldUrl.setBounds(70, 171, 300, 43);
 		contentPane.add(textFieldUrl);
 		textFieldUrl.setColumns(10);
 		
 		textFieldHeader = new JTextField();
 		textFieldHeader.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textFieldHeader.setColumns(10);
-		textFieldHeader.setBounds(75, 249, 300, 43);
+		textFieldHeader.setBounds(70, 249, 300, 43);
 		contentPane.add(textFieldHeader);
 		
 		textPaneShortDescription = new JTextPane();
 		textPaneShortDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textPaneShortDescription.setBounds(75, 327, 300, 100);
+		textPaneShortDescription.setBounds(70, 327, 300, 100);
 		contentPane.add(textPaneShortDescription);
 		
 		String[] filterStrings = {"Uncategorized","Neck training", "Upper body training", "Lower body training"};
 		comboBoxCategory = new JComboBox(filterStrings);
 		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboBoxCategory.setBounds(75, 462, 300, 43);
+		comboBoxCategory.setBounds(70, 462, 300, 43);
 		contentPane.add(comboBoxCategory);
 		
 		textFieldPointsForCompletion = new JTextField();
 		textFieldPointsForCompletion.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textFieldPointsForCompletion.setColumns(10);
-		textFieldPointsForCompletion.setBounds(75, 540, 300, 43);
+		textFieldPointsForCompletion.setBounds(70, 540, 300, 43);
 		contentPane.add(textFieldPointsForCompletion);
 		
 		JLabel lblURL = new JLabel("URL");
 		lblURL.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblURL.setBounds(76, 146, 100, 30);
+		lblURL.setBounds(70, 146, 100, 30);
 		contentPane.add(lblURL);
 		
 		JLabel lblHeader = new JLabel("Header");
 		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblHeader.setBounds(75, 224, 100, 30);
+		lblHeader.setBounds(70, 224, 100, 30);
 		contentPane.add(lblHeader);
 		
 		JLabel lblShortDescription = new JLabel("Short description");
 		lblShortDescription.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblShortDescription.setBounds(75, 302, 146, 30);
+		lblShortDescription.setBounds(70, 302, 146, 30);
 		contentPane.add(lblShortDescription);
 		
 		JLabel lblCategory = new JLabel("Category");
 		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCategory.setBounds(75, 437, 146, 30);
+		lblCategory.setBounds(70, 437, 146, 30);
 		contentPane.add(lblCategory);
 		
 		JLabel lblPointsForCompletion = new JLabel("Points for completion");
 		lblPointsForCompletion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblPointsForCompletion.setBounds(75, 515, 165, 30);
+		lblPointsForCompletion.setBounds(70, 515, 165, 30);
 		contentPane.add(lblPointsForCompletion);
 		
 		JButton btnCreateVideo = new JButton("Create video");
+		btnCreateVideo.setRolloverEnabled(false);
 		btnCreateVideo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				createVideo();	
@@ -140,10 +141,11 @@ public class CreateVideo extends JFrame {
 		btnCreateVideo.setForeground(Color.BLACK);
 		btnCreateVideo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnCreateVideo.setBackground(new Color(255, 208, 32));
-		btnCreateVideo.setBounds(125, 611, 200, 31);
+		btnCreateVideo.setBounds(120, 611, 200, 31);
 		contentPane.add(btnCreateVideo);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setRolloverEnabled(false);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cancelCreateVideo();
@@ -152,8 +154,39 @@ public class CreateVideo extends JFrame {
 		btnCancel.setForeground(Color.BLACK);
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnCancel.setBackground(new Color(255, 208, 32));
-		btnCancel.setBounds(125, 652, 200, 31);
+		btnCancel.setBounds(120, 652, 200, 31);
 		contentPane.add(btnCancel);
+		
+		SideBarCustomer sidebar = new SideBarCustomer();
+		//setComponentZOrder(sidebar, );
+		sidebar.setSize(0, 740);
+		contentPane.add(sidebar);
+		sidebar.setVisible(false);
+		
+		JButton sidebarButton = new JButton("");
+		sidebarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sidebar.setVisible(true);
+				sidebar.setSize(225, 740);
+
+				textFieldUrl.setFocusable(false);
+				textFieldHeader.setEnabled(false);
+				textFieldPointsForCompletion.setEnabled(false);
+				textPaneShortDescription.setEnabled(false);
+				comboBoxCategory.setEnabled(false);
+				
+				btnCreateVideo.setEnabled(false);
+				btnCancel.setEnabled(false);
+				
+			}
+		});
+		sidebarButton.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/sidebarIcon35px.png")));
+		sidebarButton.setOpaque(false);
+		sidebarButton.setForeground(Color.BLACK);
+		sidebarButton.setBorderPainted(false);
+		sidebarButton.setBackground(Color.LIGHT_GRAY);
+		sidebarButton.setBounds(10, 10, 45, 39);
+		contentPane.add(sidebarButton);
 	}
 	
 	private void createVideo() {	

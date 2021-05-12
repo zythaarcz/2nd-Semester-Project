@@ -34,7 +34,6 @@ public class CancelCreateVideo extends JDialog {
 	 * Create the dialog.
 	 */
 	public CancelCreateVideo() {
-		setResizable(false);
 		setAlwaysOnTop(true);
 		setBounds(100, 100, 330, 160);
 		getContentPane().setLayout(new BorderLayout());
