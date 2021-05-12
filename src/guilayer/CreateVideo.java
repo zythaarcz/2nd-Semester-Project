@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modellayer.AuthenticatedUser;
+import modellayer.PersonTypes;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -37,6 +41,7 @@ public class CreateVideo extends JFrame {
 	
 	private CancelCreateVideo cancelCreateVideo;
 	
+	private SideBarEmployee sideBarEmployee;
 
 	/**
 	 * Launch the application.
@@ -155,27 +160,16 @@ public class CreateVideo extends JFrame {
 		btnCancel.setBounds(120, 652, 200, 31);
 		contentPane.add(btnCancel);
 		
-		SideBarCustomer sidebar = new SideBarCustomer();
-		//setComponentZOrder(sidebar, );
-		sidebar.setSize(0, 740);
-		contentPane.add(sidebar);
-		sidebar.setVisible(false);
+		sideBarEmployee = new SideBarEmployee();
+		sideBarEmployee.setSize(0, 740);
+		sideBarEmployee.setVisible(false);
+		contentPane.add(sideBarEmployee);
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sidebar.setVisible(true);
-				sidebar.setSize(225, 740);
-
-				textFieldUrl.setFocusable(false);
-				textFieldHeader.setEnabled(false);
-				textFieldPointsForCompletion.setEnabled(false);
-				textPaneShortDescription.setEnabled(false);
-				comboBoxCategory.setEnabled(false);
-				
-				btnCreateVideo.setEnabled(false);
-				btnCancel.setEnabled(false);
-				
+				sideBarEmployee.setVisible(true);
+				sideBarEmployee.setSize(225, 740);
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/sidebarIcon35px.png")));

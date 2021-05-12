@@ -28,7 +28,6 @@ import java.awt.Window;
 
 public class SideBarEmployee extends JPanel {
 	
-
 	
 	/**
 	 * Create the panel.
@@ -222,4 +221,5 @@ public class SideBarEmployee extends JPanel {
 			
 		return result;
 	}
+
 }

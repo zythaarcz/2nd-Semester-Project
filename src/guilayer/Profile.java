@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modellayer.AuthenticatedUser;
+import modellayer.PersonTypes;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -42,6 +45,9 @@ public class Profile extends JFrame {
 	private String companyNameString;
 	private String healthIssueString;
 	
+	private SideBarEmployee sideBarEmployee;
+	private SideBarCustomer sidebarCustomer;
+	
 
 	/**
 	 * Launch the application.
@@ -65,7 +71,7 @@ public class Profile extends JFrame {
 	public Profile() {
 		passwordChangeDialog = new PasswordChange();
 		passwordChangeDialog.setVisible(false);
-		
+				
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -184,6 +190,7 @@ public class Profile extends JFrame {
 		contentPane.add(profilePicture);
 		
 		JButton btnChangePhoto = new JButton("Change photo");
+		btnChangePhoto.setRolloverEnabled(false);
 		btnChangePhoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(passwordChangeDialog.isVisible() == false) {
@@ -257,6 +264,7 @@ public class Profile extends JFrame {
 		contentPane.add(healthIssuesComboBox);
 		
 		JButton btnChangePassword = new JButton("Change password");
+		btnChangePassword.setRolloverEnabled(false);
 		btnChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				changePassword();
@@ -267,6 +275,36 @@ public class Profile extends JFrame {
 		btnChangePassword.setBackground(new Color(255, 208, 32));
 		btnChangePassword.setBounds(125, 619, 200, 31);
 		contentPane.add(btnChangePassword);	
+		
+		sideBarEmployee = new SideBarEmployee();
+		sideBarEmployee.setSize(0, 740);
+		sideBarEmployee.setVisible(false);
+		contentPane.add(sideBarEmployee);
+		
+		sidebarCustomer = new SideBarCustomer();
+		sidebarCustomer.setSize(0, 740);
+		sidebarCustomer.setVisible(false);
+		contentPane.add(sidebarCustomer);
+		
+		JButton sidebarButton = new JButton("");
+		sidebarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
+					sideBarEmployee.setVisible(true);
+					sideBarEmployee.setSize(225, 740);
+				} else if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					sidebarCustomer.setVisible(true);
+					sidebarCustomer.setSize(225, 740);
+				}
+			}
+		});
+		sidebarButton.setIcon(new ImageIcon(Profile.class.getResource("/images/sidebarIcon35px.png")));
+		sidebarButton.setOpaque(false);
+		sidebarButton.setForeground(Color.BLACK);
+		sidebarButton.setBorderPainted(false);
+		sidebarButton.setBackground(Color.LIGHT_GRAY);
+		sidebarButton.setBounds(10, 10, 45, 39);
+		contentPane.add(sidebarButton);
 	}
 	
 	private void changePassword() {
