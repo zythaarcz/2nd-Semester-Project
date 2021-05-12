@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -20,11 +21,16 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AllVideosEmployee extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel logoImage;
+	private CreateVideo createVideo;
+	private EditVideo editVideo;
 	/**
 	 * Launch the application.
 	 */
@@ -45,12 +51,17 @@ public class AllVideosEmployee extends JFrame {
 	 * Create the frame.
 	 */
 	public AllVideosEmployee() {
+		createVideo= new CreateVideo();
+		createVideo.setVisible(false);
+		editVideo = new EditVideo();
+		editVideo.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -104,21 +115,16 @@ public class AllVideosEmployee extends JFrame {
 		gbc_comboBox.gridy = 4;
 		panel.add(comboBox, gbc_comboBox);
 		
-		JLabel addVideoButton = new JLabel(new ImageIcon(AllVideosEmployee.class.getResource("/images/addVideoButton.png")));
-		addVideoButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//TODO
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		JButton addVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/addVideoButton.png")));
+		addVideoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		addVideoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createVideo.setVisible(true);
+				dispose();
 			}
 		});
+		addVideoButton.setBorderPainted(false);
+		addVideoButton.setBackground(SystemColor.window);
 		GridBagConstraints gbc_addVideoButton = new GridBagConstraints();
 		gbc_addVideoButton.insets = new Insets(0, 0, 5, 5);
 		gbc_addVideoButton.gridx = 4;
@@ -149,42 +155,29 @@ public class AllVideosEmployee extends JFrame {
 		gbc_lblNewLabel_2.gridy = 1;
 		panel_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JLabel editVideoButton = new JLabel(new ImageIcon(AllVideosEmployee.class.getResource("/images/editVideoButton.png")));
-		editVideoButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//TODO
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		JButton editVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/editVideoButton.png")));
+		editVideoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		editVideoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editVideo.setVisible(true);
+				dispose();
 			}
 		});
+		editVideoButton.setBorderPainted(false);
 		GridBagConstraints gbc_editVideoButton = new GridBagConstraints();
 		gbc_editVideoButton.insets = new Insets(0, 0, 5, 5);
 		gbc_editVideoButton.gridx = 1;
 		gbc_editVideoButton.gridy = 1;
 		panel_1.add(editVideoButton, gbc_editVideoButton);
 		
-		JLabel deleteVideoButton = new JLabel(new ImageIcon(AllVideosEmployee.class.getResource("/images/deleteButton.png")));
-		deleteVideoButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//TODO
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		JButton deleteVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/deleteButton.png")));
+		deleteVideoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int a = JOptionPane.showConfirmDialog(scrollPane, "Are you sure you want to delete video?", "Delete video", JOptionPane.YES_NO_OPTION);
+				
 			}
 		});
+		deleteVideoButton.setBorderPainted(false);
 		GridBagConstraints gbc_deleteVideoButton = new GridBagConstraints();
 		gbc_deleteVideoButton.insets = new Insets(0, 0, 5, 0);
 		gbc_deleteVideoButton.gridx = 2;

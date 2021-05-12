@@ -47,6 +47,7 @@ public class AllVideos extends JFrame {
 	 * Create the frame.
 	 */
 	public AllVideos() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
@@ -72,7 +73,7 @@ public class AllVideos extends JFrame {
 	
 		SideBarCustomer sidebar = new SideBarCustomer();
 		sidebar.setSize(0, 740);
-		contentPane.add(sidebar);
+		scrollPane.add(sidebar);
 		sidebar.setVisible(false);
 			
 		JButton sidebarButton = new JButton("");

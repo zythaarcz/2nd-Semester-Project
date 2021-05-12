@@ -37,8 +37,6 @@ public class CreateVideo extends JFrame {
 	
 	private CancelCreateVideo cancelCreateVideo;
 	
-	int x;
-	
 
 	/**
 	 * Launch the application.
