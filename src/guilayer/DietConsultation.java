@@ -100,23 +100,23 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		
 		JLabel reasonLabel = new JLabel("Reason for consultation");
 		reasonLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		reasonLabel.setBounds(39, 410, 380, 17);
+		reasonLabel.setBounds(39, 482, 380, 17);
 		contentPane.add(reasonLabel);
 		
 		reasonTextField = new JTextField();
 		reasonTextField.setColumns(10);
-		reasonTextField.setBounds(39, 437, 216, 28);
+		reasonTextField.setBounds(39, 509, 216, 28);
 		contentPane.add(reasonTextField);
 		
 		JLabel availableDateLabel = new JLabel("Choose available date");
 		availableDateLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		availableDateLabel.setBounds(39, 475, 370, 17);
+		availableDateLabel.setBounds(39, 420, 370, 17);
 		contentPane.add(availableDateLabel);
 		
 		JFormattedTextField dateTextField = new JFormattedTextField();
 		dateTextField.setPreferredSize(new Dimension(130, 30));
 		dateTextField.setValue(new Date()); //curent date
-		dateTextField.setBounds(39, 502, 216, 25);
+		dateTextField.setBounds(39, 447, 216, 25);
 		contentPane.add(dateTextField);
 		
 		CalendarWindow calendarWindow = new CalendarWindow();
@@ -135,7 +135,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		});
 		chooseButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chooseButton.setBackground(new Color(255, 208, 32));
-		chooseButton.setBounds(277, 502, 94, 25);
+		chooseButton.setBounds(281, 447, 94, 25);
 		contentPane.add(chooseButton);
 		
 		JButton bookConsultationButton = new JButton("Book consultation");
@@ -159,6 +159,15 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		cancelButton.setBackground(new Color(255, 208, 32));
 		cancelButton.setBounds(100, 624, 145, 38);
 		contentPane.add(cancelButton);
+		
+		JButton sidebarButton = new JButton("");
+		sidebarButton.setIcon(new ImageIcon(DietConsultation.class.getResource("/images/sidebarIcon35px.png")));
+		sidebarButton.setOpaque(false);
+		sidebarButton.setForeground(Color.BLACK);
+		sidebarButton.setBorderPainted(false);
+		sidebarButton.setBackground(Color.LIGHT_GRAY);
+		sidebarButton.setBounds(10, 10, 43, 39);
+		contentPane.add(sidebarButton);
 	}
 
 	@Override
