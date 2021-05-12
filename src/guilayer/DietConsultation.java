@@ -28,6 +28,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 	private JTextField lastNameTextField;
 	private JTextField companyNameTextField;
 	private JTextField reasonTextField;
+	private SideBarCustomer sidebar;
 
 	/**
 	 * Launch the application.
@@ -160,7 +161,18 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		cancelButton.setBounds(100, 624, 145, 38);
 		contentPane.add(cancelButton);
 		
+		SideBarCustomer sidebar = new SideBarCustomer();
+		sidebar.setSize(0, 740);
+		contentPane.add(sidebar);
+		sidebar.setVisible(false);
+		
 		JButton sidebarButton = new JButton("");
+		sidebarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sidebar.setVisible(true);
+				sidebar.setSize(225, 740);
+			}
+		});
 		sidebarButton.setIcon(new ImageIcon(DietConsultation.class.getResource("/images/sidebarIcon35px.png")));
 		sidebarButton.setOpaque(false);
 		sidebarButton.setForeground(Color.BLACK);
