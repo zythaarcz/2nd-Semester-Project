@@ -7,11 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllayer.AuthenticationController;
+
 import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -27,6 +30,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import modellayer.AuthenticatedUser;
+import modellayer.PersonTypes;
+
 public class Authentication extends JFrame {
 
 	private JPanel contentPane;
@@ -34,6 +40,8 @@ public class Authentication extends JFrame {
 	private JPasswordField passwordField;
 	private JLabel hyperlink;
 	private JLabel logoImage;
+	
+	private AuthenticationController authController;
 
 	/**
 	 * Launch the application.
@@ -55,6 +63,8 @@ public class Authentication extends JFrame {
 	 * Create the frame.
 	 */
 	public Authentication() {
+		authController = new AuthenticationController(); 
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 751);
@@ -88,7 +98,29 @@ public class Authentication extends JFrame {
 		signInButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		signInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				String email = emailTextField.getText();
+				String password = String.valueOf(passwordField.getPassword());
+				
+				boolean result = authController.authenticateUser(email, password);
+				
+				if(result) {
+					switch(AuthenticatedUser.getInstance().getCurrentUser().getPersonType()) {
+					case Customer:
+						HomepageCustomer hpCustomer = new HomepageCustomer();
+						hpCustomer.setVisible(true);
+						dispose();
+						break;
+					case Employee:
+						HomepageEmployee hpEmployee = new HomepageEmployee();
+						hpEmployee.setVisible(true);
+						dispose();
+						break;
+					}
+				}
+				else {
+					//TODO: display message to user to try again
+					JOptionPane.showMessageDialog(contentPane, "Email or password is wrong. Try again!");
+				}
 			}
 		});
 		signInButton.setBackground(Color.decode("#FFD020"));

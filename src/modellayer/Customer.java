@@ -12,7 +12,7 @@ public class Customer extends Person {
 
 	public Customer(String firstName, String lastName, String phoneNumber, String email, String address, String company,
 			Date dateOfBirth, String healthIssue, String timeToRemind) {
-		super(firstName, lastName, phoneNumber, email);
+		super(firstName, lastName, phoneNumber, email, PersonTypes.Customer);
 		this.address = address;
 		this.company = company;
 		this.dateOfBirth = dateOfBirth;
