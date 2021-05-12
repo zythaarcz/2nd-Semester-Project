@@ -92,7 +92,7 @@ public class CreateVideo extends JFrame {
 		textPaneShortDescription.setBounds(70, 327, 300, 100);
 		contentPane.add(textPaneShortDescription);
 		
-		String[] filterStrings = {"Uncategorized","Neck training", "Upper body training", "Lower body training"};
+		String[] filterStrings = {"Uncategorized","Neck training", "Upper body training", "Lower body training", "Pain relief techniques"};
 		comboBoxCategory = new JComboBox(filterStrings);
 		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBoxCategory.setBounds(70, 462, 300, 43);

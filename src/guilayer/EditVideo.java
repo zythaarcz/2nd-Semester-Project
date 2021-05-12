@@ -25,6 +25,7 @@ import javax.swing.JEditorPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
 
 public class EditVideo extends JFrame {
 
@@ -32,12 +33,11 @@ public class EditVideo extends JFrame {
 	private JTextField txtTitle;
 	private JTextField txtDescription;
 	private JTextField txtPoints;
-	private JTextField txtCategory;
 	private JButton editButton_titleOK;
 	private JButton editButton_descriptionOK;
 	private JButton editButton_pointsOK;
-	private JButton editButton_categoryOK;
-
+	private AllVideosEmployee allVideos;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -58,6 +58,8 @@ public class EditVideo extends JFrame {
 	 * Create the frame.
 	 */
 	public EditVideo() {
+		allVideos = new AllVideosEmployee();
+		allVideos.setVisible(false);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -72,27 +74,17 @@ public class EditVideo extends JFrame {
 		logo.setIcon(new ImageIcon(EditVideo.class.getResource("/images/logo.png")));
 		contentPane.add(logo);
 
-		JButton cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(new ActionListener() {
+		JButton btnGoBack = new JButton("Go back");
+		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Not implemented yet."); //send you back to the previous page
+				allVideos.setVisible(true);
+				dispose();
 			}
 		});
-		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cancelButton.setBackground(Color.decode("#FFD020"));
-		cancelButton.setBounds(204, 649, 97, 33);
-		contentPane.add(cancelButton);
-
-		JButton confirmButton = new JButton("Confirm");
-		confirmButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Not implemented yet."); //"Video details were successfully updated."
-			}
-		});
-		confirmButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		confirmButton.setBounds(311, 649, 97, 33);
-		confirmButton.setBackground(Color.decode("#FFD020"));
-		contentPane.add(confirmButton);
+		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnGoBack.setBounds(169, 649, 97, 33);
+		btnGoBack.setBackground(Color.decode("#FFD020"));
+		contentPane.add(btnGoBack);
 
 		JButton editButton_title = new JButton("");
 		editButton_title.setIcon(new ImageIcon(EditVideo.class.getResource("/images/settingsIcon32x32.png")));
@@ -180,7 +172,7 @@ public class EditVideo extends JFrame {
 		});
 		editButton_points.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		editButton_points.setBackground(SystemColor.menu);
-		editButton_points.setBounds(325, 442, 57, 43);
+		editButton_points.setBounds(325, 462, 57, 43);
 		contentPane.add(editButton_points);
 		
 		editButton_pointsOK = new JButton("");
@@ -200,44 +192,8 @@ public class EditVideo extends JFrame {
 		editButton_pointsOK.setVisible(false);
 		editButton_pointsOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
 		editButton_pointsOK.setBackground(SystemColor.menu);
-		editButton_pointsOK.setBounds(325, 442, 57, 43);
+		editButton_pointsOK.setBounds(325, 462, 57, 43);
 		contentPane.add(editButton_pointsOK);
-
-		JButton editButton_category = new JButton("");
-		editButton_category.setIcon(new ImageIcon(EditVideo.class.getResource("/images/settingsIcon32x32.png")));
-		editButton_category.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtCategory.setEditable(true);
-				editButton_category.setVisible(false);
-				editButton_category.setEnabled(false);
-				editButton_categoryOK.setVisible(true);
-				editButton_categoryOK.setEnabled(true);
-			}
-		});
-		editButton_category.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		editButton_category.setBackground(SystemColor.menu);
-		editButton_category.setBounds(325, 519, 57, 43);
-		contentPane.add(editButton_category);
-		
-		editButton_categoryOK = new JButton("");
-		editButton_categoryOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtCategory.setEditable(false);
-				editButton_category.setVisible(true);
-				editButton_category.setEnabled(true);
-				editButton_categoryOK.setVisible(false);
-				editButton_categoryOK.setEnabled(false);
-				
-				String categoryString = txtCategory.getText();
-				System.out.println(categoryString);
-			}
-		});
-		editButton_categoryOK.setEnabled(false);
-		editButton_categoryOK.setVisible(false);
-		editButton_categoryOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
-		editButton_categoryOK.setBackground(SystemColor.menu);
-		editButton_categoryOK.setBounds(325, 519, 57, 43);
-		contentPane.add(editButton_categoryOK);
 		
 		txtTitle = new JTextField();
 		txtTitle.setText("5 Ways to reduce back pain");
@@ -258,21 +214,34 @@ public class EditVideo extends JFrame {
 		contentPane.add(txtDescription);
 		
 		txtPoints = new JTextField();
-		txtPoints.setText("Points for completion: 35");
+		txtPoints.setText("35");
 		txtPoints.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPoints.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtPoints.setEditable(false);
 		txtPoints.setColumns(10);
-		txtPoints.setBounds(70, 442, 312, 43);
+		txtPoints.setBounds(70, 462, 312, 43);
 		contentPane.add(txtPoints);
 		
-		txtCategory = new JTextField();
-		txtCategory.setText("Category: Pain relief");
-		txtCategory.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtCategory.setEditable(false);
-		txtCategory.setColumns(10);
-		txtCategory.setBounds(70, 519, 312, 43);
-		contentPane.add(txtCategory);
+		JLabel lblPoints = new JLabel("Points for completion");
+		lblPoints.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPoints.setBounds(70, 433, 185, 19);
+		contentPane.add(lblPoints);
+		
+		JLabel lblCategory = new JLabel("Category");
+		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCategory.setBounds(70, 531, 162, 19);
+		contentPane.add(lblCategory);
+		
+		String[] filterStrings = {"Uncategorized","Neck training", "Upper body training", "Lower body training", "Pain relief techniques"};
+		JComboBox comboBoxCategory = new JComboBox(filterStrings);
+		comboBoxCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String combo = String.valueOf(comboBoxCategory.getSelectedItem());
+				System.out.println(combo);
+			}
+		});
+		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBoxCategory.setBounds(70, 560, 312, 43);
+		contentPane.add(comboBoxCategory);
 	}
 }
