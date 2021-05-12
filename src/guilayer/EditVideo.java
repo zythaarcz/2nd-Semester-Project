@@ -68,7 +68,7 @@ public class EditVideo extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel logo = new JLabel("");
-		logo.setBounds(100, 37, 349, 111);
+		logo.setBounds(133, 27, 293, 111);
 		logo.setIcon(new ImageIcon(EditVideo.class.getResource("/images/logo.png")));
 		contentPane.add(logo);
 

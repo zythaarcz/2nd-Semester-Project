@@ -108,7 +108,7 @@ public class HomepageCustomer extends JFrame {
 				//TODO
 			}
 		});
-		manageBlogsButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		manageBlogsButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		manageBlogsButton.setBackground(Color.decode("#FFD020"));
 		manageBlogsButton.setBorderPainted(false);
 		GroupLayout gl_panel = new GroupLayout(panel);
