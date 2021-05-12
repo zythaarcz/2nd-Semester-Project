@@ -35,7 +35,6 @@ public class SideBarEmployee extends JPanel {
 		add (customerPreview);
 		
 		JButton sidebarButton = new JButton("");
-		buttons.add(sidebarButton);
 		sidebarButton.setRolloverEnabled(false);
 		sidebarButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -98,16 +97,13 @@ public class SideBarEmployee extends JPanel {
 					customerPreview.setVisible(true);
 					customerPreview.setSize(225,740);
 					setComponentZOrder(customerPreviewButton, 0);
-					setComponentZOrder(customerPreview, 1);
-					customerPreviewButton.setLocation(100, 10);
+					setComponentZOrder(sidebarButton, 0);
 					for (JButton jButton : buttons) {
 						jButton.setVisible(false);
 					}
 					
 				} else {
 					customerPreviewButton.setText("Customer preview");
-					setComponentZOrder(customerPreviewButton, 7);
-					customerPreviewButton.setLocation(54, 208);
 					customerPreview.setVisible(false);
 					for (JButton jButton : buttons) {
 						jButton.setVisible(true);
