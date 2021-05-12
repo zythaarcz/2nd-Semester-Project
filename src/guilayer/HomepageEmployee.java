@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -124,7 +125,9 @@ public class HomepageEmployee extends JFrame {
 		manageVideosButton.setBackground(Color.decode("#FFD020"));
 		manageVideosButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				VideoCategoriesEmployee videoCategoriesEmployee = new VideoCategoriesEmployee();
+				videoCategoriesEmployee.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -132,7 +135,8 @@ public class HomepageEmployee extends JFrame {
 		manageBlogsButton.setRolloverEnabled(false);
 		manageBlogsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				//TODO fix when blogs are implemented
+				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
 			}
 		});
 		manageBlogsButton.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -142,7 +146,8 @@ public class HomepageEmployee extends JFrame {
 		JButton dietConsultationButton = new JButton("Diet Consultation");
 		dietConsultationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				//TODO make manager version of diet consultation
+				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
 			}
 		});
 		dietConsultationButton.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -185,7 +190,7 @@ public class HomepageEmployee extends JFrame {
 		calendarButton.setBorderPainted(false);
 		calendarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
 			}
 		});
 		calendarButton.setFont(new Font("Tahoma", Font.BOLD, 14));

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -106,6 +107,7 @@ public class HomepageCustomer extends JFrame {
 		manageBlogsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO
+				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
 			}
 		});
 		manageBlogsButton.setFont(new Font("Tahoma", Font.PLAIN, 15));

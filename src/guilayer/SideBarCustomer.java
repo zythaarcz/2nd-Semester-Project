@@ -4,11 +4,18 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import modellayer.AuthenticatedUser;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,6 +29,12 @@ public class SideBarCustomer extends JPanel {
 		setBackground(Color.DARK_GRAY);
 		
 		JButton blogButton = new JButton("Blog");
+		blogButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect to blog section when implemented
+				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+			}
+		});
 		blogButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		blogButton.setBorderPainted(false);
 		blogButton.setBackground(new Color(255, 208, 32));
@@ -39,21 +52,52 @@ public class SideBarCustomer extends JPanel {
 		sidebarButton.setBackground(Color.DARK_GRAY);
 		
 		JButton logOutButton = new JButton("Log out");
+		logOutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AuthenticatedUser.getInstance().setCurrentUser(null);
+				Authentication authentication = new Authentication();
+				authentication.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		logOutButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		logOutButton.setBorderPainted(false);
 		logOutButton.setBackground(new Color(255, 208, 32));
 		
 		JButton viewProfileButton = new JButton("View Profile");
+		viewProfileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Profile profile = new Profile();
+				profile.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		viewProfileButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		viewProfileButton.setBorderPainted(false);
 		viewProfileButton.setBackground(new Color(255, 208, 32));
 		
 		JButton myProgressButton = new JButton("My Progress");
+		myProgressButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect with progress
+				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+			}
+		});
 		myProgressButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		myProgressButton.setBorderPainted(false);
 		myProgressButton.setBackground(new Color(255, 208, 32));
 		
 		JButton dailyExerciseButton = new JButton("Daily Exercise");
+		dailyExerciseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DailyExercise dailyExercise = new DailyExercise();
+				dailyExercise.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		dailyExerciseButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dailyExerciseButton.setBorderPainted(false);
 		dailyExerciseButton.setBackground(new Color(255, 208, 32));
@@ -63,16 +107,38 @@ public class SideBarCustomer extends JPanel {
 		lblNewLabel.setForeground(Color.WHITE);
 		
 		JButton leaderboardButton = new JButton("Leaderboard");
+		leaderboardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect when leaderboard is implemented
+				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+			}
+		});
 		leaderboardButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		leaderboardButton.setBorderPainted(false);
 		leaderboardButton.setBackground(new Color(255, 208, 32));
 		
 		JButton allLessonsButton = new JButton("All Lessons");
+		allLessonsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AllVideos allVideos = new AllVideos();
+				allVideos.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		allLessonsButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		allLessonsButton.setBorderPainted(false);
 		allLessonsButton.setBackground(new Color(255, 208, 32));
 		
 		JButton dietConsultationButton = new JButton("Diet Consultation");
+		dietConsultationButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DietConsultation dietConsultation = new DietConsultation();
+				dietConsultation.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		dietConsultationButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dietConsultationButton.setBorderPainted(false);
 		dietConsultationButton.setBackground(new Color(255, 208, 32));

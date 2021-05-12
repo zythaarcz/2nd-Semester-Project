@@ -1,6 +1,7 @@
 package guilayer;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -13,13 +14,22 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingUtilities;
+
+import modellayer.AuthenticatedUser;
+
 import java.awt.Rectangle;
+import java.awt.Window;
 
 public class SideBarEmployee extends JPanel {
+	
 
+	
 	/**
 	 * Create the panel.
 	 */
@@ -39,7 +49,7 @@ public class SideBarEmployee extends JPanel {
 		sidebarButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setSize(0, 750);
+				setSize(0, 740);
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(SideBarEmployee.class.getResource("/images/arrowIconDS.png")));
@@ -49,6 +59,14 @@ public class SideBarEmployee extends JPanel {
 		sidebarButton.setBackground(Color.DARK_GRAY);
 		
 		JButton viewProfileButton = new JButton("View Profile");
+		viewProfileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Profile profile = new Profile();
+				profile.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		buttons.add(viewProfileButton);
 		viewProfileButton.setRolloverEnabled(false);
 		viewProfileButton.setBackground(Color.decode("#FFD020"));
@@ -56,6 +74,14 @@ public class SideBarEmployee extends JPanel {
 		viewProfileButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton manageVideosButton = new JButton("Manage Videos");
+		manageVideosButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VideoCategoriesEmployee videoCategoriesEmployee = new VideoCategoriesEmployee();
+				videoCategoriesEmployee.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		buttons.add(manageVideosButton);
 		manageVideosButton.setRolloverEnabled(false);
 		manageVideosButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -63,6 +89,12 @@ public class SideBarEmployee extends JPanel {
 		manageVideosButton.setBackground(new Color(255, 208, 32));
 		
 		JButton manageBlogsButton = new JButton("Manage Blogs");
+		manageBlogsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect to blog section when implemented
+				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+			}
+		});
 		buttons.add(manageBlogsButton);
 		manageBlogsButton.setRolloverEnabled(false);
 		manageBlogsButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -70,6 +102,15 @@ public class SideBarEmployee extends JPanel {
 		manageBlogsButton.setBackground(new Color(255, 208, 32));
 		
 		JButton logOutButton = new JButton("Log out");
+		logOutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AuthenticatedUser.getInstance().setCurrentUser(null);
+				Authentication authentication = new Authentication();
+				authentication.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		buttons.add(logOutButton);
 		logOutButton.setRolloverEnabled(false);
 		logOutButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -77,6 +118,12 @@ public class SideBarEmployee extends JPanel {
 		logOutButton.setBackground(new Color(255, 208, 32));
 		
 		JButton dietConsultationButton = new JButton("Diet Consultation");
+		dietConsultationButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO create manager diet consultationGUI
+				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+			}
+		});
 		buttons.add(dietConsultationButton);
 		dietConsultationButton.setRolloverEnabled(false);
 		dietConsultationButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -163,6 +210,16 @@ public class SideBarEmployee extends JPanel {
 					.addGap(48))
 		);
 		setLayout(groupLayout);
-
+		
+	}
+	
+	public boolean isInstanceOfJFrame(Component c) {
+		boolean result;
+		
+		if(c instanceof JFrame) {
+			result = true;
+		} else result = false;
+			
+		return result;
 	}
 }
