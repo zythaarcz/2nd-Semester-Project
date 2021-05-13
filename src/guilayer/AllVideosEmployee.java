@@ -2,6 +2,7 @@ package guilayer;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -16,21 +17,33 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JViewport;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import controllayer.ManageVideoController;
+import modellayer.Video;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.Icon;
+import java.awt.Rectangle;
+import java.awt.ScrollPane;
 
 public class AllVideosEmployee extends JFrame {
-
+	ManageVideoController manageVideoController = new ManageVideoController();
+	
 	private JPanel contentPane;
 	private JLabel logoImage;
 	private CreateVideo createVideo;
 	private EditVideo editVideo;
+	
+	ArrayList<Video> allVideos = manageVideoController.retrieveAllVideos();
 	/**
 	 * Launch the application.
 	 */
@@ -51,71 +64,55 @@ public class AllVideosEmployee extends JFrame {
 	 * Create the frame.
 	 */
 	public AllVideosEmployee() {
+		ArrayList<VideoPanel> allVideoPanels = createAllVideoPanels();
+		setResizable(false);
 		createVideo= new CreateVideo();
 		createVideo.setVisible(false);
-		editVideo = new EditVideo();
-		editVideo.setVisible(false);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
+		contentPane.setAutoscrolls(true);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(3, 0, 440, 750);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(0, 0, 450, 750);
+		
 		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
+		Dimension d = new Dimension(440,750);
+		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{17, 32, 0, 98, 50, 97, 0, 35, 0};
-		gbl_panel.rowHeights = new int[]{69, 74, 47, 43, 43, 10, 50, 30, 229, 230};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0};
-		panel.setLayout(gbl_panel);
+		panel.setLayout(null);
 		
 		logoImage = new JLabel(new ImageIcon(VideoCategories.class.getResource("/images/logo.png")));
-		GridBagConstraints gbc_logoImage = new GridBagConstraints();
-		gbc_logoImage.gridwidth = 5;
-		gbc_logoImage.anchor = GridBagConstraints.NORTHEAST;
-		gbc_logoImage.insets = new Insets(0, 0, 5, 5);
-		gbc_logoImage.gridx = 2;
-		gbc_logoImage.gridy = 1;
-		panel.add(logoImage, gbc_logoImage);
+		logoImage.setBounds(131, 10, 300, 111);
+		panel.add(logoImage);
 		
 		JLabel lblNewLabel = new JLabel("All videos");
+		lblNewLabel.setBounds(172, 145, 86, 26);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.gridwidth = 3;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 3;
-		gbc_lblNewLabel.gridy = 3;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
+		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Sort by:");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 2;
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 4;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		lblNewLabel_1.setBounds(50, 194, 37, 13);
+		panel.add(lblNewLabel_1);
 		
 		String[] filterTypes = {"Newest added", "Oldest added", "Most watched"};
 		JComboBox comboBox = new JComboBox(filterTypes);
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.gridwidth = 2;
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.gridx = 3;
-		gbc_comboBox.gridy = 4;
-		panel.add(comboBox, gbc_comboBox);
+		comboBox.setBounds(92, 191, 196, 19);
+		panel.add(comboBox);
 		
 		JButton addVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/addVideoButton.png")));
+		addVideoButton.setBounds(174, 235, 83, 59);
+		addVideoButton.setOpaque(false);
+		addVideoButton.setBorderPainted(false);
 		addVideoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addVideoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -123,73 +120,32 @@ public class AllVideosEmployee extends JFrame {
 				dispose();
 			}
 		});
-		addVideoButton.setBorderPainted(false);
 		addVideoButton.setBackground(SystemColor.window);
-		GridBagConstraints gbc_addVideoButton = new GridBagConstraints();
-		gbc_addVideoButton.insets = new Insets(0, 0, 5, 5);
-		gbc_addVideoButton.gridx = 4;
-		gbc_addVideoButton.gridy = 6;
-		panel.add(addVideoButton, gbc_addVideoButton);
+		panel.add(addVideoButton);
 		
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.anchor = GridBagConstraints.WEST;
-		gbc_panel_1.gridwidth = 4;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_1.fill = GridBagConstraints.VERTICAL;
-		gbc_panel_1.gridx = 3;
-		gbc_panel_1.gridy = 8;
-		panel.add(panel_1, gbc_panel_1);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{227, 31, 30, 0};
-		gbl_panel_1.rowHeights = new int[]{150, 39, 41, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
+		int yPosition = 300;
+		int height = 750;
 		
-		JLabel lblNewLabel_2 = new JLabel("Video title");
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 1;
-		panel_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JButton editVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/editVideoButton.png")));
-		editVideoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		editVideoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				editVideo.setVisible(true);
-				dispose();
-			}
-		});
-		editVideoButton.setBorderPainted(false);
-		GridBagConstraints gbc_editVideoButton = new GridBagConstraints();
-		gbc_editVideoButton.insets = new Insets(0, 0, 5, 5);
-		gbc_editVideoButton.gridx = 1;
-		gbc_editVideoButton.gridy = 1;
-		panel_1.add(editVideoButton, gbc_editVideoButton);
-		
-		JButton deleteVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/deleteButton.png")));
-		deleteVideoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int a = JOptionPane.showConfirmDialog(scrollPane, "Are you sure you want to delete video?", "Delete video", JOptionPane.YES_NO_OPTION);
-				
-			}
-		});
-		deleteVideoButton.setBorderPainted(false);
-		GridBagConstraints gbc_deleteVideoButton = new GridBagConstraints();
-		gbc_deleteVideoButton.insets = new Insets(0, 0, 5, 0);
-		gbc_deleteVideoButton.gridx = 2;
-		gbc_deleteVideoButton.gridy = 1;
-		panel_1.add(deleteVideoButton, gbc_deleteVideoButton);
-		
-		JLabel lblNewLabel_3 = new JLabel("Short description");
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.gridwidth = 3;
-		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 2;
-		panel_1.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		for (VideoPanel videoPanel : allVideoPanels) {
+			
+			videoPanel.setBounds(10, yPosition, 400, 370);
+			videoPanel.setVisible(true);
+			yPosition = yPosition + 380;
+			
+			
+			d.setSize(440, height + yPosition);
+			//panel.set
+			panel.add(videoPanel);
+			}		
+	}
+	public ArrayList<VideoPanel> createAllVideoPanels() {
+		allVideos = manageVideoController.retrieveAllVideos();
+		ArrayList<VideoPanel> allVideoPanels = new ArrayList<>();
+		for (Video video : allVideos) {
+			VideoPanel videoPanel = new VideoPanel(video);
+			allVideoPanels.add(videoPanel);
+		}
+		return allVideoPanels;
 	}
 }

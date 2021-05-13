@@ -7,6 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modellayer.Video;
+
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -41,26 +44,11 @@ public class EditVideo extends JFrame {
 	private String newDescription;
 	private int newPoints;
 	private String newCategory;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EditVideo frame = new EditVideo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public EditVideo() {
+	public EditVideo(Video video) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -198,7 +186,7 @@ public class EditVideo extends JFrame {
 		contentPane.add(editButton_pointsOK);
 		
 		txtTitle = new JTextField();
-		txtTitle.setText(newHeader);
+		txtTitle.setText(video.getHeader());
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtTitle.setEditable(false);
@@ -207,7 +195,7 @@ public class EditVideo extends JFrame {
 		contentPane.add(txtTitle);
 		
 		txtDescription = new JTextField();
-		txtDescription.setText(newDescription);
+		txtDescription.setText(video.getShortDescription());
 		txtDescription.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtDescription.setEditable(false);
@@ -216,7 +204,7 @@ public class EditVideo extends JFrame {
 		contentPane.add(txtDescription);
 		
 		txtPoints = new JTextField();
-		txtPoints.setText(String.valueOf(newPoints));
+		txtPoints.setText(String.valueOf(video.getPointsForCompletion()));
 		txtPoints.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPoints.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtPoints.setEditable(false);
@@ -242,6 +230,7 @@ public class EditVideo extends JFrame {
 				System.out.println(newCategory);
 			}
 		});
+		comboBoxCategory.setSelectedItem(video.getCategory());
 		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBoxCategory.setBounds(70, 560, 312, 43);
 		contentPane.add(comboBoxCategory);
