@@ -5,10 +5,13 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,24 +19,25 @@ import java.awt.event.ActionEvent;
 public class CancelCreateVideo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private AllVideosEmployee allVideoEmployee;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			CancelCreateVideo dialog = new CancelCreateVideo();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		try {
+//			CancelCreateVideo dialog = new CancelCreateVideo();
+//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//			dialog.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public CancelCreateVideo() {
+	public CancelCreateVideo(JFrame frame) {
 		setAlwaysOnTop(true);
 		setBounds(100, 100, 330, 160);
 		getContentPane().setLayout(new BorderLayout());
@@ -44,7 +48,10 @@ public class CancelCreateVideo extends JDialog {
 			JButton btnYes = new JButton("Yes");
 			btnYes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					//TODO show main menu or different section of application.
+					allVideoEmployee = new AllVideosEmployee();
+					allVideoEmployee.setVisible(true);
+					frame.dispose();
+					dispose();
 				}
 			});
 			btnYes.setBounds(25, 73, 100, 31);
@@ -73,5 +80,4 @@ public class CancelCreateVideo extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 	}
-
 }

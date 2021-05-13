@@ -40,6 +40,11 @@ public class CreateVideo extends JFrame {
 	private String categoryString;
 	private int pointsForCompletion;
 	
+	private JLabel errorIconURL;
+	private JLabel errorIconPointsForCompletion;
+	private JLabel errorIconHeader;
+	private JLabel errorIconShortDescription;
+		
 	private CancelCreateVideo cancelCreateVideo;
 	
 	private SideBarEmployee sideBarEmployee;
@@ -66,7 +71,7 @@ public class CreateVideo extends JFrame {
 	 * Create the frame.
 	 */
 	public CreateVideo() {
-		cancelCreateVideo = new CancelCreateVideo();
+		cancelCreateVideo = new CancelCreateVideo(this);
 		cancelCreateVideo.setVisible(false);
 		mvController = new ManageVideoController();
 		
@@ -183,6 +188,30 @@ public class CreateVideo extends JFrame {
 		sidebarButton.setBackground(Color.LIGHT_GRAY);
 		sidebarButton.setBounds(10, 10, 45, 39);
 		contentPane.add(sidebarButton);
+		
+		errorIconURL = new JLabel("");
+		errorIconURL.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/iconError32px.png")));
+		errorIconURL.setBounds(380, 171, 32, 43);
+		errorIconURL.setVisible(false);
+		contentPane.add(errorIconURL);
+		
+		errorIconPointsForCompletion = new JLabel("");
+		errorIconPointsForCompletion.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/iconError32px.png")));
+		errorIconPointsForCompletion.setBounds(380, 540, 32, 43);
+		errorIconPointsForCompletion.setVisible(false);
+		contentPane.add(errorIconPointsForCompletion);
+		
+		errorIconHeader = new JLabel("");
+		errorIconHeader.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/iconError32px.png")));
+		errorIconHeader.setBounds(380, 249, 32, 43);
+		errorIconHeader.setVisible(false);
+		contentPane.add(errorIconHeader);
+		
+		errorIconShortDescription = new JLabel("");
+		errorIconShortDescription.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/iconError32px.png")));
+		errorIconShortDescription.setBounds(380, 327, 32, 43);
+		errorIconShortDescription.setVisible(false);
+		contentPane.add(errorIconShortDescription);
 	}
 	
 	private void createNewVideo() {	
@@ -191,31 +220,59 @@ public class CreateVideo extends JFrame {
 		shortDescriptionString = textPaneShortDescription.getText();
 		categoryString = String.valueOf(comboBoxCategory.getSelectedItem());
 		
-		try
-		{
-			pointsForCompletion = Integer.parseInt(textFieldPointsForCompletion.getText());
+		boolean isURLValid = validateStrings(urlString, errorIconURL);
+		boolean isHeaderValid = validateStrings(headerString, errorIconHeader);
+		boolean isShortDescriptionValid = validateStrings(shortDescriptionString, errorIconShortDescription);
+		
+		if(isURLValid && isHeaderValid && isShortDescriptionValid) {
+			try
+			{
+				pointsForCompletion = Integer.parseInt(textFieldPointsForCompletion.getText());
+				
+				//mvController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
+				
+				System.out.println(urlString);
+				System.out.println(headerString);
+				System.out.println(shortDescriptionString);
+				System.out.println(categoryString);
+				System.out.println(pointsForCompletion);
+				
+				errorIconPointsForCompletion.setVisible(false);
+				
+				JOptionPane.showMessageDialog(contentPane, "Video was successfully created!");
+
+				textFieldUrl.setText("");
+				textFieldHeader.setText("");
+				textPaneShortDescription.setText("");
+				textFieldPointsForCompletion.setText("");
+				comboBoxCategory.setSelectedItem("Uncategorized");
+		    } 
+		    catch (NumberFormatException e) 
+		    {
+		    	errorIconPointsForCompletion.setVisible(true);
+		    	textFieldPointsForCompletion.setText("");
+		    }
+		}
 			
-			mvController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
-			
-			
-			JOptionPane.showMessageDialog(contentPane, "Video was successfully created!");
-			
-			textFieldUrl.setText("");
-			textFieldHeader.setText("");
-			textPaneShortDescription.setText("");
-			textFieldPointsForCompletion.setText("");
-			comboBoxCategory.setSelectedItem("Uncategorized");
-	    } 
-	    catch (NumberFormatException e) 
-	    {
-	    	textFieldPointsForCompletion.setText("");
-	      	JOptionPane.showMessageDialog(contentPane, "Write numbers not characters");
-	    }
 	}
 	
 	private void cancelCreateVideo() {
 		cancelCreateVideo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		cancelCreateVideo.setLocationRelativeTo(this);
 		cancelCreateVideo.setVisible(true);
+	}
+	
+	private boolean validateStrings(String line, JLabel label) {
+		boolean isValid = true;
+		
+		if(line.equals("")) {
+			label.setVisible(true);
+			isValid = false;
+		} else {
+			label.setVisible(false);
+		} 
+		
+		return isValid;
+		
 	}
 }
