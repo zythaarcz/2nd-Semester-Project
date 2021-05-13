@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllayer.ManageVideoController;
 import modellayer.Video;
 
 import javax.swing.BoxLayout;
@@ -44,11 +45,14 @@ public class EditVideo extends JFrame {
 	private String newDescription;
 	private int newPoints;
 	private String newCategory;
+	private ManageVideoController manageVideoController;
 
 	/**
 	 * Create the frame.
 	 */
 	public EditVideo(Video video) {
+		manageVideoController = new ManageVideoController();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -236,6 +240,12 @@ public class EditVideo extends JFrame {
 		contentPane.add(comboBoxCategory);
 		
 		JButton btnConfirmEdit = new JButton("Confirm");
+		btnConfirmEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manageVideoController.updateVideoInformation(video.getId(), newHeader, newDescription, newCategory, newPoints);
+				JOptionPane.showMessageDialog(contentPane, "The information about the video was successfully updated.");
+			}
+		});
 		btnConfirmEdit.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnConfirmEdit.setBackground(new Color(255, 208, 32));
 		btnConfirmEdit.setBounds(248, 648, 97, 33);

@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/neagu/Documents/GitHub/2nd-Semester-Project/src/libs/JPlanner.jar"/>
+	<classpathentry kind="lib" path="libs/mssql-jdbc-9.2.0.jre11.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
