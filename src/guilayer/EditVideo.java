@@ -58,8 +58,6 @@ public class EditVideo extends JFrame {
 	 * Create the frame.
 	 */
 	public EditVideo() {
-		allVideos = new AllVideosEmployee();
-		allVideos.setVisible(false);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -77,6 +75,7 @@ public class EditVideo extends JFrame {
 		JButton btnGoBack = new JButton("Go back");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				allVideos = new AllVideosEmployee();
 				allVideos.setVisible(true);
 				dispose();
 			}

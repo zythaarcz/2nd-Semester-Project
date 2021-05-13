@@ -5,6 +5,7 @@ import databaselayer.ManageVideoDAOIF;
 import java.sql.SQLException;
 
 import databaselayer.ManageVideoDAO;
+import modellayer.AuthenticatedUser;
 import modellayer.Video;
 
 public class ManageVideoController {
@@ -21,12 +22,12 @@ public class ManageVideoController {
 	
 	public void createVideo(String url, String header, String shortDescription, String category, int pointsForCompletion) {
 		// TODO: Uncomment when singleton is created
-//		try {
-//			manageVideoDao.insertVideo(url, header, shortDescription, category, pointsForCompletion, AuthenticatedUser.getInstance().getID());
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			manageVideoDao.insertVideo(url, header, shortDescription, category, pointsForCompletion, AuthenticatedUser.getInstance().getCurrentUser().getId());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void updateVideoInformation(int id, String header, String shortDescription, String category, int pointsForCompletion) {

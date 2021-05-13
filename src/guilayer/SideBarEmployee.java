@@ -75,8 +75,8 @@ public class SideBarEmployee extends JPanel {
 		JButton manageVideosButton = new JButton("Manage Videos");
 		manageVideosButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VideoCategoriesEmployee videoCategoriesEmployee = new VideoCategoriesEmployee();
-				videoCategoriesEmployee.setVisible(true);
+				AllVideosEmployee allVideosEmployee = new AllVideosEmployee();
+				allVideosEmployee.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
 			}

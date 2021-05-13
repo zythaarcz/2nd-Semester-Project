@@ -2,6 +2,9 @@ package modellayer;
 
 public class Person {
 
+	private int id;
+
+
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
@@ -65,5 +68,12 @@ public class Person {
 		
 	public PersonTypes getPersonType() {
 		return this.personType;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

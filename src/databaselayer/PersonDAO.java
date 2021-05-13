@@ -78,7 +78,7 @@ public class PersonDAO implements PersonDAOIF {
 		
 		try {
 			person = new Person(rs.getString("firstName"), rs.getString("lastName"), rs.getString("phoneNumber"), rs.getString("email"), rs.getString("personType"));
-			
+			person.setId(rs.getInt("id"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

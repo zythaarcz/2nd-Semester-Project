@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllayer.ManageVideoController;
 import modellayer.AuthenticatedUser;
 import modellayer.PersonTypes;
 
@@ -42,6 +43,8 @@ public class CreateVideo extends JFrame {
 	private CancelCreateVideo cancelCreateVideo;
 	
 	private SideBarEmployee sideBarEmployee;
+	
+	private ManageVideoController mvController;
 
 	/**
 	 * Launch the application.
@@ -65,6 +68,7 @@ public class CreateVideo extends JFrame {
 	public CreateVideo() {
 		cancelCreateVideo = new CancelCreateVideo();
 		cancelCreateVideo.setVisible(false);
+		mvController = new ManageVideoController();
 		
 		setResizable(false);
 		setTitle("Create video");
@@ -138,7 +142,7 @@ public class CreateVideo extends JFrame {
 		btnCreateVideo.setRolloverEnabled(false);
 		btnCreateVideo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				createVideo();	
+				createNewVideo();	
 			}
 		});
 		btnCreateVideo.setForeground(Color.BLACK);
@@ -181,7 +185,7 @@ public class CreateVideo extends JFrame {
 		contentPane.add(sidebarButton);
 	}
 	
-	private void createVideo() {	
+	private void createNewVideo() {	
 		urlString = textFieldUrl.getText();
 		headerString = textFieldHeader.getText();
 		shortDescriptionString = textPaneShortDescription.getText();
@@ -190,11 +194,9 @@ public class CreateVideo extends JFrame {
 		try
 		{
 			pointsForCompletion = Integer.parseInt(textFieldPointsForCompletion.getText());
-			System.out.println(urlString);
-			System.out.println(headerString);
-			System.out.println(shortDescriptionString);
-			System.out.println(categoryString);
-			System.out.println(pointsForCompletion);
+			
+			mvController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
+			
 			
 			JOptionPane.showMessageDialog(contentPane, "Video was successfully created!");
 			
