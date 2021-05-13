@@ -44,4 +44,5 @@ public class AuthenticationController {
 	public PersonTypes getCurrentPersonType() {
 		return AuthenticatedUser.getInstance().getCurrentUser().getPersonType();
 	}
+	
 }

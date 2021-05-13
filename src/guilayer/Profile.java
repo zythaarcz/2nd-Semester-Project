@@ -150,6 +150,11 @@ public class Profile extends JFrame {
 		btnSettingsCompanyNameOK.setBounds(300, 491, 43, 42);
 		contentPane.add(btnSettingsCompanyNameOK);
 		
+		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
+			btnSettingsCompanyName.setVisible(false);
+			btnSettingsCompanyNameOK.setVisible(false);
+		}
+		
 		btnSettingsPhoneNumber = new JButton("");
 		btnSettingsPhoneNumber.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -208,7 +213,7 @@ public class Profile extends JFrame {
 		txtName = new JTextField();
 		txtName.setEditable(false);
 		txtName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtName.setText("Matej Horváth");
+		txtName.setText(AuthenticatedUser.getInstance().getCurrentUser().getFirstName() + " " + AuthenticatedUser.getInstance().getCurrentUser().getLastName());
 		txtName.setBounds(103, 280, 240, 43);
 		txtName.setHorizontalAlignment(JTextField.CENTER);
 		contentPane.add(txtName);
@@ -225,7 +230,7 @@ public class Profile extends JFrame {
 		
 		txtEmail = new JTextField();
 		txtEmail.setEditable(false);
-		txtEmail.setText("email@email.com");
+		txtEmail.setText(AuthenticatedUser.getInstance().getCurrentUser().getEmail());
 		txtEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtEmail.setColumns(10);
@@ -234,7 +239,7 @@ public class Profile extends JFrame {
 		
 		txtPhoneNumber = new JTextField();
 		txtPhoneNumber.setEditable(false);
-		txtPhoneNumber.setText("+4550153020");
+		txtPhoneNumber.setText(AuthenticatedUser.getInstance().getCurrentUser().getPhoneNumber());
 		txtPhoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtPhoneNumber.setColumns(10);
@@ -248,6 +253,9 @@ public class Profile extends JFrame {
 		txtCompanyName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtCompanyName.setColumns(10);
 		txtCompanyName.setBounds(103, 491, 200, 43);
+		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
+			txtCompanyName.setVisible(false);
+		}
 		contentPane.add(txtCompanyName);
 		
 		String[] filterStrings = {"Health issue: none","Back pain", "Neck pain", "Knees injury", "Arm injury"};
@@ -261,6 +269,9 @@ public class Profile extends JFrame {
 		healthIssuesComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		healthIssuesComboBox.setBounds(103, 544, 240, 43);
 		((JLabel)healthIssuesComboBox.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
+			healthIssuesComboBox.setVisible(false);
+		}
 		contentPane.add(healthIssuesComboBox);
 		
 		JButton btnChangePassword = new JButton("Change password");
