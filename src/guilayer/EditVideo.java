@@ -37,7 +37,10 @@ public class EditVideo extends JFrame {
 	private JButton editButton_descriptionOK;
 	private JButton editButton_pointsOK;
 	private AllVideosEmployee allVideos;
-	
+	private String newHeader;
+	private String newDescription;
+	private int newPoints;
+	private String newCategory;
 	/**
 	 * Launch the application.
 	 */
@@ -81,7 +84,7 @@ public class EditVideo extends JFrame {
 			}
 		});
 		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnGoBack.setBounds(169, 649, 97, 33);
+		btnGoBack.setBounds(90, 648, 97, 33);
 		btnGoBack.setBackground(Color.decode("#FFD020"));
 		contentPane.add(btnGoBack);
 
@@ -110,8 +113,8 @@ public class EditVideo extends JFrame {
 				editButton_titleOK.setVisible(false);
 				editButton_titleOK.setEnabled(false);
 				
-				String titleString = txtTitle.getText();
-				System.out.println(titleString);
+				newHeader = txtTitle.getText();
+				System.out.println(newHeader);
 			}
 		});
 		editButton_titleOK.setEnabled(false);
@@ -146,8 +149,8 @@ public class EditVideo extends JFrame {
 				editButton_descriptionOK.setVisible(false);
 				editButton_descriptionOK.setEnabled(false);
 				
-				String descriptionString = txtDescription.getText();
-				System.out.println(descriptionString);
+				newDescription = txtDescription.getText();
+				System.out.println(newDescription);
 			}
 		});
 		editButton_descriptionOK.setEnabled(false);
@@ -183,8 +186,8 @@ public class EditVideo extends JFrame {
 				editButton_pointsOK.setVisible(false);
 				editButton_pointsOK.setEnabled(false);
 				
-				String pointsString = txtPoints.getText();
-				System.out.println(pointsString);
+				newPoints = Integer.parseInt(txtPoints.getText());
+				System.out.println(newPoints);
 			}
 		});
 		editButton_pointsOK.setEnabled(false);
@@ -195,7 +198,7 @@ public class EditVideo extends JFrame {
 		contentPane.add(editButton_pointsOK);
 		
 		txtTitle = new JTextField();
-		txtTitle.setText("5 Ways to reduce back pain");
+		txtTitle.setText(newHeader);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtTitle.setEditable(false);
@@ -204,7 +207,7 @@ public class EditVideo extends JFrame {
 		contentPane.add(txtTitle);
 		
 		txtDescription = new JTextField();
-		txtDescription.setText("This is a short description of the video.");
+		txtDescription.setText(newDescription);
 		txtDescription.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtDescription.setEditable(false);
@@ -213,7 +216,7 @@ public class EditVideo extends JFrame {
 		contentPane.add(txtDescription);
 		
 		txtPoints = new JTextField();
-		txtPoints.setText("35");
+		txtPoints.setText(String.valueOf(newPoints));
 		txtPoints.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPoints.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtPoints.setEditable(false);
@@ -235,12 +238,18 @@ public class EditVideo extends JFrame {
 		JComboBox comboBoxCategory = new JComboBox(filterStrings);
 		comboBoxCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String combo = String.valueOf(comboBoxCategory.getSelectedItem());
-				System.out.println(combo);
+				newCategory = String.valueOf(comboBoxCategory.getSelectedItem());
+				System.out.println(newCategory);
 			}
 		});
 		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBoxCategory.setBounds(70, 560, 312, 43);
 		contentPane.add(comboBoxCategory);
+		
+		JButton btnConfirmEdit = new JButton("Confirm");
+		btnConfirmEdit.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnConfirmEdit.setBackground(new Color(255, 208, 32));
+		btnConfirmEdit.setBounds(248, 648, 97, 33);
+		contentPane.add(btnConfirmEdit);
 	}
 }
