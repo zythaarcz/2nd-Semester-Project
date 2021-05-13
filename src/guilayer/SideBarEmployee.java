@@ -91,7 +91,7 @@ public class SideBarEmployee extends JPanel {
 		manageBlogsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO connect to blog section when implemented
-				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(manageBlogsButton, "Feature not implemented yet.");
 			}
 		});
 		buttons.add(manageBlogsButton);
@@ -120,7 +120,7 @@ public class SideBarEmployee extends JPanel {
 		dietConsultationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO create manager diet consultationGUI
-				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(dietConsultationButton, "Feature not implemented yet.");
 			}
 		});
 		buttons.add(dietConsultationButton);
@@ -211,15 +211,4 @@ public class SideBarEmployee extends JPanel {
 		setLayout(groupLayout);
 		
 	}
-	
-	public boolean isInstanceOfJFrame(Component c) {
-		boolean result;
-		
-		if(c instanceof JFrame) {
-			result = true;
-		} else result = false;
-			
-		return result;
-	}
-
 }

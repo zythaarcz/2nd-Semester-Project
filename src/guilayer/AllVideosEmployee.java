@@ -1,39 +1,27 @@
 package guilayer;
 
-import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import controllayer.ManageVideoController;
 import modellayer.Video;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.Icon;
-import java.awt.Rectangle;
-import java.awt.ScrollPane;
+import java.awt.Color;
 
 public class AllVideosEmployee extends JFrame {
 	ManageVideoController manageVideoController = new ManageVideoController();
@@ -68,7 +56,7 @@ public class AllVideosEmployee extends JFrame {
 		setResizable(false);
 		createVideo= new CreateVideo();
 		createVideo.setVisible(false);
-
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
@@ -76,7 +64,6 @@ public class AllVideosEmployee extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(3, 0, 440, 750);
@@ -90,9 +77,14 @@ public class AllVideosEmployee extends JFrame {
 		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
+
+		SideBarEmployee sidebar = new SideBarEmployee();
+		sidebar.setSize(0, 740);
+		panel.add(sidebar);
+		sidebar.setVisible(false);
 		
 		logoImage = new JLabel(new ImageIcon(VideoCategories.class.getResource("/images/logo.png")));
-		logoImage.setBounds(131, 10, 300, 111);
+		logoImage.setBounds(131, 10, 300, 102);
 		panel.add(logoImage);
 		
 		JLabel lblNewLabel = new JLabel("All videos");
@@ -122,6 +114,21 @@ public class AllVideosEmployee extends JFrame {
 		});
 		addVideoButton.setBackground(SystemColor.window);
 		panel.add(addVideoButton);
+		
+		JButton sidebarButton = new JButton("");
+		sidebarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sidebar.setVisible(true);
+				sidebar.setSize(225, 740);
+			}
+		});
+		sidebarButton.setIcon(new ImageIcon(AllVideosEmployee.class.getResource("/images/sidebarIcon35px.png")));
+		sidebarButton.setOpaque(false);
+		sidebarButton.setForeground(Color.BLACK);
+		sidebarButton.setBorderPainted(false);
+		sidebarButton.setBackground(Color.LIGHT_GRAY);
+		sidebarButton.setBounds(10, 10, 45, 39);
+		panel.add(sidebarButton);
 		
 		int yPosition = 300;
 		int height = 750;

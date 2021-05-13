@@ -32,7 +32,7 @@ public class SideBarCustomer extends JPanel {
 		blogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO connect to blog section when implemented
-				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(blogButton, "Feature not implemented yet.");
 			}
 		});
 		blogButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -82,7 +82,7 @@ public class SideBarCustomer extends JPanel {
 		myProgressButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO connect with progress
-				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(myProgressButton, "Feature not implemented yet.");
 			}
 		});
 		myProgressButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -110,7 +110,7 @@ public class SideBarCustomer extends JPanel {
 		leaderboardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO connect when leaderboard is implemented
-				JOptionPane.showMessageDialog(getParent(), "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(leaderboardButton, "Feature not implemented yet.");
 			}
 		});
 		leaderboardButton.setFont(new Font("Tahoma", Font.BOLD, 12));
