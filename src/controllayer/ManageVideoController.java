@@ -3,6 +3,7 @@ package controllayer;
 import databaselayer.ManageVideoDAOIF;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import databaselayer.ManageVideoDAO;
 import modellayer.AuthenticatedUser;
@@ -50,6 +51,19 @@ public class ManageVideoController {
 		}
 		
 		return video;
+	}
+	
+	public ArrayList<Video> retrieveAllVideos() {
+		ArrayList<Video> allVideos = new ArrayList<>();
+		
+		try {
+			allVideos = manageVideoDao.retrieveAllVideos();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return allVideos;
 	}
 	
 	public void deleteVideo(int id) {
