@@ -131,7 +131,7 @@ public class AllVideosEmployee extends JFrame {
 		panel.add(sidebarButton);
 		
 		int yPosition = 300;
-		int height = 750;
+		int height = 100;
 		
 		
 		for (VideoPanel videoPanel : allVideoPanels) {
