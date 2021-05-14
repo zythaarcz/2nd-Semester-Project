@@ -2,8 +2,9 @@ package modellayer;
 
 import java.util.Date;
 
-public class DailyBlog {
+public class Blog {
 	
+	private int id;
 	private String imagePath;
 	private String header;
 	private String contentText;
@@ -11,7 +12,7 @@ public class DailyBlog {
 	private Date dateIssued;
 	private Employee employee;
 	
-	public DailyBlog(String imagePath, String header, String contentText, String shortDescription, Date dateIssued, Employee employee) {
+	public Blog(String imagePath, String header, String contentText, String shortDescription, Date dateIssued, Employee employee) {
 		this.imagePath = imagePath;
 		this.header = header;
 		this.contentText = contentText;
@@ -66,6 +67,14 @@ public class DailyBlog {
 	
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

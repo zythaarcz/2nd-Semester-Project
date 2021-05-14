@@ -3,3 +3,5 @@
 /ManageVideoDAOIF.class
 /PersonDAO.class
 /PersonDAOIF.class
+/ManageBlogDAOIF.class
+/ManageBlogDAO.class
