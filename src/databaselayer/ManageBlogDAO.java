@@ -106,8 +106,8 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 			//blog = new Blog(rs.getString("imagePath"), rs.getString("header"), rs.getString("contentText"), rs.getString("shortDescription"), rs.getObject("dateIssued"));
 			blog.setId(rs.getInt("id"));
 			// TODO: When EmployeeDAO and CustomerDAO are done, uncomment this
-			// video.setEmployee(EmployeeDAO.getEmployee(rs.getInt("employeeId");
-			// video.setListOfCustomers(CustomerDAO.getListOfCustomersForVideo(rs.getInt("id")));
+			// blog.setEmployee(EmployeeDAO.getEmployee(rs.getInt("employeeId");
+			// blog.setListOfCustomers(CustomerDAO.getListOfCustomersForVideo(rs.getInt("id")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

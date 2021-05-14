@@ -94,7 +94,8 @@ public class AllBlogsEmployee extends JFrame {
 		lblNewLabel_1.setBounds(50, 194, 37, 13);
 		panel.add(lblNewLabel_1);
 		
-		JComboBox comboBox = new JComboBox(new Object[]{});
+		String[] filterTypes = {"Newest added", "Oldest added", "Most watched"};
+		JComboBox comboBox = new JComboBox(filterTypes);
 		comboBox.setBounds(92, 191, 196, 19);
 		panel.add(comboBox);
 		
@@ -124,18 +125,17 @@ public class AllBlogsEmployee extends JFrame {
 		int height = 100;
 		
 		
-//		for (BlogPanel blogPanel : allBlogPanels) {
-//			
-//			blogPanel.setBounds(10, yPosition, 400, 370);
-//			blogPanel.setVisible(true);
-//			yPosition = yPosition + 380;
-//			System.out.println();
-//			
-//			
-//			d.setSize(440, height + yPosition);
-//			//panel.set
-//			panel.add(blogPanel);
-//			}
+		for (BlogPanel blogPanel : allBlogPanels) {
+			
+			blogPanel.setBounds(10, yPosition, 400, 370);
+			blogPanel.setVisible(true);
+			yPosition = yPosition + 380;
+			System.out.println();
+			
+			
+			d.setSize(440, height + yPosition);
+			panel.add(blogPanel);
+			}
 	}
 	
 	public ArrayList<BlogPanel> createAllBlogPanels() {
