@@ -49,7 +49,7 @@ public class CreateVideo extends JFrame {
 	
 	private SideBarEmployee sideBarEmployee;
 	
-	private ManageVideoController mvController;
+	private ManageVideoController manageVideoController;
 
 	/**
 	 * Launch the application.
@@ -73,7 +73,7 @@ public class CreateVideo extends JFrame {
 	public CreateVideo() {
 		cancelCreateVideo = new CancelCreateVideo(this);
 		cancelCreateVideo.setVisible(false);
-		mvController = new ManageVideoController();
+		manageVideoController = new ManageVideoController();
 		
 		setResizable(false);
 		setTitle("Create video");
@@ -229,7 +229,7 @@ public class CreateVideo extends JFrame {
 			{
 				pointsForCompletion = Integer.parseInt(textFieldPointsForCompletion.getText());
 				
-				//mvController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
+				//manageVideoController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
 				
 				System.out.println(urlString);
 				System.out.println(headerString);
