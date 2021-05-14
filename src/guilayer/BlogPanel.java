@@ -50,27 +50,27 @@ public class BlogPanel extends JPanel {
 		editBlogButton.setOpaque(false);
 		editBlogButton.setBorderPainted(false);
 		editBlogButton.setIcon(new ImageIcon(BlogPanel.class.getResource("/images/editVideoButton.png")));
-		editBlogButton.setBounds(366, 297, 23, 21);
+		editBlogButton.setBounds(366, 295, 23, 21);
 		add(editBlogButton);
 		
 		JButton deleteBlogButton = new JButton("\"\"");
 		deleteBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manageBlogController.deleteBlog(blog.getId());
-				//AllBlogsEmployee allBlogs = new AllBlogsEmployee();
-				//allBlogs.setVisible(true);
+				AllBlogsEmployee allBlogs = new AllBlogsEmployee();
+				allBlogs.setVisible(true);
 				((JFrame) getTopLevelAncestor()).dispose();
 			}
 		});
 		deleteBlogButton.setIcon(new ImageIcon(BlogPanel.class.getResource("/images/deleteButton.png")));
 		deleteBlogButton.setOpaque(false);
 		deleteBlogButton.setBorderPainted(false);
-		deleteBlogButton.setBounds(366, 332, 23, 21);
+		deleteBlogButton.setBounds(371, 332, 23, 21);
 		add(deleteBlogButton);
 		
 		JTextPane blogTextPane = new JTextPane();
 		blogTextPane.setText(blog.getContentText());
-		blogTextPane.setBounds(11, 44, 345, 234);
+		blogTextPane.setBounds(11, 44, 378, 234);
 		add(blogTextPane);
 
 	
