@@ -102,6 +102,7 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 		Blog blog = null;
 		
 		try {
+			//TODO convert DBdate to LocalDate
 			//blog = new Blog(rs.getString("imagePath"), rs.getString("header"), rs.getString("contentText"), rs.getString("shortDescription"), rs.getObject("dateIssued"));
 			blog.setId(rs.getInt("id"));
 			// TODO: When EmployeeDAO and CustomerDAO are done, uncomment this
