@@ -90,8 +90,10 @@ public class SideBarEmployee extends JPanel {
 		JButton manageBlogsButton = new JButton("Manage Blogs");
 		manageBlogsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect to blog section when implemented
-				JOptionPane.showMessageDialog(manageBlogsButton, "Feature not implemented yet.");
+				AllBlogsEmployee allBlogsEmployee = new AllBlogsEmployee();
+				allBlogsEmployee.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
 			}
 		});
 		buttons.add(manageBlogsButton);

@@ -44,7 +44,7 @@ public class BlogPanel extends JPanel {
 		JButton editBlogButton = new JButton("");
 		editBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditBlog editBlog = new EditBlog();
+				EditBlog editBlog = new EditBlog(blog);
 				editBlog.setVisible(true);
 				((JFrame) getTopLevelAncestor()).dispose();
 			}

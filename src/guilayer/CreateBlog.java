@@ -126,9 +126,6 @@ public class CreateBlog extends JFrame {
 		btnBrowse.setBounds(275, 183, 95, 31);
 		contentPane.add(btnBrowse);
 		
-		
-		
-		
 		textFieldHeader = new JTextField();
 		textFieldHeader.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textFieldHeader.setColumns(10);

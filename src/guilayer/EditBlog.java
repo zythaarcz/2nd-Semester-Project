@@ -7,9 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.apache.commons.io.FileUtils;
 
 import controllayer.ManageBlogController;
 import controllayer.ManageVideoController;
+import libs.DirectoryPaths;
+import modellayer.Blog;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,9 +23,13 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
@@ -28,19 +37,19 @@ import javax.swing.ScrollPaneConstants;
 public class EditBlog extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtImagePath;
 	private JTextField txtHeader;
-	private JButton btnEdit_imagePath;
 	private JButton btnEdit_header;
 	private JButton btnEdit_contentText;
 	private JButton btnEdit_description;
-	private JButton btnEdit_imagePathOK;
 	private JButton btnEdit_headerOK;
 	private JButton btnEdit_contentTextOK;
 	private JButton btnEdit_descriptionOK;
 	
 	private JTextPane textPaneShortDescription;
 	private JTextPane textPaneContentText;
+	private JLabel pathLbl;
+	
+	private File selectedPicture = null;
 	
 	private String newImagePath;
 	private String newHeader;
@@ -52,25 +61,11 @@ public class EditBlog extends JFrame {
 	
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EditBlog frame = new EditBlog();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public EditBlog() {
+	public EditBlog(Blog blog) {
+		manageBlogController = new ManageBlogController();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -108,7 +103,7 @@ public class EditBlog extends JFrame {
 		JButton btnConfirmEdit = new JButton("Confirm");
 		btnConfirmEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//manageBlogController.updateBlogInformation(blog.getId(), newImagePath, newHeader, newContentText, newDescription;
+				manageBlogController.updateBlogInformation(blog.getId(), newImagePath, newHeader, newContentText, newDescription);
 				JOptionPane.showMessageDialog(contentPane, "The information about the blog was successfully updated.");
 			}
 		});
@@ -117,65 +112,27 @@ public class EditBlog extends JFrame {
 		btnConfirmEdit.setBounds(231, 658, 97, 33);
 		contentPane.add(btnConfirmEdit);
 		
-		txtImagePath = new JTextField();
-		txtImagePath.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtImagePath.setBounds(71, 201, 293, 39);
-		txtImagePath.setEditable(false);
-		contentPane.add(txtImagePath);
-		txtImagePath.setColumns(10);
-		
 		txtHeader = new JTextField();
 		txtHeader.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtHeader.setColumns(10);
+		txtHeader.setText(blog.getHeader());
 		txtHeader.setBounds(71, 275, 293, 39);
 		txtHeader.setEditable(false);
 		contentPane.add(txtHeader);
 		
 		textPaneContentText = new JTextPane();
 		textPaneContentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textPaneContentText.setText(blog.getContentText());
 		textPaneContentText.setBounds(71, 484, 290, 139);
 		textPaneContentText.setEditable(false);
 		scrollPane.setViewportView(textPaneContentText);
 		
 		textPaneShortDescription = new JTextPane();
 		textPaneShortDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textPaneShortDescription.setText(blog.getShortDescription());
 		textPaneShortDescription.setBounds(71, 349, 290, 100);
 		textPaneShortDescription.setEditable(false);
 		contentPane.add(textPaneShortDescription);
-		
-		btnEdit_imagePath = new JButton("");
-		btnEdit_imagePath.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtImagePath.setEditable(true);
-				btnEdit_imagePath.setVisible(false);
-				btnEdit_imagePath.setEnabled(false);
-				btnEdit_imagePathOK.setVisible(true);
-				btnEdit_imagePathOK.setEnabled(true);
-			}
-		});
-		btnEdit_imagePath.setIcon(new ImageIcon(EditBlog.class.getResource("/images/settingsIcon32x32.png")));
-		btnEdit_imagePath.setBounds(360, 201, 53, 39);
-		contentPane.add(btnEdit_imagePath);
-		
-		btnEdit_imagePathOK = new JButton("");
-		btnEdit_imagePathOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtImagePath.setEditable(false);
-				btnEdit_imagePath.setVisible(true);
-				btnEdit_imagePath.setEnabled(true);
-				btnEdit_imagePathOK.setVisible(false);
-				btnEdit_imagePathOK.setEnabled(false);
-				
-				newImagePath = txtImagePath.getText();
-				System.out.println(newImagePath);
-			}
-		});
-		btnEdit_imagePathOK.setEnabled(false);
-		btnEdit_imagePathOK.setVisible(false);
-		btnEdit_imagePathOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
-		btnEdit_imagePathOK.setBackground(SystemColor.menu);
-		btnEdit_imagePathOK.setBounds(360, 201, 53, 39);
-		contentPane.add(btnEdit_imagePathOK);
 		
 		btnEdit_header = new JButton("");
 		btnEdit_header.setIcon(new ImageIcon(EditBlog.class.getResource("/images/settingsIcon32x32.png")));
@@ -300,5 +257,57 @@ public class EditBlog extends JFrame {
 		lblImagePath.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblImagePath.setBounds(71, 174, 100, 30);
 		contentPane.add(lblImagePath);
+		
+		JButton btnBrowse = new JButton("Browse");
+		btnBrowse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				selectedPicture = selectPicture();
+				newImagePath = selectedPicture.getPath();
+				pathLbl.setText(newImagePath);
+			}
+		});
+		btnBrowse.setRolloverEnabled(false);
+		btnBrowse.setForeground(Color.BLACK);
+		btnBrowse.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBrowse.setBackground(new Color(255, 208, 32));
+		btnBrowse.setBounds(266, 202, 95, 31);
+		contentPane.add(btnBrowse);
+		
+		pathLbl = new JLabel("select the image for blog..");
+		pathLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		pathLbl.setBounds(71, 204, 201, 26);
+		contentPane.add(pathLbl);
+	}
+	
+	private File selectPicture() {
+		File picture = null;
+		JFileChooser fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("png", "jpg", "jpeg");
+        fc.setFileFilter(filter);
+		
+		
+		
+		fc.showOpenDialog(this);
+		if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			picture = fc.getSelectedFile();
+		}
+
+		return picture;
+		
+	}
+	
+	private String copyPicture(File picture) {
+		File destination = new File(System.getProperty("user.dir"), DirectoryPaths.BLOG_IMAGES);
+		
+		try {
+			FileUtils.copyFileToDirectory(picture, destination);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return destination + "\\" +  "\\" + picture.getName();
 	}
 }
