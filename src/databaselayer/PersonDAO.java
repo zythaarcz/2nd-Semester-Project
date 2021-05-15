@@ -5,12 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import modellayer.Employee;
 import modellayer.Person;
 import modellayer.Video;
 
 public class PersonDAO implements PersonDAOIF {
 	private static final String SELECT_PERSON = "SELECT * FROM Person WHERE id = ?";
 	private PreparedStatement psSelectPerson;
+	
+	private static final String SELECT_EMPLOYEE = "SELECT * FROM Employee WHERE id = ?";
+	private PreparedStatement psSelectEmployee;
 	
 	private static final String SELECT_AUTHENTICATEDUSER = "SELECT * FROM Authentication WHERE email = ?";
 	private PreparedStatement psSelectAuthenticatedUser;
@@ -27,7 +31,7 @@ public class PersonDAO implements PersonDAOIF {
 		try {
 			psSelectPerson= connection.prepareStatement(SELECT_PERSON);
 			psSelectAuthenticatedUser = connection.prepareStatement(SELECT_AUTHENTICATEDUSER);
-
+			psSelectEmployee = connection.prepareStatement(SELECT_EMPLOYEE);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -43,10 +47,28 @@ public class PersonDAO implements PersonDAOIF {
 		rs = psSelectPerson.executeQuery();
 		
 		if(rs.next()) {
-			person = buildObject(rs);
+			person = buildObjectPerson(rs);
 		}
 		
 		return person;
+	}
+	
+	@Override
+	public Employee retrieveEmployeeById(int id) throws SQLException {
+		Employee employee = null;
+		Person person = retrievePersonById(id);
+		
+		ResultSet rs;
+		
+		psSelectEmployee.setInt(1, id);
+		
+		rs = psSelectEmployee.executeQuery();
+		
+		if(rs.next()) {
+			employee = buildObjectEmployee(rs, person);
+		}
+		
+		return employee;
 	}
 
 	@Override
@@ -73,7 +95,20 @@ public class PersonDAO implements PersonDAOIF {
 		return person;
 	}
 
-	private Person buildObject(ResultSet rs) throws SQLException {
+	private Employee buildObjectEmployee(ResultSet rs, Person person) throws SQLException {
+		Employee empToReturn = null;
+		
+		try {
+			empToReturn = new Employee(person.getFirstName(), person.getLastName(), person.getPhoneNumber(), person.getEmail(), rs.getString("position"));
+			empToReturn.setId(person.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return empToReturn;
+	}
+	
+	private Person buildObjectPerson(ResultSet rs) throws SQLException {
 		Person person = null;
 		
 		try {
@@ -85,5 +120,6 @@ public class PersonDAO implements PersonDAOIF {
 		
 		return person;
 	}
+	
 	
 }

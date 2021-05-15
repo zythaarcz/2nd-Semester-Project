@@ -2,8 +2,10 @@ package guilayer;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import controllayer.ManageBlogController;
 import controllayer.ManageVideoController;
@@ -56,6 +58,8 @@ public class BlogPanel extends JPanel {
 		JButton deleteBlogButton = new JButton("\"\"");
 		deleteBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO: Delete also the image from project directory
+				
 				manageBlogController.deleteBlog(blog.getId());
 				AllBlogsEmployee allBlogs = new AllBlogsEmployee();
 				allBlogs.setVisible(true);
@@ -68,11 +72,16 @@ public class BlogPanel extends JPanel {
 		deleteBlogButton.setBounds(371, 332, 23, 21);
 		add(deleteBlogButton);
 		
-		JTextPane blogTextPane = new JTextPane();
-		blogTextPane.setText(blog.getContentText());
-		blogTextPane.setBounds(11, 44, 378, 234);
-		add(blogTextPane);
-
-	
+		File file = new File(blog.getImagePath());
+		if(file.exists()) {
+			ImageIcon imageIcon = new ImageIcon(blog.getImagePath()); // load the image to a imageIcon
+			Image image = imageIcon.getImage(); // transform it 
+			Image newimg = image.getScaledInstance(320, 180,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+			imageIcon = new ImageIcon(newimg);  // transform it back
+			
+			JLabel blogImage = new JLabel(imageIcon);
+			blogImage.setBounds(40, 64, 320, 180);
+			add(blogImage);
+		}
 	}
 }

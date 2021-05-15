@@ -137,8 +137,9 @@ public class HomepageEmployee extends JFrame {
 		manageBlogsButton.setRolloverEnabled(false);
 		manageBlogsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO fix when blogs are implemented
-				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
+				AllBlogsEmployee abEmployee = new AllBlogsEmployee();
+				abEmployee.setVisible(true);
+				dispose();
 			}
 		});
 		manageBlogsButton.setFont(new Font("Tahoma", Font.BOLD, 10));

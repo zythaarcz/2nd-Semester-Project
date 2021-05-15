@@ -12,13 +12,12 @@ public class Blog {
 	private LocalDate dateIssued;
 	private Employee employee;
 	
-	public Blog(String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued, Employee employee) {
+	public Blog(String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued) {
 		this.imagePath = imagePath;
 		this.header = header;
 		this.contentText = contentText;
 		this.shortDescription = shortDescription;
 		this.dateIssued = dateIssued;
-		this.employee = employee;
 	}
 
 	public String getImagePath() {

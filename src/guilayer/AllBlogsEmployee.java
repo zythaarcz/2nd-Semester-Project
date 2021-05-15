@@ -100,6 +100,13 @@ public class AllBlogsEmployee extends JFrame {
 		panel.add(comboBox);
 		
 		JButton addBlogButton = new JButton(new ImageIcon(AllBlogsEmployee.class.getResource("/images/addVideoButton.png")));
+		addBlogButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateBlog blog = new CreateBlog();
+				blog.setVisible(true);
+				dispose();
+			}
+		});
 		addBlogButton.setOpaque(false);
 		addBlogButton.setBorderPainted(false);
 		addBlogButton.setBackground(Color.WHITE);

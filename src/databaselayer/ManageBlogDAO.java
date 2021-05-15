@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modellayer.Blog;
-import modellayer.Video;
+import modellayer.Employee;
 
 public class ManageBlogDAO implements ManageBlogDAOIF {
 	private static final String SELECT_BLOG = "SELECT * FROM Blog WHERE id = ?";
@@ -17,7 +17,7 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 	private static final String SELECT_ALL_BLOGS = "SELECT * FROM Blog";
 	private PreparedStatement psSelectAllBlogs;
 	
-	private static final String INSERT_BLOG = "INSERT into Blog VALUES (?,?,?,?,?)";
+	private static final String INSERT_BLOG = "INSERT into Blog VALUES (?,?,?,?,?,?)";
 	private PreparedStatement psInsertBlog;
 	
 	private static final String UPDATE_BLOG = "UPDATE Blog SET imagePath = ?, header = ?, contentText = ?, shortDescription = ?, dateIssued = ? WHERE id=?";
@@ -26,8 +26,11 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 	private static final String DELETE_BLOG= "DELETE FROM Blog WHERE id=?";
 	private PreparedStatement psDeleteBlog;
 	
+	
+	private PersonDAOIF personDao;
+	
 	public ManageBlogDAO() throws SQLException {
-		
+		personDao = new PersonDAO();
 		initPreparedStatement();		
 	}
 	
@@ -102,12 +105,9 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 		Blog blog = null;
 		
 		try {
-			//TODO convert DBdate to LocalDate
-			//blog = new Blog(rs.getString("imagePath"), rs.getString("header"), rs.getString("contentText"), rs.getString("shortDescription"), rs.getObject("dateIssued"));
+			blog = new Blog(rs.getString("imagePath"), rs.getString("header"), rs.getString("contentText"), rs.getString("shortDescription"), rs.getDate("dateIssued").toLocalDate());
 			blog.setId(rs.getInt("id"));
-			// TODO: When EmployeeDAO and CustomerDAO are done, uncomment this
-			// blog.setEmployee(EmployeeDAO.getEmployee(rs.getInt("employeeId");
-			// blog.setListOfCustomers(CustomerDAO.getListOfCustomersForVideo(rs.getInt("id")));
+			blog.setEmployee(personDao.retrieveEmployeeById(rs.getInt("employeeId")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -7,8 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controllayer.ManageBlogController;
+import libs.DirectoryPaths;
 import modellayer.AuthenticatedUser;
 import modellayer.PersonTypes;
 
@@ -19,21 +21,27 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
+import org.apache.commons.io.FileUtils;
 
 public class CreateBlog extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldImagePath;
 	private JTextField textFieldHeader;
 	private JTextPane textPaneShortDescription;
 	private JTextPane textPaneContentText;
+	private JLabel pathLbl;
+	
+	private File selectedPicture = null;
 	
 	private String imagePathString;
 	private String headerString;
@@ -98,11 +106,28 @@ public class CreateBlog extends JFrame {
 		logo.setBounds(130, 28, 287, 111);
 		contentPane.add(logo);
 		
-		textFieldImagePath = new JTextField();
-		textFieldImagePath.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textFieldImagePath.setBounds(70, 171, 300, 43);
-		contentPane.add(textFieldImagePath);
-		textFieldImagePath.setColumns(10);
+		pathLbl = new JLabel("select the image for blog..");
+		pathLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		pathLbl.setBounds(80, 187, 201, 26);
+		contentPane.add(pathLbl);
+		
+		JButton btnBrowse = new JButton("Browse");
+		btnBrowse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectedPicture = selectPicture();
+				imagePathString = selectedPicture.getPath();
+				pathLbl.setText(imagePathString);
+			}
+		});
+		btnBrowse.setRolloverEnabled(false);
+		btnBrowse.setForeground(Color.BLACK);
+		btnBrowse.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBrowse.setBackground(new Color(255, 208, 32));
+		btnBrowse.setBounds(275, 183, 95, 31);
+		contentPane.add(btnBrowse);
+		
+		
+		
 		
 		textFieldHeader = new JTextField();
 		textFieldHeader.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -209,10 +234,10 @@ public class CreateBlog extends JFrame {
 		textPaneContentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textPaneContentText.setBounds(70, 462, 300, 141);
 		scrollPane.setViewportView(textPaneContentText);
+		
 	}
 	
-	private void createNewBlog() {	
-		imagePathString = textFieldImagePath.getText();
+	private void createNewBlog() {
 		headerString = textFieldHeader.getText();
 		shortDescriptionString = textPaneShortDescription.getText();
 		contentTextString = textPaneContentText.getText();
@@ -224,8 +249,8 @@ public class CreateBlog extends JFrame {
 		
 		if(isImagePathValid && isHeaderValid && isShortDescriptionValid && isContentTextValid) {
 				
-			//manageBlogController.createBlog(imagePathString, headerString, contentText, shortDescriptionString, LocalDate.now());
-			
+			String newImagePath = copyPicture(selectedPicture);
+			manageBlogController.createBlog(newImagePath, headerString, contentTextString, shortDescriptionString, LocalDate.now());
 			System.out.println(imagePathString);
 			System.out.println(headerString);
 			System.out.println(shortDescriptionString);
@@ -233,10 +258,10 @@ public class CreateBlog extends JFrame {
 				
 			JOptionPane.showMessageDialog(contentPane, "Blog was successfully created!");
 
-			textFieldImagePath.setText("");
 			textFieldHeader.setText("");
 			textPaneShortDescription.setText("");
 			textPaneContentText.setText("");
+			pathLbl.setText("select the image for blog..");
 		}
 	}
 	
@@ -257,5 +282,37 @@ public class CreateBlog extends JFrame {
 		} 
 		
 		return isValid;
+	}
+	
+	private File selectPicture() {
+		File picture = null;
+		JFileChooser fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("png", "jpg", "jpeg");
+        fc.setFileFilter(filter);
+		
+		
+		
+		fc.showOpenDialog(this);
+		if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			picture = fc.getSelectedFile();
+		}
+
+		return picture;
+		
+	}
+	
+	private String copyPicture(File picture) {
+		File destination = new File(System.getProperty("user.dir"), DirectoryPaths.BLOG_IMAGES);
+		
+		try {
+			FileUtils.copyFileToDirectory(picture, destination);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return destination + "\\" +  "\\" + picture.getName();
 	}
 }
