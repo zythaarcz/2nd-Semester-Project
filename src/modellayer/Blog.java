@@ -1,6 +1,6 @@
 package modellayer;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Blog {
 	
@@ -9,10 +9,10 @@ public class Blog {
 	private String header;
 	private String contentText;
 	private String shortDescription;
-	private Date dateIssued;
+	private LocalDate dateIssued;
 	private Employee employee;
 	
-	public Blog(String imagePath, String header, String contentText, String shortDescription, Date dateIssued, Employee employee) {
+	public Blog(String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued, Employee employee) {
 		this.imagePath = imagePath;
 		this.header = header;
 		this.contentText = contentText;
@@ -53,11 +53,11 @@ public class Blog {
 		this.shortDescription = shortDescription;
 	}
 
-	public Date getDateIssued() {
+	public LocalDate getDateIssued() {
 		return dateIssued;
 	}
 
-	public void setDateIssued(Date dateIssued) {
+	public void setDateIssued(LocalDate dateIssued) {
 		this.dateIssued = dateIssued;
 	}
 	
