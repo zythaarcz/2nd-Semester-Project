@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controllayer.ManageBlogController;
@@ -21,14 +22,14 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 
 public class EditBlog extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtImagePath;
 	private JTextField txtHeader;
-	private JTextField txtContentText;
-	private JTextField txtDescription;
 	private JButton btnEdit_imagePath;
 	private JButton btnEdit_header;
 	private JButton btnEdit_contentText;
@@ -37,12 +38,16 @@ public class EditBlog extends JFrame {
 	private JButton btnEdit_headerOK;
 	private JButton btnEdit_contentTextOK;
 	private JButton btnEdit_descriptionOK;
+	
+	private JTextPane textPaneShortDescription;
+	private JTextPane textPaneContentText;
+	
 	private String newImagePath;
 	private String newHeader;
 	private String newContentText;
 	private String newDescription;
 	
-	//private AllBlogsEmployee allBlogs;
+	private AllBlogsEmployee allBlogs;
 	private ManageBlogController manageBlogController;
 	
 
@@ -80,11 +85,18 @@ public class EditBlog extends JFrame {
 		logo.setBounds(133, 27, 293, 111);
 		contentPane.add(logo);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(71, 484, 290, 139);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		contentPane.add(scrollPane);
+		
 		JButton btnGoBack = new JButton("Go back");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//allBlogs = new AllBlogsEmployee();
-				//allBlogs.setVisible(true);
+				allBlogs = new AllBlogsEmployee();
+				allBlogs.setVisible(true);
 				dispose();
 			}
 		});
@@ -106,24 +118,30 @@ public class EditBlog extends JFrame {
 		contentPane.add(btnConfirmEdit);
 		
 		txtImagePath = new JTextField();
+		txtImagePath.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtImagePath.setBounds(71, 201, 293, 39);
+		txtImagePath.setEditable(false);
 		contentPane.add(txtImagePath);
 		txtImagePath.setColumns(10);
 		
 		txtHeader = new JTextField();
+		txtHeader.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtHeader.setColumns(10);
-		txtHeader.setBounds(71, 262, 293, 39);
+		txtHeader.setBounds(71, 275, 293, 39);
+		txtHeader.setEditable(false);
 		contentPane.add(txtHeader);
 		
-		txtContentText = new JTextField();
-		txtContentText.setBounds(71, 325, 293, 146);
-		contentPane.add(txtContentText);
-		txtContentText.setColumns(10);
+		textPaneContentText = new JTextPane();
+		textPaneContentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textPaneContentText.setBounds(71, 484, 290, 139);
+		textPaneContentText.setEditable(false);
+		scrollPane.setViewportView(textPaneContentText);
 		
-		txtDescription = new JTextField();
-		txtDescription.setColumns(10);
-		txtDescription.setBounds(71, 497, 293, 84);
-		contentPane.add(txtDescription);
+		textPaneShortDescription = new JTextPane();
+		textPaneShortDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textPaneShortDescription.setBounds(71, 349, 290, 100);
+		textPaneShortDescription.setEditable(false);
+		contentPane.add(textPaneShortDescription);
 		
 		btnEdit_imagePath = new JButton("");
 		btnEdit_imagePath.addActionListener(new ActionListener() {
@@ -170,7 +188,7 @@ public class EditBlog extends JFrame {
 				btnEdit_headerOK.setEnabled(true);
 			}
 		});
-		btnEdit_header.setBounds(360, 262, 53, 39);
+		btnEdit_header.setBounds(360, 275, 53, 39);
 		contentPane.add(btnEdit_header);
 		
 		btnEdit_headerOK = new JButton("");
@@ -190,13 +208,13 @@ public class EditBlog extends JFrame {
 		btnEdit_headerOK.setVisible(false);
 		btnEdit_headerOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
 		btnEdit_headerOK.setBackground(SystemColor.menu);
-		btnEdit_headerOK.setBounds(360, 262, 53, 39);
+		btnEdit_headerOK.setBounds(360, 275, 53, 39);
 		contentPane.add(btnEdit_headerOK);
 		
 		btnEdit_contentText = new JButton("");
 		btnEdit_contentText.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtContentText.setEditable(true);
+				textPaneContentText.setEditable(true);
 				btnEdit_contentText.setVisible(false);
 				btnEdit_contentText.setEnabled(false);
 				btnEdit_contentTextOK.setVisible(true);
@@ -205,19 +223,19 @@ public class EditBlog extends JFrame {
 
 		});
 		btnEdit_contentText.setIcon(new ImageIcon(EditBlog.class.getResource("/images/settingsIcon32x32.png")));
-		btnEdit_contentText.setBounds(360, 325, 53, 39);
+		btnEdit_contentText.setBounds(360, 484, 53, 39);
 		contentPane.add(btnEdit_contentText);
 		
 		btnEdit_contentTextOK = new JButton("");
 		btnEdit_contentTextOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtContentText.setEditable(false);
+				textPaneContentText.setEditable(false);
 				btnEdit_contentText.setVisible(true);
 				btnEdit_contentText.setEnabled(true);
 				btnEdit_contentTextOK.setVisible(false);
 				btnEdit_contentTextOK.setEnabled(false);
 				
-				newContentText = txtContentText.getText();
+				newContentText = textPaneContentText.getText();
 				System.out.println(newContentText);
 			}
 		});
@@ -225,13 +243,13 @@ public class EditBlog extends JFrame {
 		btnEdit_contentTextOK.setVisible(false);
 		btnEdit_contentTextOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
 		btnEdit_contentTextOK.setBackground(SystemColor.menu);
-		btnEdit_contentTextOK.setBounds(360, 325, 53, 39);
+		btnEdit_contentTextOK.setBounds(360, 484, 53, 39);
 		contentPane.add(btnEdit_contentTextOK);
 		
 		btnEdit_description = new JButton("");
 		btnEdit_description.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtDescription.setEditable(true);
+				textPaneShortDescription.setEditable(true);
 				btnEdit_description.setVisible(false);
 				btnEdit_description.setEnabled(false);
 				btnEdit_descriptionOK.setVisible(true);
@@ -240,19 +258,19 @@ public class EditBlog extends JFrame {
 			}
 		});
 		btnEdit_description.setIcon(new ImageIcon(EditBlog.class.getResource("/images/settingsIcon32x32.png")));
-		btnEdit_description.setBounds(360, 497, 53, 39);
+		btnEdit_description.setBounds(360, 349, 53, 39);
 		contentPane.add(btnEdit_description);
 		
 		btnEdit_descriptionOK = new JButton("");
 		btnEdit_descriptionOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtDescription.setEditable(false);
+				textPaneShortDescription.setEditable(false);
 				btnEdit_description.setVisible(true);
 				btnEdit_description.setEnabled(true);
 				btnEdit_descriptionOK.setVisible(false);
 				btnEdit_descriptionOK.setEnabled(false);
 				
-				newDescription = txtDescription.getText();
+				newDescription = textPaneShortDescription.getText();
 				System.out.println(newDescription);
 			}
 		});
@@ -260,7 +278,27 @@ public class EditBlog extends JFrame {
 		btnEdit_descriptionOK.setVisible(false);
 		btnEdit_descriptionOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
 		btnEdit_descriptionOK.setBackground(SystemColor.menu);
-		btnEdit_descriptionOK.setBounds(360, 497, 53, 39);
+		btnEdit_descriptionOK.setBounds(360, 349, 53, 39);
 		contentPane.add(btnEdit_descriptionOK);
+		
+		JLabel lblContentText = new JLabel("Content text");
+		lblContentText.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblContentText.setBounds(71, 459, 146, 30);
+		contentPane.add(lblContentText);
+		
+		JLabel lblShortDescription = new JLabel("Short description");
+		lblShortDescription.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblShortDescription.setBounds(71, 324, 146, 30);
+		contentPane.add(lblShortDescription);
+		
+		JLabel lblHeader = new JLabel("Header");
+		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblHeader.setBounds(71, 250, 100, 30);
+		contentPane.add(lblHeader);
+		
+		JLabel lblImagePath = new JLabel("Image path");
+		lblImagePath.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblImagePath.setBounds(71, 174, 100, 30);
+		contentPane.add(lblImagePath);
 	}
 }

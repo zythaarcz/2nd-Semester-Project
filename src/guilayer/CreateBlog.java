@@ -208,7 +208,6 @@ public class CreateBlog extends JFrame {
 		textPaneContentText = new JTextPane();
 		textPaneContentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textPaneContentText.setBounds(70, 462, 300, 141);
-		//contentPane.add(textPaneContentText);	
 		scrollPane.setViewportView(textPaneContentText);
 	}
 	

@@ -10,6 +10,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import controllayer.ManageVideoController;
+import modellayer.AuthenticatedUser;
+import modellayer.PersonTypes;
 import modellayer.Video;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -46,34 +48,66 @@ public class VideoPanel extends JPanel {
 		textPane.setBounds(11, 295, 345, 58);
 		add(textPane);
 		
-		JButton editVideoButton = new JButton("");
-		editVideoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EditVideo editVideo = new EditVideo(video);
-				editVideo.setVisible(true);
-				((JFrame) getTopLevelAncestor()).dispose();
-			}
-		});
-		editVideoButton.setOpaque(false);
-		editVideoButton.setBorderPainted(false);
-		editVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/editVideoButton.png")));
-		editVideoButton.setBounds(366, 297, 23, 21);
-		add(editVideoButton);
 		
-		JButton deleteVideoButton = new JButton("");
-		deleteVideoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				manageVideoController.deleteVideo(video.getId());
-				AllVideosEmployee allVideos = new AllVideosEmployee();
-				allVideos.setVisible(true);
-				((JFrame) getTopLevelAncestor()).dispose();
-			}
-		});
-		deleteVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/deleteButton.png")));
-		deleteVideoButton.setOpaque(false);
-		deleteVideoButton.setBorderPainted(false);
-		deleteVideoButton.setBounds(366, 332, 23, 21);
-		add(deleteVideoButton);
+		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
+			JButton editVideoButton = new JButton("");
+			editVideoButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					EditVideo editVideo = new EditVideo(video);
+					editVideo.setVisible(true);
+					((JFrame) getTopLevelAncestor()).dispose();
+				}
+			});
+			editVideoButton.setOpaque(false);
+			editVideoButton.setBorderPainted(false);
+			editVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/editVideoButton.png")));
+			editVideoButton.setBounds(366, 297, 23, 21);
+			add(editVideoButton);
+			
+			JButton deleteVideoButton = new JButton("");
+			deleteVideoButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					manageVideoController.deleteVideo(video.getId());
+					AllVideosEmployee allVideos = new AllVideosEmployee();
+					allVideos.setVisible(true);
+					((JFrame) getTopLevelAncestor()).dispose();
+				}
+			});
+			deleteVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/deleteButton.png")));
+			deleteVideoButton.setOpaque(false);
+			deleteVideoButton.setBorderPainted(false);
+			deleteVideoButton.setBounds(366, 332, 23, 21);
+			add(deleteVideoButton);
+		}
+		
+//		JButton editVideoButton = new JButton("");
+//		editVideoButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				EditVideo editVideo = new EditVideo(video);
+//				editVideo.setVisible(true);
+//				((JFrame) getTopLevelAncestor()).dispose();
+//			}
+//		});
+//		editVideoButton.setOpaque(false);
+//		editVideoButton.setBorderPainted(false);
+//		editVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/editVideoButton.png")));
+//		editVideoButton.setBounds(366, 297, 23, 21);
+//		add(editVideoButton);
+//		
+//		JButton deleteVideoButton = new JButton("");
+//		deleteVideoButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				manageVideoController.deleteVideo(video.getId());
+//				AllVideosEmployee allVideos = new AllVideosEmployee();
+//				allVideos.setVisible(true);
+//				((JFrame) getTopLevelAncestor()).dispose();
+//			}
+//		});
+//		deleteVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/deleteButton.png")));
+//		deleteVideoButton.setOpaque(false);
+//		deleteVideoButton.setBorderPainted(false);
+//		deleteVideoButton.setBounds(366, 332, 23, 21);
+//		add(deleteVideoButton);
 
 	}
 }

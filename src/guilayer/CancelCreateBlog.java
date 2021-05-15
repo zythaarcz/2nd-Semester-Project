@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 public class CancelCreateBlog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private AllVideosEmployee allVideoEmployee;
+	private AllBlogsEmployee allBlogsEmployee;
 
 //	/**
 //	 * Launch the application.
@@ -37,6 +37,7 @@ public class CancelCreateBlog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	
 	public CancelCreateBlog(JFrame frame) {
 		setAlwaysOnTop(true);
 		setBounds(100, 100, 330, 160);
@@ -48,9 +49,8 @@ public class CancelCreateBlog extends JDialog {
 			JButton btnYes = new JButton("Yes");
 			btnYes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					//TODO change to move to allBlogsEmployee
-					allVideoEmployee = new AllVideosEmployee();
-					allVideoEmployee.setVisible(true);
+					allBlogsEmployee = new AllBlogsEmployee();
+					allBlogsEmployee.setVisible(true);
 					frame.dispose();
 					dispose();
 				}
