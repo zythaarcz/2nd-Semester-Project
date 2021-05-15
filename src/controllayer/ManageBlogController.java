@@ -31,9 +31,9 @@ public class ManageBlogController {
 		}
 	}
 	
-	public void updateBlogInformation(int id, String imagePath, String header, String contentText, String shortDescription) {
+	public void updateBlogInformation(int id, String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued) {
 		try {
-			manageBlogDao.updateBlog(id, imagePath, header, contentText, shortDescription);
+			manageBlogDao.updateBlog(id, imagePath, header, contentText, shortDescription, dateIssued);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

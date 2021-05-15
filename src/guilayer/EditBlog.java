@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 
 import controllayer.ManageBlogController;
 import controllayer.ManageVideoController;
-import modellayer.Blog;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -51,10 +50,27 @@ public class EditBlog extends JFrame {
 	private AllBlogsEmployee allBlogs;
 	private ManageBlogController manageBlogController;
 	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EditBlog frame = new EditBlog();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	/**
 	 * Create the frame.
 	 */
-	public EditBlog(Blog blog) {
+	public EditBlog() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -92,7 +108,7 @@ public class EditBlog extends JFrame {
 		JButton btnConfirmEdit = new JButton("Confirm");
 		btnConfirmEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manageBlogController.updateBlogInformation(blog.getId(), newImagePath, newHeader, newContentText, newDescription);
+				//manageBlogController.updateBlogInformation(blog.getId(), newImagePath, newHeader, newContentText, newDescription;
 				JOptionPane.showMessageDialog(contentPane, "The information about the blog was successfully updated.");
 			}
 		});
@@ -102,7 +118,6 @@ public class EditBlog extends JFrame {
 		contentPane.add(btnConfirmEdit);
 		
 		txtImagePath = new JTextField();
-		txtImagePath.setText(blog.getImagePath());
 		txtImagePath.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtImagePath.setBounds(71, 201, 293, 39);
 		txtImagePath.setEditable(false);
@@ -110,7 +125,6 @@ public class EditBlog extends JFrame {
 		txtImagePath.setColumns(10);
 		
 		txtHeader = new JTextField();
-		txtHeader.setText(blog.getHeader());
 		txtHeader.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtHeader.setColumns(10);
 		txtHeader.setBounds(71, 275, 293, 39);
@@ -118,14 +132,12 @@ public class EditBlog extends JFrame {
 		contentPane.add(txtHeader);
 		
 		textPaneContentText = new JTextPane();
-		textPaneContentText.setText(blog.getContentText());
 		textPaneContentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textPaneContentText.setBounds(71, 484, 290, 139);
 		textPaneContentText.setEditable(false);
 		scrollPane.setViewportView(textPaneContentText);
 		
 		textPaneShortDescription = new JTextPane();
-		textPaneShortDescription.setText(blog.getShortDescription());
 		textPaneShortDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textPaneShortDescription.setBounds(71, 349, 290, 100);
 		textPaneShortDescription.setEditable(false);

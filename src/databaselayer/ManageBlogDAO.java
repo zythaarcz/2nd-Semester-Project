@@ -20,7 +20,7 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 	private static final String INSERT_BLOG = "INSERT into Blog VALUES (?,?,?,?,?,?)";
 	private PreparedStatement psInsertBlog;
 	
-	private static final String UPDATE_BLOG = "UPDATE Blog SET imagePath = ?, header = ?, contentText = ?, shortDescription = ? WHERE id=?";
+	private static final String UPDATE_BLOG = "UPDATE Blog SET imagePath = ?, header = ?, contentText = ?, shortDescription = ?, dateIssued = ? WHERE id=?";
 	private PreparedStatement psUpdateBlog;
 	
 	private static final String DELETE_BLOG= "DELETE FROM Blog WHERE id=?";
@@ -65,11 +65,12 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 	}
 	
 	@Override
-	public void updateBlog(int id, String imagePath, String header, String contentText, String shortDescription) throws SQLException {
+	public void updateBlog(int id, String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued) throws SQLException {
 		psUpdateBlog.setString(1, imagePath);
 		psUpdateBlog.setString(2, header);
 		psUpdateBlog.setString(3, contentText);
 		psUpdateBlog.setString(4, shortDescription);
+		psUpdateBlog.setObject(5, dateIssued);
 		psUpdateBlog.setInt(5, id);
 
 		psUpdateBlog.executeUpdate();
