@@ -92,10 +92,10 @@ public class SideBarCustomer extends JPanel {
 		JButton dailyExerciseButton = new JButton("Daily Exercise");
 		dailyExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DailyExercise dailyExercise = new DailyExercise();
-				dailyExercise.setVisible(true);
-				setSize(0, 750);
-				((JFrame) getTopLevelAncestor()).dispose();
+//				DailyExercise dailyExercise = new DailyExercise();
+//				dailyExercise.setVisible(true);
+//				setSize(0, 750);
+//				((JFrame) getTopLevelAncestor()).dispose();
 			}
 		});
 		dailyExerciseButton.setFont(new Font("Tahoma", Font.BOLD, 12));

@@ -53,6 +53,19 @@ public class ManageVideoController {
 		return video;
 	}
 	
+	public Video retrieveVideoByName(String header) {
+		Video video = null;
+		
+		try {
+			video = manageVideoDao.retrieveVideoByName(header);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return video;
+	}
+	
 	public ArrayList<Video> retrieveAllVideos() {
 		ArrayList<Video> allVideos = new ArrayList<>();
 		

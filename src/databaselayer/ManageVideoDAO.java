@@ -13,6 +13,9 @@ public class ManageVideoDAO implements ManageVideoDAOIF{
 	private static final String SELECT_VIDEO = "SELECT * FROM Video WHERE id = ?";
 	private PreparedStatement psSelectVideo;
 	
+	private static final String SELECT_VIDEO_BY_NAME = "SELECT * FROM Video WHERE header = ?";
+	private PreparedStatement psSelectVideoByName;
+	
 	private static final String SELECT_ALL_VIDEOS = "SELECT * FROM Video";
 	private PreparedStatement psSelectAllVideos;
 	
@@ -40,6 +43,7 @@ public class ManageVideoDAO implements ManageVideoDAOIF{
 			psUpdateVideo= connection.prepareStatement(UPDATE_VIDEO);
 			psDeleteVideo= connection.prepareStatement(DELETE_VIDEO);
 			psSelectAllVideos= connection.prepareStatement(SELECT_ALL_VIDEOS);
+			psSelectVideoByName= connection.prepareStatement(SELECT_VIDEO_BY_NAME);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -88,6 +92,22 @@ public class ManageVideoDAO implements ManageVideoDAOIF{
 		psSelectVideo.setInt(1, id);
 		
 		rs = psSelectVideo.executeQuery();
+		
+		while(rs.next()) {
+			video = buildObject(rs);
+		}
+		
+		return video;
+	}
+	
+	@Override
+	public Video retrieveVideoByName(String header) throws SQLException {
+		Video video = null;
+		ResultSet rs;
+		
+		psSelectVideoByName.setString(1, header);
+		
+		rs = psSelectVideoByName.executeQuery();
 		
 		while(rs.next()) {
 			video = buildObject(rs);

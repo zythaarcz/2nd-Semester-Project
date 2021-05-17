@@ -11,4 +11,5 @@ public interface ManageVideoDAOIF {
 	void insertVideo(String url, String header, String shortDescription, String category, int pointsForCompletion, int employeeID) throws SQLException;
 	void deleteVideo(int id) throws SQLException;
 	ArrayList<Video> retrieveAllVideos() throws SQLException;
+	Video retrieveVideoByName(String header) throws SQLException;
 }
