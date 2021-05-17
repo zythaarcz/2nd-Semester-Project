@@ -18,6 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VideoPanel extends JPanel {
 	
@@ -36,6 +38,15 @@ public class VideoPanel extends JPanel {
 		add(panel);
 		
 		JLabel nameLabel = new JLabel("");
+		nameLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DailyExercise dailyExercise = new DailyExercise(video);
+				dailyExercise.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
 		nameLabel.setText(video.getHeader());
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));

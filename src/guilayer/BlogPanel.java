@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 
 import controllayer.ManageBlogController;
@@ -17,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 public class BlogPanel extends JPanel {
 
@@ -29,6 +33,17 @@ public class BlogPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel nameLabel = new JLabel("");
+		nameLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		nameLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DailyBlog dailyBlog = new DailyBlog(blog);
+				dailyBlog.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+				
+			}
+		});
 		nameLabel.setText(blog.getHeader());
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -82,6 +97,15 @@ public class BlogPanel extends JPanel {
 			JLabel blogImage = new JLabel(imageIcon);
 			blogImage.setBounds(40, 64, 320, 180);
 			add(blogImage);
+			
+			blogImage.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				DailyBlog dailyBlog = new DailyBlog(blog);
+				dailyBlog.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}	
+			});
 		}
 	}
 }
