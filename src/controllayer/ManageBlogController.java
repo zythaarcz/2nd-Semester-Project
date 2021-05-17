@@ -53,6 +53,19 @@ public class ManageBlogController {
 		return blog;
 	}
 	
+	public Blog retrieveBlogByName(String header) {
+		Blog blog = null;
+		
+		try {
+			blog = manageBlogDao.retrieveBlogByName(header);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return blog;
+	}
+	
 	public ArrayList<Blog> retrieveAllBlogs() {
 		ArrayList<Blog> allBlogs = new ArrayList<>();
 		

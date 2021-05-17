@@ -13,5 +13,6 @@ public interface ManageBlogDAOIF {
 	void insertBlog(String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued, int employeeID) throws SQLException;
 	void deleteBlog(int id) throws SQLException;
 	ArrayList<Blog> retrieveAllBlogs() throws SQLException;
+	Blog retrieveBlogByName(String header) throws SQLException;
 
 }

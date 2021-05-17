@@ -8,11 +8,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modellayer.Blog;
-import modellayer.Employee;
 
 public class ManageBlogDAO implements ManageBlogDAOIF {
 	private static final String SELECT_BLOG = "SELECT * FROM Blog WHERE id = ?";
 	private PreparedStatement psSelectBlog;
+	
+	private static final String SELECT_BLOG_BY_NAME = "SELECT * FROM Blog WHERE header = ?";
+	private PreparedStatement psSelectBlogByName;
 	
 	private static final String SELECT_ALL_BLOGS = "SELECT * FROM Blog";
 	private PreparedStatement psSelectAllBlogs;
@@ -44,6 +46,7 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 			psUpdateBlog= connection.prepareStatement(UPDATE_BLOG);
 			psDeleteBlog= connection.prepareStatement(DELETE_BLOG);
 			psSelectAllBlogs= connection.prepareStatement(SELECT_ALL_BLOGS);
+			psSelectBlogByName= connection.prepareStatement(SELECT_BLOG_BY_NAME);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,6 +95,22 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 		psSelectBlog.setInt(1, id);
 		
 		rs = psSelectBlog.executeQuery();
+		
+		while(rs.next()) {
+			blog = buildObject(rs);
+		}
+		
+		return blog;
+	}
+	
+	@Override
+	public Blog retrieveBlogByName(String header) throws SQLException {
+		Blog blog = null;
+		ResultSet rs;
+		
+		psSelectBlogByName.setString(1, header);
+		
+		rs = psSelectBlogByName.executeQuery();
 		
 		while(rs.next()) {
 			blog = buildObject(rs);

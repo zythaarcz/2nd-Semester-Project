@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import modellayer.Customer;
 import modellayer.Video;
 
 public class ManageVideoDAO implements ManageVideoDAOIF{
