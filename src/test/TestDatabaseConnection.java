@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import databaselayer.DBConnection;
 
-public class TestDatabaseAccess {
+public class TestDatabaseConnection {
 	
 	DBConnection connection = null;
 
