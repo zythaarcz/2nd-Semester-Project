@@ -21,13 +21,16 @@ public class DietConsultationController {
 		}
 	}
 	
-	public void createDietConsultation (LocalDate date, String reason) {
+	public boolean createDietConsultation (LocalDate date, String reason) {
+		boolean wasInserted = false;
 		try {
-			consultationDao.insertConsultation(date, reason);
+			wasInserted = consultationDao.insertConsultation(date, reason);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return wasInserted;
 	}
 	
 	public ArrayList<DietMeeting> retrieveAllConsultations() {

@@ -14,8 +14,6 @@ public class ConsultationDAO implements ConsultationDAOIF {
 
 	private static final String INSERT_CONSULTATION = "INSERT into DietMeeting VALUES (?, ?, ?, ?)";
 	private PreparedStatement psInsertConsultation;
-	private static final String RETRIEVE_CONSULTATION = "SELECT * from DietMeeting WHERE date = ?";
-	private PreparedStatement psRetrieveConsultation;
 	private static final String RETRIEVE_ALL_CONSULTATIONS = "SELECT * from DietMeeting";
 	private PreparedStatement psRetrieveAllConsultation;
 	
@@ -32,7 +30,6 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		
 		try {
 			psInsertConsultation= connection.prepareStatement(INSERT_CONSULTATION);
-			psRetrieveConsultation= connection.prepareStatement(RETRIEVE_CONSULTATION);
 			psRetrieveAllConsultation= connection.prepareStatement(RETRIEVE_ALL_CONSULTATIONS);
 
 		} catch (SQLException e) {
@@ -49,7 +46,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		psInsertConsultation.setInt(3,AuthenticatedUser.getInstance().getCurrentUser().getId());
 		
 		// Jiri is always responsible for consultation
-		psInsertConsultation.setInt(4, 1);
+		psInsertConsultation.setInt(4, 2);
 		
 		try {
 			connection.setAutoCommit(false);
@@ -108,7 +105,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 			}
 		}
 		
-		return (counter >= 1) ? true : false;
+		return (counter >= 2) ? true : false;
 		
 		
 	}
@@ -119,7 +116,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		DietMeeting meeting = null;
 		
 		try {
-			meeting = new DietMeeting(rs.getDate("date").toLocalDate(), rs.getString("reason"));
+			meeting = new DietMeeting(rs.getDate("wantedDate").toLocalDate(), rs.getString("reason"));
 			meeting.setCustomer(personDao.retrieveCustomerById(rs.getInt("customerId")));
 			meeting.setEmployee(personDao.retrieveEmployeeById(rs.getInt("employeeId")));
 		} catch (SQLException e) {

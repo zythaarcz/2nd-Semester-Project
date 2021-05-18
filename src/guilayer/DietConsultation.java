@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controllayer.AuthenticationController;
+import controllayer.DietConsultationController;
 import modellayer.AuthenticatedUser;
 
 import javax.swing.JLabel;
@@ -22,6 +23,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
@@ -33,15 +36,16 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 	private JTextField companyNameTextField;
 	private JTextField reasonTextField;
 	private SideBarCustomer sidebar;
-	private AuthenticationController authenticationController;
 	private JFormattedTextField dateTextField;
 
-
+	private AuthenticationController authenticationController;
+	private DietConsultationController dietConsultationController;
 	/**
 	 * Create the frame.
 	 */
 	public DietConsultation() {
 		authenticationController = new AuthenticationController();
+		dietConsultationController = new DietConsultationController();
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,6 +102,12 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		companyNameTextField.setBounds(39, 372, 216, 28);
 		contentPane.add(companyNameTextField);
 		
+		JLabel errorIconImagePath = new JLabel("");
+		errorIconImagePath.setIcon(new ImageIcon(CreateBlog.class.getResource("/images/iconError32px.png")));
+		errorIconImagePath.setBounds(279, 497, 32, 43);
+		errorIconImagePath.setVisible(false);
+		contentPane.add(errorIconImagePath);
+		
 		JLabel reasonLabel = new JLabel("Reason for consultation");
 		reasonLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		reasonLabel.setBounds(39, 482, 380, 17);
@@ -141,7 +151,22 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		JButton bookConsultationButton = new JButton("Book consultation");
 		bookConsultationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Not implemented yet.");
+				String reason = reasonTextField.getText();
+				if(validateString(reason, errorIconImagePath)) {
+					Date date = (Date) dateTextField.getValue();
+		            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					boolean wasCreated = dietConsultationController.createDietConsultation(localDate, reason);
+					
+					if(wasCreated) {
+						JOptionPane.showMessageDialog(contentPane, "The meeting was created.");						
+					}
+					else {
+						JOptionPane.showMessageDialog(contentPane, "We are sorry, but another customer booked the meeting before you.\nTry another date.");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You must fill in the reason of diet meeting");
+				}
 			}
 		});
 		bookConsultationButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -189,9 +214,20 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 			java.util.Calendar cal = (java.util.Calendar)evt.getNewValue();
 			Date selDate =  cal.getTime();
 			dateTextField.setValue(selDate);
-			System.out.println ("works");
 		}
-		System.out.println ("works 2");
 		
 	}
+	
+	private boolean validateString(String line, JLabel label) {
+		boolean isValid = true;
+		
+		if(line.equals("")) {
+			label.setVisible(true);
+			isValid = false;
+		} else {
+			label.setVisible(false);
+		} 
+		
+		return isValid;
 	}
+}
