@@ -68,65 +68,70 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		
 		JLabel firstNameLabel = new JLabel("First name");
 		firstNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		firstNameLabel.setBounds(39, 215, 370, 17);
+		firstNameLabel.setBounds(39, 210, 370, 17);
 		contentPane.add(firstNameLabel);
 		
 		firstNameTextField = new JTextField();
+		firstNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		firstNameTextField.setText(AuthenticatedUser.getInstance().getCurrentUser().getFirstName());
 		firstNameTextField.setEditable(false);
 		firstNameTextField.setColumns(10);
-		firstNameTextField.setBounds(39, 242, 216, 28);
+		firstNameTextField.setBounds(39, 230, 216, 43);
 		contentPane.add(firstNameTextField);
 		
 		JLabel lastNameLabel = new JLabel("Last name");
 		lastNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lastNameLabel.setBounds(39, 280, 380, 17);
+		lastNameLabel.setBounds(39, 284, 380, 17);
 		contentPane.add(lastNameLabel);
 		
 		lastNameTextField = new JTextField();
+		lastNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lastNameTextField.setText(AuthenticatedUser.getInstance().getCurrentUser().getLastName());
 		lastNameTextField.setEditable(false);
 		lastNameTextField.setColumns(10);
-		lastNameTextField.setBounds(39, 307, 216, 28);
+		lastNameTextField.setBounds(39, 304, 216, 43);
 		contentPane.add(lastNameTextField);
 		
 		JLabel companyNameLabel = new JLabel("Company name");
 		companyNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		companyNameLabel.setBounds(39, 345, 380, 17);
+		companyNameLabel.setBounds(39, 358, 380, 17);
 		contentPane.add(companyNameLabel);
 		
 		companyNameTextField = new JTextField();
+		companyNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		companyNameTextField.setText(authenticationController.getCustomer().getCompany());
 		companyNameTextField.setEditable(false);
 		companyNameTextField.setColumns(10);
-		companyNameTextField.setBounds(39, 372, 216, 28);
+		companyNameTextField.setBounds(39, 378, 216, 43);
 		contentPane.add(companyNameTextField);
 		
 		JLabel errorIconImagePath = new JLabel("");
 		errorIconImagePath.setIcon(new ImageIcon(CreateBlog.class.getResource("/images/iconError32px.png")));
-		errorIconImagePath.setBounds(279, 497, 32, 43);
+		errorIconImagePath.setBounds(265, 526, 32, 43);
 		errorIconImagePath.setVisible(false);
 		contentPane.add(errorIconImagePath);
 		
 		JLabel reasonLabel = new JLabel("Reason for consultation");
 		reasonLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		reasonLabel.setBounds(39, 482, 380, 17);
+		reasonLabel.setBounds(39, 506, 380, 17);
 		contentPane.add(reasonLabel);
 		
 		reasonTextField = new JTextField();
+		reasonTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		reasonTextField.setColumns(10);
-		reasonTextField.setBounds(39, 509, 216, 28);
+		reasonTextField.setBounds(39, 526, 216, 43);
 		contentPane.add(reasonTextField);
 		
 		JLabel availableDateLabel = new JLabel("Choose available date");
 		availableDateLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		availableDateLabel.setBounds(39, 420, 370, 17);
+		availableDateLabel.setBounds(39, 432, 370, 17);
 		contentPane.add(availableDateLabel);
 		
 		dateTextField = new JFormattedTextField();
+		dateTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		dateTextField.setPreferredSize(new Dimension(130, 30));
 		dateTextField.setValue(new Date()); //curent date
-		dateTextField.setBounds(39, 447, 216, 25);
+		dateTextField.setBounds(39, 452, 216, 43);
 		contentPane.add(dateTextField);
 		
 		CalendarWindow calendarWindow = new CalendarWindow();
@@ -145,7 +150,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		});
 		chooseButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chooseButton.setBackground(new Color(255, 208, 32));
-		chooseButton.setBounds(281, 447, 94, 25);
+		chooseButton.setBounds(277, 452, 94, 43);
 		contentPane.add(chooseButton);
 		
 		JButton bookConsultationButton = new JButton("Book consultation");
@@ -158,7 +163,10 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 					boolean wasCreated = dietConsultationController.createDietConsultation(localDate, reason);
 					
 					if(wasCreated) {
-						JOptionPane.showMessageDialog(contentPane, "The meeting was created.");						
+						JOptionPane.showMessageDialog(contentPane, "The meeting was created.");		
+						HomepageCustomer homepageCustomer = new HomepageCustomer();
+						homepageCustomer.setVisible(true);
+						dispose();
 					}
 					else {
 						JOptionPane.showMessageDialog(contentPane, "We are sorry, but another customer booked the meeting before you.\nTry another date.");

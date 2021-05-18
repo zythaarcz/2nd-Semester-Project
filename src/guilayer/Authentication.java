@@ -75,19 +75,21 @@ public class Authentication extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel emailLabel = new JLabel("Email");
-		emailLabel.setBounds(117, 229, 171, 17);
-		emailLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		emailLabel.setBounds(115, 229, 171, 17);
+		emailLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		emailTextField = new JTextField();
-		emailTextField.setBounds(117, 256, 213, 30);
+		emailTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		emailTextField.setBounds(115, 249, 213, 43);
 		emailTextField.setColumns(10);
 		
 		JLabel passwordLabel = new JLabel("Password");
-		passwordLabel.setBounds(117, 296, 105, 17);
-		passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		passwordLabel.setBounds(115, 303, 105, 17);
+		passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(117, 323, 213, 31);
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		passwordField.setBounds(115, 323, 213, 43);
 		contentPane.setLayout(null);
 		contentPane.add(passwordLabel);
 		contentPane.add(emailLabel);
@@ -95,7 +97,7 @@ public class Authentication extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton signInButton = new JButton("Sign in");
-		signInButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		signInButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		signInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String email = emailTextField.getText();
@@ -125,11 +127,12 @@ public class Authentication extends JFrame {
 		});
 		signInButton.setBackground(Color.decode("#FFD020"));
 		signInButton.setForeground(Color.BLACK);
-		signInButton.setBounds(175, 420, 93, 30);
+		signInButton.setBounds(175, 435, 93, 30);
 		contentPane.add(signInButton);
 		
 		hyperlink = new JLabel("Create new account?");
-		hyperlink.setBounds(217, 376, 192, 13);
+		hyperlink.setFont(new Font("Tahoma", Font.BOLD, 12));
+		hyperlink.setBounds(200, 377, 130, 13);
 		contentPane.add(hyperlink);
 		hyperlink.setForeground(Color.BLUE.darker());
 		hyperlink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

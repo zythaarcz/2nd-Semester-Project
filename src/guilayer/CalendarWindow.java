@@ -5,7 +5,9 @@ import java.awt.EventQueue;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -36,6 +38,7 @@ public class CalendarWindow extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(235, 200);
 		calendar.setTheme(ThemeType.Light);
+
 
 		contentPane.add(calendar, BorderLayout.CENTER);
 

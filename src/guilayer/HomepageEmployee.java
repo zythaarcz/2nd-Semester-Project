@@ -121,7 +121,7 @@ public class HomepageEmployee extends JFrame {
 		JButton manageVideosButton = new JButton("Manage Videos");
 		manageVideosButton.setBorderPainted(false);
 		manageVideosButton.setSelected(true);
-		manageVideosButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		manageVideosButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		manageVideosButton.setBackground(Color.decode("#FFD020"));
 		manageVideosButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,7 +142,7 @@ public class HomepageEmployee extends JFrame {
 				dispose();
 			}
 		});
-		manageBlogsButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		manageBlogsButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		manageBlogsButton.setBackground(Color.decode("#FFD020"));
 		manageBlogsButton.setBorderPainted(false);
 		
@@ -153,7 +153,7 @@ public class HomepageEmployee extends JFrame {
 				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
 			}
 		});
-		dietConsultationButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		dietConsultationButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dietConsultationButton.setBackground(Color.decode("#FFD020"));
 		dietConsultationButton.setBorderPainted(false);
 		GroupLayout gl_panel = new GroupLayout(panel);
