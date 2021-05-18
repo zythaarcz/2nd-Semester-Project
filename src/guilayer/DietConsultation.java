@@ -183,6 +183,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(bookConsultationButton);
 		
 		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setRolloverEnabled(false);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Not implemented yet.");

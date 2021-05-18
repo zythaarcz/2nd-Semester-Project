@@ -1,7 +1,5 @@
 package guilayer;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -10,24 +8,31 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import controllayer.ManageBlogController;
+import controllayer.ManageVideoController;
+import modellayer.AuthenticatedUser;
+import modellayer.Blog;
+import modellayer.PersonTypes;
+import modellayer.Video;
+
 import java.awt.event.ActionListener;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class HomepageCustomer extends JFrame {
 
 	private JPanel contentPane;
 	private SideBarEmployee sidebar;
-
-	/**
-	 * Launch the application.
-	 */
+	private ManageVideoController manageVideoController = new ManageVideoController();
+	private ManageBlogController manageBlogController = new ManageBlogController();
 
 	/**
 	 * Create the frame.
@@ -41,120 +46,106 @@ public class HomepageCustomer extends JFrame {
 		contentPane.setForeground(Color.LIGHT_GRAY);
 		setContentPane(contentPane);
 		
-		SideBarCustomer sidebar = new SideBarCustomer();
-		sidebar.setSize(0, 740);
-		contentPane.add(sidebar);
-		sidebar.setVisible(false);
-		
-		JLabel logoLabel = new JLabel("");
-		logoLabel.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/logo.png")));
-		
-		JPanel statisticsPanel = new JPanel();
-		statisticsPanel.setBackground(Color.WHITE);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 0, 440, 722);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		
+		Dimension d = new Dimension(440,930);
+		panel.setPreferredSize(d);
+		scrollPane.setViewportView(panel);
+		panel.setLayout(null);
+
+
+		SideBarCustomer sidebar = new SideBarCustomer();
+		sidebar.setLocation(0, 0);
+		sidebar.setSize(0, 740);
+		panel.add(sidebar);
+		sidebar.setVisible(false);
+
+		JLabel logoLabel = new JLabel("");
+		logoLabel.setBounds(139, 2, 280, 96);
+		logoLabel.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/logo.png")));
+
 		JButton sidebarButton = new JButton("");
+		sidebarButton.setBounds(10, 10, 43, 39);
 		sidebarButton.setOpaque(false);
 		sidebarButton.setForeground(Color.BLACK);
 		sidebarButton.setBorderPainted(false);
 		sidebarButton.setBackground(Color.LIGHT_GRAY);
-		
+
 		sidebarButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			sidebar.setVisible(true);
-			sidebar.setSize(225, 740);
+			public void actionPerformed(ActionEvent e) {
+				sidebar.setVisible(true);
+				sidebar.setSize(225, 740);
 			}
 		});
+
+		VideoPanel latestVideoPanel = new VideoPanel(getLatestVideo());
+		
+		latestVideoPanel.setBounds(10, 133, 400, 370);
+		latestVideoPanel.setVisible(true);
+
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			latestVideoPanel.deleteVideoButton.setVisible(false);
+			latestVideoPanel.editVideoButton.setVisible(false);
+			latestVideoPanel.textPane.setSize(378, 58);
+		}
+		// panel.set
+		panel.add(latestVideoPanel);
+		
+		BlogPanel latestBlogPanel = new BlogPanel(getLatestBlog());
+		//315
+		latestBlogPanel.setBounds(10, 547, 400, 370);
+		latestBlogPanel.setVisible(true);
+
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			latestBlogPanel.deleteBlogButton.setVisible(false);
+			latestBlogPanel.editBlogButton.setVisible(false);
+			latestBlogPanel.textPane.setSize(378, 58);
+		}
+		// panel.set
+		panel.add(latestBlogPanel);
+
 		sidebarButton.setBackground(SystemColor.controlHighlight);
 		sidebarButton.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/sidebarIcon35px.png")));
 		sidebarButton.setSelectedIcon(null);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(statisticsPanel, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(sidebarButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-							.addComponent(logoLabel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(logoLabel, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(sidebarButton)))
-					.addGap(18)
-					.addComponent(statisticsPanel, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(135, Short.MAX_VALUE))
-		);
+		contentPane.setLayout(null);
+		panel.add(sidebar);
+		panel.add(sidebarButton);
+		panel.add(logoLabel);
 		
-		JLabel dailyBlogLabel = new JLabel("Daily Blog");
-		dailyBlogLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel NewLessonLabel = new JLabel("Newest Lesson");
+		NewLessonLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		NewLessonLabel.setBounds(10, 101, 139, 28);
+		panel.add(NewLessonLabel);
 		
-		JButton manageBlogsButton = new JButton("Read more");
-		manageBlogsButton.setRolloverEnabled(false);
-		manageBlogsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO
-				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
+		JLabel NewBlogLabel = new JLabel("Newest Blog Post");
+		NewBlogLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		NewBlogLabel.setBounds(10, 513, 139, 28);
+		panel.add(NewBlogLabel);
+	}
+
+	public Video getLatestVideo() {
+		Video latestVideo = new Video(null, null, null, null, 0);
+		ArrayList<Video> allVideos = manageVideoController.retrieveAllVideos();
+		for (Video video : allVideos) {
+			if (video.getId() > latestVideo.getId()) {
+				latestVideo = video;
 			}
-		});
-		manageBlogsButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		manageBlogsButton.setBackground(Color.decode("#FFD020"));
-		manageBlogsButton.setBorderPainted(false);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(dailyBlogLabel))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(125)
-							.addComponent(manageBlogsButton, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(125, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(dailyBlogLabel)
-					.addPreferredGap(ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-					.addComponent(manageBlogsButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		panel.setLayout(gl_panel);
-		
-		JLabel dailyExerciseLabel = new JLabel("Daily Exercise");
-		dailyExerciseLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		GroupLayout gl_statisticsPanel = new GroupLayout(statisticsPanel);
-		gl_statisticsPanel.setHorizontalGroup(
-			gl_statisticsPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_statisticsPanel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(dailyExerciseLabel, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(294, Short.MAX_VALUE))
-		);
-		gl_statisticsPanel.setVerticalGroup(
-			gl_statisticsPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_statisticsPanel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(dailyExerciseLabel)
-					.addContainerGap(213, Short.MAX_VALUE))
-		);
-		statisticsPanel.setLayout(gl_statisticsPanel);
-		contentPane.setLayout(gl_contentPane);
+		}
+		return latestVideo;
+	}
+
+	public Blog getLatestBlog() {
+		Blog latestBlog = new Blog(null, null, null, null, null);
+		ArrayList<Blog> allBlogs = manageBlogController.retrieveAllBlogs();
+		for (Blog blog : allBlogs) {
+			if (blog.getId() > latestBlog.getId()) {
+				latestBlog = blog;
+			}
+		}
+		return latestBlog;
 	}
 }

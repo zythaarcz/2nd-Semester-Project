@@ -125,8 +125,6 @@ public class HomepageEmployee extends JFrame {
 		manageVideosButton.setBackground(Color.decode("#FFD020"));
 		manageVideosButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				VideoCategoriesEmployee videoCategoriesEmployee = new VideoCategoriesEmployee();
-//				videoCategoriesEmployee.setVisible(true);
 				AllVideosEmployee avEmployee = new AllVideosEmployee();
 				avEmployee.setVisible(true);
 				dispose();

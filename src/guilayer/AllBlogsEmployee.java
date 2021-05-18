@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controllayer.ManageBlogController;
+import modellayer.AuthenticatedUser;
 import modellayer.Blog;
+import modellayer.PersonTypes;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -16,6 +18,7 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.Icon;
 import java.awt.Font;
+import java.awt.Window;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -32,21 +35,7 @@ public class AllBlogsEmployee extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<Blog> allBlogs = manageBlogController.retrieveAllBlogs();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AllBlogsEmployee frame = new AllBlogsEmployee();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Object sidebar;
 
 	/**
 	 * Create the frame.
@@ -66,7 +55,7 @@ public class AllBlogsEmployee extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(3, 0, 440, 750);
+		scrollPane.setBounds(0, 0, 440, 750);
 		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
@@ -75,10 +64,14 @@ public class AllBlogsEmployee extends JFrame {
 		panel.setLayout(null);
 		scrollPane.setViewportView(panel);
 		
-		SideBarEmployee sidebar = new SideBarEmployee();
-		sidebar.setSize(0, 740);
-		panel.add(sidebar);
-		sidebar.setVisible(false);
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			sidebar = new SideBarCustomer();
+		} else {
+			sidebar = new SideBarEmployee();
+		}
+		((JPanel) sidebar).setSize(0, 740);
+		panel.add((JPanel) sidebar);
+		((JPanel) sidebar).setVisible(false);
 		
 		JLabel logoImage = new JLabel(new ImageIcon(AllBlogsEmployee.class.getResource("/images/logo.png")));
 		logoImage.setBounds(131, 10, 300, 102);
@@ -116,8 +109,8 @@ public class AllBlogsEmployee extends JFrame {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sidebar.setVisible(true);
-				sidebar.setSize(225, 740);
+				((JPanel) sidebar).setVisible(true);
+				((JPanel) sidebar).setSize(225, 740);
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(AllBlogsEmployee.class.getResource("/images/sidebarIcon35px.png")));
@@ -131,6 +124,10 @@ public class AllBlogsEmployee extends JFrame {
 		int yPosition = 300;
 		int height = 100;
 		
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			addBlogButton.setVisible(false);
+			yPosition = 240;
+		}
 		
 		for (BlogPanel blogPanel : allBlogPanels) {
 			
@@ -141,6 +138,11 @@ public class AllBlogsEmployee extends JFrame {
 			
 			
 			d.setSize(440, height + yPosition);
+			if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+				blogPanel.deleteBlogButton.setVisible(false);
+				blogPanel.editBlogButton.setVisible(false);
+				blogPanel.textPane.setSize(378, 58);
+			}
 			panel.add(blogPanel);
 			}
 	}

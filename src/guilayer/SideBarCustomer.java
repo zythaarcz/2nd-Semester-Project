@@ -10,17 +10,22 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import controllayer.ManageVideoController;
 import modellayer.AuthenticatedUser;
+import modellayer.Video;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class SideBarCustomer extends JPanel {
 
+
+	private ManageVideoController manageVideoController = new ManageVideoController();
 
 	/**
 	 * Create the panel.
@@ -31,8 +36,10 @@ public class SideBarCustomer extends JPanel {
 		JButton blogButton = new JButton("Blog");
 		blogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect to blog section when implemented
-				JOptionPane.showMessageDialog(blogButton, "Feature not implemented yet.");
+				AllBlogsEmployee allBlogs = new AllBlogsEmployee();
+				allBlogs.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
 			}
 		});
 		blogButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -92,10 +99,10 @@ public class SideBarCustomer extends JPanel {
 		JButton dailyExerciseButton = new JButton("Daily Exercise");
 		dailyExerciseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				DailyExercise dailyExercise = new DailyExercise();
-//				dailyExercise.setVisible(true);
-//				setSize(0, 750);
-//				((JFrame) getTopLevelAncestor()).dispose();
+				DailyExercise dailyExercise = new DailyExercise(getLatestVideo());
+				dailyExercise.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
 			}
 		});
 		dailyExerciseButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -120,7 +127,7 @@ public class SideBarCustomer extends JPanel {
 		JButton allLessonsButton = new JButton("All Lessons");
 		allLessonsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AllVideos allVideos = new AllVideos();
+				AllVideosEmployee allVideos = new AllVideosEmployee();
 				allVideos.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -189,6 +196,17 @@ public class SideBarCustomer extends JPanel {
 		);
 		setLayout(groupLayout);
 
+	}
+	
+	public Video getLatestVideo() {
+		Video latestVideo = new Video(null, null, null, null, 0);
+		ArrayList<Video> allVideos = manageVideoController .retrieveAllVideos();
+		for (Video video : allVideos) {
+			if (video.getId() > latestVideo.getId()) {
+				latestVideo = video;
+			}
+		}
+		return latestVideo;
 	}
 
 }

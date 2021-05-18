@@ -15,6 +15,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import controllayer.ManageVideoController;
+import modellayer.AuthenticatedUser;
+import modellayer.PersonTypes;
 import modellayer.Video;
 
 import java.util.ArrayList;
@@ -31,27 +33,15 @@ public class AllVideosEmployee extends JFrame {
 	private CreateVideo createVideo;
 	private EditVideo editVideo;
 	
+	private Object sidebar;
+	
 	ArrayList<Video> allVideos = manageVideoController.retrieveAllVideos();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AllVideosEmployee frame = new AllVideosEmployee();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public AllVideosEmployee() {
+		setTitle("All Lessons");
 		ArrayList<VideoPanel> allVideoPanels = createAllVideoPanels();
 		setResizable(false);
 		createVideo= new CreateVideo();
@@ -66,7 +56,7 @@ public class AllVideosEmployee extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(3, 0, 440, 750);
+		scrollPane.setBounds(0, 0, 440, 750);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
@@ -78,10 +68,14 @@ public class AllVideosEmployee extends JFrame {
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 
-		SideBarEmployee sidebar = new SideBarEmployee();
-		sidebar.setSize(0, 740);
-		panel.add(sidebar);
-		sidebar.setVisible(false);
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			sidebar = new SideBarCustomer();
+		} else {
+			sidebar = new SideBarEmployee();
+		}
+		((JPanel) sidebar).setSize(0, 740);
+		panel.add((JPanel) sidebar);
+		((JPanel) sidebar).setVisible(false);
 		
 		logoImage = new JLabel(new ImageIcon(VideoCategories.class.getResource("/images/logo.png")));
 		logoImage.setBounds(131, 10, 300, 102);
@@ -118,8 +112,8 @@ public class AllVideosEmployee extends JFrame {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sidebar.setVisible(true);
-				sidebar.setSize(225, 740);
+				((JPanel) sidebar).setVisible(true);
+				((JPanel) sidebar).setSize(225, 740);
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(AllVideosEmployee.class.getResource("/images/sidebarIcon35px.png")));
@@ -133,6 +127,11 @@ public class AllVideosEmployee extends JFrame {
 		int yPosition = 300;
 		int height = 100;
 		
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			addVideoButton.setVisible(false);
+			yPosition = 240;
+		}
+		
 		
 		for (VideoPanel videoPanel : allVideoPanels) {
 			
@@ -142,6 +141,11 @@ public class AllVideosEmployee extends JFrame {
 			
 			
 			d.setSize(440, height + yPosition);
+			if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+				videoPanel.deleteVideoButton.setVisible(false);
+				videoPanel.editVideoButton.setVisible(false);
+				videoPanel.textPane.setSize(378, 58);
+			}
 			//panel.set
 			panel.add(videoPanel);
 			}		

@@ -25,6 +25,10 @@ import java.awt.Cursor;
 public class BlogPanel extends JPanel {
 
 	private ManageBlogController manageBlogController = new ManageBlogController();
+	protected JButton editBlogButton;
+	protected JTextPane textPane;
+	protected JButton deleteBlogButton;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -47,16 +51,16 @@ public class BlogPanel extends JPanel {
 		nameLabel.setText(blog.getHeader());
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		nameLabel.setBounds(11, 19, 378, 13);
+		nameLabel.setBounds(11, 7, 378, 25);
 		add(nameLabel);
 		
-		JTextPane textPane = new JTextPane();
+		textPane = new JTextPane();
 		textPane.setText(blog.getShortDescription());
 		textPane.setEditable(false);
 		textPane.setBounds(11, 295, 345, 58);
 		add(textPane);
 		
-		JButton editBlogButton = new JButton("");
+		editBlogButton = new JButton("");
 		editBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditBlog editBlog = new EditBlog(blog);
@@ -70,7 +74,7 @@ public class BlogPanel extends JPanel {
 		editBlogButton.setBounds(366, 295, 23, 21);
 		add(editBlogButton);
 		
-		JButton deleteBlogButton = new JButton("\"\"");
+		deleteBlogButton = new JButton("");
 		deleteBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO: Delete also the image from project directory
@@ -84,7 +88,7 @@ public class BlogPanel extends JPanel {
 		deleteBlogButton.setIcon(new ImageIcon(BlogPanel.class.getResource("/images/deleteButton.png")));
 		deleteBlogButton.setOpaque(false);
 		deleteBlogButton.setBorderPainted(false);
-		deleteBlogButton.setBounds(371, 332, 23, 21);
+		deleteBlogButton.setBounds(366, 326, 23, 27);
 		add(deleteBlogButton);
 		
 		File file = new File(blog.getImagePath());
