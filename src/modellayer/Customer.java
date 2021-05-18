@@ -1,17 +1,17 @@
 package modellayer;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Customer extends Person {
 	
 	private String address;
 	private String company;
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String healthIssue;
 	private String timeToRemind;
 
 	public Customer(String firstName, String lastName, String phoneNumber, String email, String address, String company,
-			Date dateOfBirth, String healthIssue, String timeToRemind) {
+			LocalDate dateOfBirth, String healthIssue, String timeToRemind) {
 		super(firstName, lastName, phoneNumber, email, PersonTypes.Customer);
 		this.address = address;
 		this.company = company;
@@ -36,11 +36,11 @@ public class Customer extends Person {
 		this.company = company;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

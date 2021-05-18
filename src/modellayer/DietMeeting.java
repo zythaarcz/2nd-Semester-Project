@@ -1,26 +1,24 @@
 package modellayer;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DietMeeting {
 	
-	private Date wantedDate;
+	private LocalDate wantedDate;
 	private String reason;
 	private Customer customer;
 	private Employee employee;
 	
-	public DietMeeting(Date wantedDate, String reason, Customer customer, Employee employee) {
+	public DietMeeting(LocalDate wantedDate, String reason) {
 		this.wantedDate = wantedDate;
 		this.reason = reason;
-		this.customer = customer;
-		this.employee = employee;
 	}
 
-	public Date getWantedDate() {
+	public LocalDate getWantedDate() {
 		return wantedDate;
 	}
 
-	public void setWantedDate(Date wantedDate) {
+	public void setWantedDate(LocalDate wantedDate) {
 		this.wantedDate = wantedDate;
 	}
 
