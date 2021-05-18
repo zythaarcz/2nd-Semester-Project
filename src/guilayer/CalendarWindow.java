@@ -17,8 +17,9 @@ import com.mindfusion.scheduling.ThemeType;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CalendarWindow extends JFrame implements MouseListener {
+public class CalendarWindow extends JFrame{
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	Calendar calendar = new Calendar();
 	java.util.Calendar selectedDate = java.util.Calendar.getInstance();
@@ -39,8 +40,21 @@ public class CalendarWindow extends JFrame implements MouseListener {
 		contentPane.add(calendar, BorderLayout.CENTER);
 
 		changeSupport = new PropertyChangeSupport(this);
-
-
+		
+		calendar.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2) {
+					calendar.getSelection().reset();
+					DateTime pointedDate = calendar.getDateAt(e.getX(), e.getY());
+					java.util.Calendar cal = java.util.Calendar.getInstance();
+					cal.set(pointedDate.getYear(), pointedDate.getMonth() - 1, pointedDate.getDay());
+					
+					setSelectedDate(cal);
+					
+					dispose();
+				}
+			}
+		});
 	}
 
 	public void resetSelection(Date date) {
@@ -64,44 +78,8 @@ public class CalendarWindow extends JFrame implements MouseListener {
 		changeSupport.addPropertyChangeListener(listener);
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-			calendar.getSelection().reset();
-			DateTime pointedDate = calendar.getDateAt(e.getX(), e.getY());
-			java.util.Calendar cal = java.util.Calendar.getInstance();
-			cal.set(pointedDate.getYear(), pointedDate.getMonth()-1, pointedDate.getDay()); //-1 because the months start from 0
+	
+	
 
-			setSelectedDate(cal);
-
-			System.out.println ("mouse");
-
-			dispose();
-		System.out.println ("mouse 2");
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
