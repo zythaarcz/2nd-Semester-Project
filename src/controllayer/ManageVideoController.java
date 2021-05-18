@@ -22,7 +22,6 @@ public class ManageVideoController {
 	}
 	
 	public void createVideo(String url, String header, String shortDescription, String category, int pointsForCompletion) {
-		// TODO: Uncomment when singleton is created
 		try {
 			manageVideoDao.insertVideo(url, header, shortDescription, category, pointsForCompletion, AuthenticatedUser.getInstance().getCurrentUser().getId());
 		} catch (SQLException e) {

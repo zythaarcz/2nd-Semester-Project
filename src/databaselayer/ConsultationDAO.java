@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
 
-public class ConsulationDAO implements ConsultationDAOIF {
+public class ConsultationDAO implements ConsultationDAOIF {
 
 	private static final String INSERT_CONSULTATION = "INSERT into DietMeeting VALUES (?, ?, ?, ?)";
 	private PreparedStatement psInsertConsultation;
@@ -21,7 +21,7 @@ public class ConsulationDAO implements ConsultationDAOIF {
 	
 	private Connection connection;
 	private PersonDAOIF personDao;
-	public ConsulationDAO() throws SQLException {
+	public ConsultationDAO() throws SQLException {
 		initPreparedStatement();
 		personDao = new PersonDAO();
 	}

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import databaselayer.PersonDAO;
 import databaselayer.PersonDAOIF;
 import modellayer.AuthenticatedUser;
+import modellayer.Customer;
 import modellayer.Person;
 
 public class AuthenticationController {
@@ -43,6 +44,20 @@ public class AuthenticationController {
 	
 	public PersonTypes getCurrentPersonType() {
 		return AuthenticatedUser.getInstance().getCurrentUser().getPersonType();
+	}
+	
+	public Customer getCustomer() {
+		Customer customer = null;
+		if (getCurrentPersonType() == PersonTypes.Customer) {
+			try {
+				customer = personDao.retrieveCustomerById(AuthenticatedUser.getInstance().getCurrentUser().getId());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return customer;
 	}
 	
 }

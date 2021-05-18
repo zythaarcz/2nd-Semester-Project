@@ -17,7 +17,7 @@ import com.mindfusion.scheduling.ThemeType;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CalendarWindow extends JFrame {
+public class CalendarWindow extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
 	Calendar calendar = new Calendar();
@@ -28,21 +28,6 @@ public class CalendarWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public CalendarWindow() {
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					calendar.getSelection().reset();
-					DateTime pointedDate = calendar.getDateAt(e.getX(), e.getY());
-					java.util.Calendar cal = java.util.Calendar.getInstance();
-					cal.set(pointedDate.getYear(), pointedDate.getMonth()-1, pointedDate.getDay()); //-1 because the months start from 0
-					
-					setSelectedDate(cal);
-					
-					dispose();
-				}
-			}
-		});
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout());
@@ -50,33 +35,73 @@ public class CalendarWindow extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(235, 200);
 		calendar.setTheme(ThemeType.Light);
-		
+
 		contentPane.add(calendar, BorderLayout.CENTER);
-		
+
 		changeSupport = new PropertyChangeSupport(this);
-		
-		
+
+
 	}
-	
+
 	public void resetSelection(Date date) {
 		calendar.getSelection().reset();
 		calendar.getSelection().set(new DateTime(date));
 		calendar.setDate(new DateTime(date));
 	}
-	
+
 	public void setSelectedDate(java.util.Calendar newDate) {
 		java.util.Calendar oldDate = (java.util.Calendar) selectedDate.clone();
 		selectedDate = newDate;
-		
+
 		changeSupport.firePropertyChange("selectedDate", oldDate, newDate); //to inform that the value of the old date has changed
 	}
-	
+
 	public java.util.Calendar getSelectedDate() {
 		return selectedDate;
 	}
-	
+
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		 changeSupport.addPropertyChangeListener(listener);
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+			calendar.getSelection().reset();
+			DateTime pointedDate = calendar.getDateAt(e.getX(), e.getY());
+			java.util.Calendar cal = java.util.Calendar.getInstance();
+			cal.set(pointedDate.getYear(), pointedDate.getMonth()-1, pointedDate.getDay()); //-1 because the months start from 0
+
+			setSelectedDate(cal);
+
+			System.out.println ("mouse");
+
+			dispose();
+		System.out.println ("mouse 2");
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

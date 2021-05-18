@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controllayer.AuthenticationController;
+import modellayer.AuthenticatedUser;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -29,27 +33,16 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 	private JTextField companyNameTextField;
 	private JTextField reasonTextField;
 	private SideBarCustomer sidebar;
+	private AuthenticationController authenticationController;
+	private JFormattedTextField dateTextField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DietConsultation frame = new DietConsultation();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public DietConsultation() {
+		authenticationController = new AuthenticationController();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -75,6 +68,8 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(firstNameLabel);
 		
 		firstNameTextField = new JTextField();
+		firstNameTextField.setText(AuthenticatedUser.getInstance().getCurrentUser().getFirstName());
+		firstNameTextField.setEditable(false);
 		firstNameTextField.setColumns(10);
 		firstNameTextField.setBounds(39, 242, 216, 28);
 		contentPane.add(firstNameTextField);
@@ -85,6 +80,8 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(lastNameLabel);
 		
 		lastNameTextField = new JTextField();
+		lastNameTextField.setText(AuthenticatedUser.getInstance().getCurrentUser().getLastName());
+		lastNameTextField.setEditable(false);
 		lastNameTextField.setColumns(10);
 		lastNameTextField.setBounds(39, 307, 216, 28);
 		contentPane.add(lastNameTextField);
@@ -95,6 +92,8 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		contentPane.add(companyNameLabel);
 		
 		companyNameTextField = new JTextField();
+		companyNameTextField.setText(authenticationController.getCustomer().getCompany());
+		companyNameTextField.setEditable(false);
 		companyNameTextField.setColumns(10);
 		companyNameTextField.setBounds(39, 372, 216, 28);
 		contentPane.add(companyNameTextField);
@@ -114,7 +113,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		availableDateLabel.setBounds(39, 420, 370, 17);
 		contentPane.add(availableDateLabel);
 		
-		JFormattedTextField dateTextField = new JFormattedTextField();
+		dateTextField = new JFormattedTextField();
 		dateTextField.setPreferredSize(new Dimension(130, 30));
 		dateTextField.setValue(new Date()); //curent date
 		dateTextField.setBounds(39, 447, 216, 25);
@@ -189,8 +188,10 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
             
 			java.util.Calendar cal = (java.util.Calendar)evt.getNewValue();
 			Date selDate =  cal.getTime();
-			//dateTextField.setValue(selDate);
+			dateTextField.setValue(selDate);
+			System.out.println ("works");
 		}
+		System.out.println ("works 2");
 		
 	}
 	}

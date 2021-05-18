@@ -147,8 +147,9 @@ public class PersonDAO implements PersonDAOIF {
 	private Customer buildObjectCustomer(ResultSet rs, Person person) throws SQLException {
 		Customer customer = null;
 		try {
+			String address = rs.getString("street") + " " + rs.getInt("houseNumber") + ", " + rs.getString("zipcode") + ", " + rs.getString("city") + ", " + rs.getString("country");
 			customer = new Customer(person.getFirstName(), person.getLastName(), person.getPhoneNumber(),
-					person.getEmail(), rs.getString("address"), rs.getString("company"),
+					person.getEmail(), address, rs.getString("company"),
 					rs.getDate("dateOfBirth").toLocalDate(), rs.getString("healthIssue"), rs.getString("timeToRemind"));
 		} catch (SQLException e) {
 			e.printStackTrace();
