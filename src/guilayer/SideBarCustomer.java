@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -49,8 +50,22 @@ public class SideBarCustomer extends JPanel {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setSize(0,740);
-				setVisible(false);			}
+					Thread th = new Thread() {
+			            @Override
+			            public void run(){
+			                try {
+			                    
+			                    for ( int i = 225; i >= 0; i--){
+			                        Thread.sleep(1);
+			                        setSize(i, 740);
+			                    }
+			                } catch (Exception e) {
+			                    JOptionPane.showMessageDialog(null, e);
+			                }
+			            };
+			            
+				};th.start();
+				}
 		});
 		sidebarButton.setIcon(new ImageIcon(SideBarCustomer.class.getResource("/images/arrowIconDS.png")));
 		sidebarButton.setOpaque(false);
@@ -207,6 +222,24 @@ public class SideBarCustomer extends JPanel {
 			}
 		}
 		return latestVideo;
+	}
+	
+	public void runSidebar() {
+		Thread th = new Thread() {
+            @Override
+            public void run(){
+                try {
+                    
+                    for ( int i = 0; i <= 225; i++){
+                        Thread.sleep(1);
+                        setSize(i, 740);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            };
+            
+		};th.start();
 	}
 
 }

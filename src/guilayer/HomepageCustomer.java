@@ -56,18 +56,13 @@ public class HomepageCustomer extends JFrame {
 		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
-
-
+		
 		SideBarCustomer sidebar = new SideBarCustomer();
 		sidebar.setLocation(0, 0);
 		sidebar.setSize(0, 740);
 		panel.add(sidebar);
 		sidebar.setVisible(false);
-
-		JLabel logoLabel = new JLabel("");
-		logoLabel.setBounds(139, 2, 280, 96);
-		logoLabel.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/logo.png")));
-
+		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.setBounds(10, 10, 43, 39);
 		sidebarButton.setOpaque(false);
@@ -78,9 +73,13 @@ public class HomepageCustomer extends JFrame {
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sidebar.setVisible(true);
-				sidebar.setSize(225, 740);
+				sidebar.runSidebar();
 			}
 		});
+
+		JLabel logoLabel = new JLabel("");
+		logoLabel.setBounds(139, 2, 280, 96);
+		logoLabel.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/logo.png")));
 
 		VideoPanel latestVideoPanel = new VideoPanel(getLatestVideo());
 		

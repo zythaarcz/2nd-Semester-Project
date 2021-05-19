@@ -48,7 +48,21 @@ public class SideBarEmployee extends JPanel {
 		sidebarButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setSize(0, 740);
+				Thread th = new Thread() {
+		            @Override
+		            public void run(){
+		                try {
+		                    
+		                    for ( int i = 225; i >= 0; i--){
+		                        Thread.sleep(1);
+		                        setSize(i, 740);
+		                    }
+		                } catch (Exception e) {
+		                    JOptionPane.showMessageDialog(null, e);
+		                }
+		            };
+		            
+			};th.start();
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(SideBarEmployee.class.getResource("/images/arrowIconDS.png")));
@@ -212,5 +226,23 @@ public class SideBarEmployee extends JPanel {
 		);
 		setLayout(groupLayout);
 		
+	}
+	
+	public void runSidebar() {
+		Thread th = new Thread() {
+            @Override
+            public void run(){
+                try {
+                    
+                    for ( int i = 0; i <= 225; i++){
+                        Thread.sleep(1);
+                        setSize(i, 740);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            };
+            
+		};th.start();
 	}
 }

@@ -76,7 +76,7 @@ public class HomepageEmployee extends JFrame {
 		sidebarButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			sidebar.setVisible(true);
-			sidebar.setSize(225, 740);
+			sidebar.runSidebar();
 			}
 		});
 		sidebarButton.setBackground(SystemColor.controlHighlight);
