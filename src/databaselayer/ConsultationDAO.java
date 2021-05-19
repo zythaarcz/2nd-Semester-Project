@@ -16,6 +16,8 @@ public class ConsultationDAO implements ConsultationDAOIF {
 	private PreparedStatement psInsertConsultation;
 	private static final String RETRIEVE_ALL_CONSULTATIONS = "SELECT * from DietMeeting";
 	private PreparedStatement psRetrieveAllConsultation;
+	private static final String RETRIEVE_COUNT_CONSULTATIONS = "SELECT COUNT(*) AS total from DietMeeting WHERE wantedDate=?";
+	private PreparedStatement psRetrieveCountConsultations;
 	
 	private Connection connection;
 	private PersonDAOIF personDao;
@@ -31,6 +33,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		try {
 			psInsertConsultation= connection.prepareStatement(INSERT_CONSULTATION);
 			psRetrieveAllConsultation= connection.prepareStatement(RETRIEVE_ALL_CONSULTATIONS);
+			psRetrieveCountConsultations= connection.prepareStatement(RETRIEVE_COUNT_CONSULTATIONS);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,7 +55,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 			connection.setAutoCommit(false);
 			psInsertConsultation.executeUpdate();
 			
-			if(!doMultipleMeetingsExist(date)) {
+			if(retrieveConsultationCountByDate(date) < 2) {
 				connection.commit();
 				executed = true;
 			}
@@ -86,6 +89,21 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		}
 		
 		return meetings;
+	}
+	
+	@Override
+	public int retrieveConsultationCountByDate(LocalDate date) throws SQLException {
+		int count = 0;
+		psRetrieveCountConsultations.setObject(1, date);
+		
+		ResultSet rs;
+		rs = psRetrieveCountConsultations.executeQuery();
+		
+		while(rs.next()) {
+			count = rs.getInt("total");	
+		}
+		
+		return count;
 	}
 	
 	private boolean doMultipleMeetingsExist(LocalDate date) {

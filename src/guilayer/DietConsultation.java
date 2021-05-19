@@ -56,6 +56,11 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		setTitle("Book diet consultation");
 		contentPane.setLayout(null);
 		
+		sidebar = new SideBarCustomer();
+		sidebar.setSize(0, 740);
+		contentPane.add(sidebar);
+		sidebar.setVisible(false);
+		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(DietConsultation.class.getResource("/images/logo.png")));
 		logo.setBounds(71, 27, 300, 115);
@@ -194,10 +199,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		cancelButton.setBounds(100, 624, 145, 38);
 		contentPane.add(cancelButton);
 		
-		SideBarCustomer sidebar = new SideBarCustomer();
-		sidebar.setSize(0, 740);
-		contentPane.add(sidebar);
-		sidebar.setVisible(false);
+		
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
@@ -213,6 +215,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		sidebarButton.setBackground(Color.LIGHT_GRAY);
 		sidebarButton.setBounds(10, 10, 43, 39);
 		contentPane.add(sidebarButton);
+		
 	}
 
 	@Override
