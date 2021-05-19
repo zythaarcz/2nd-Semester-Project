@@ -47,23 +47,6 @@ public class Profile extends JFrame {
 	
 	private SideBarEmployee sideBarEmployee;
 	private SideBarCustomer sideBarCustomer;
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Profile frame = new Profile();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -292,11 +275,13 @@ public class Profile extends JFrame {
 			((JPanel) sideBarCustomer).setSize(0, 740);
 			contentPane.add((JPanel) sideBarCustomer);
 			((JPanel) sideBarCustomer).setVisible(false);
+			contentPane.setComponentZOrder(sideBarCustomer, 0);
 		} else {
 			sideBarEmployee = new SideBarEmployee();
 			((JPanel) sideBarEmployee).setSize(0, 740);
 			contentPane.add((JPanel) sideBarEmployee);
 			((JPanel) sideBarEmployee).setVisible(false);
+			contentPane.setComponentZOrder(sideBarEmployee, 0);
 		}
 		
 		JButton sidebarButton = new JButton("");

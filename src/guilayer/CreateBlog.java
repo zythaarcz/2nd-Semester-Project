@@ -60,22 +60,6 @@ public class CreateBlog extends JFrame {
 	private ManageBlogController manageBlogController;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateBlog frame = new CreateBlog();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public CreateBlog() {
@@ -104,6 +88,7 @@ public class CreateBlog extends JFrame {
 		sideBarEmployee.setSize(0, 740);
 		sideBarEmployee.setVisible(false);
 		contentPane.add(sideBarEmployee);
+		contentPane.setComponentZOrder(sideBarEmployee, 0);
 		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(CreateBlog.class.getResource("/images/logo.png")));

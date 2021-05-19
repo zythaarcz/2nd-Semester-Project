@@ -179,7 +179,7 @@ public class CreateVideo extends JFrame {
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sideBarEmployee.setVisible(true);
-				sideBarEmployee.setSize(225, 740);
+				sideBarEmployee.runSidebar();
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/sidebarIcon35px.png")));
