@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import helpers.Slider;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,7 +25,7 @@ import javax.swing.UIManager;
 public class DailyBlog extends JFrame {
 
 	private JPanel contentPane;
-	Object sidebar;
+	Slider sidebar;
 
 	/**
 	 * Create the frame.
@@ -49,15 +52,15 @@ public class DailyBlog extends JFrame {
 		} else {
 			sidebar = new SideBarEmployee();
 		}
-		((JPanel) sidebar).setSize(0, 740);
-		panel.add((JPanel) sidebar);
-		((JPanel) sidebar).setVisible(false);
+		((Slider) sidebar).setSize(0, 740);
+		panel.add((Slider) sidebar);
+		((Slider) sidebar).setVisible(false);
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				((JPanel) sidebar).setVisible(true);
-				((JPanel) sidebar).setSize(225, 740);				
+				((Slider) sidebar).setVisible(true);
+				((Slider) sidebar).runSidebar();				
 			}
 		});
 		panel.setLayout(null);

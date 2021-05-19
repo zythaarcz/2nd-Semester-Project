@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controllayer.ManageVideoController;
+import helpers.Slider;
 import modellayer.AuthenticatedUser;
 import modellayer.Video;
 
@@ -23,7 +24,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class SideBarCustomer extends JPanel {
+public class SideBarCustomer extends Slider{
 
 
 	private ManageVideoController manageVideoController = new ManageVideoController();

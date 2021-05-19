@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import helpers.Slider;
 import modellayer.AuthenticatedUser;
 import modellayer.PersonTypes;
 import modellayer.Video;
@@ -28,7 +29,7 @@ import javax.swing.SwingConstants;
 public class DailyExercise extends JFrame {
 
 	private JPanel contentPane;
-	Object sidebar;
+	Slider sidebar;
 
 
 	/**
@@ -49,9 +50,9 @@ public class DailyExercise extends JFrame {
 		} else {
 			sidebar = new SideBarEmployee();
 		}
-		((JPanel) sidebar).setSize(0, 740);
+		((Slider) sidebar).setSize(0, 740);
 		contentPane.add((JPanel) sidebar);
-		((JPanel) sidebar).setVisible(false);
+		((Slider) sidebar).setVisible(false);
 		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(DailyExercise.class.getResource("/images/logo.png")));
@@ -61,8 +62,8 @@ public class DailyExercise extends JFrame {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				((JPanel) sidebar).setVisible(true);
-				((JPanel) sidebar).setSize(225, 740);				
+				((Slider) sidebar).setVisible(true);
+				((Slider) sidebar).runSidebar();				
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(DailyExercise.class.getResource("/images/sidebarIcon35px.png")));

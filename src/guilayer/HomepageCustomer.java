@@ -36,7 +36,7 @@ import javax.swing.ScrollPaneConstants;
 public class HomepageCustomer extends JFrame {
 
 	private JPanel contentPane;
-	private SideBarEmployee sidebar;
+	private SideBarCustomer sidebar;
 	private ManageVideoController manageVideoController = new ManageVideoController();
 	private ManageBlogController manageBlogController = new ManageBlogController();
 
@@ -71,11 +71,11 @@ public class HomepageCustomer extends JFrame {
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 		
-		SideBarCustomer sidebar = new SideBarCustomer();
+		sidebar = new SideBarCustomer();
 		sidebar.setLocation(0, 0);
 		sidebar.setSize(0, 740);
+		sidebar.setVisible(false);	
 		panel.add(sidebar);
-		sidebar.setVisible(false);
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.setBounds(10, 10, 43, 39);
@@ -90,7 +90,7 @@ public class HomepageCustomer extends JFrame {
 				sidebar.runSidebar();
 			}
 		});
-
+		
 		JLabel logoLabel = new JLabel("");
 		logoLabel.setBounds(139, 2, 280, 96);
 		logoLabel.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/logo.png")));
@@ -138,6 +138,11 @@ public class HomepageCustomer extends JFrame {
 		NewBlogLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		NewBlogLabel.setBounds(10, 513, 139, 28);
 		panel.add(NewBlogLabel);
+		
+		panel.setComponentZOrder(sidebar, 0);
+		panel.setComponentZOrder(latestVideoPanel, 1);
+		panel.setComponentZOrder(latestBlogPanel, 2);
+
 	}
 
 	public Video getLatestVideo() {

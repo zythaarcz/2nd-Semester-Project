@@ -21,12 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingUtilities;
 
+import helpers.Slider;
 import modellayer.AuthenticatedUser;
 
 import java.awt.Rectangle;
 import java.awt.Window;
 
-public class SideBarEmployee extends JPanel {
+public class SideBarEmployee extends Slider {
 	
 	
 	/**

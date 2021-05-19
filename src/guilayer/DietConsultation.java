@@ -1,8 +1,5 @@
 package guilayer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import controllayer.AuthenticationController;
 import controllayer.DietConsultationController;
 import modellayer.AuthenticatedUser;
+import modellayer.PersonTypes;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -104,7 +102,9 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		
 		companyNameTextField = new JTextField();
 		companyNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		companyNameTextField.setText(authenticationController.getCustomer().getCompany());
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			companyNameTextField.setText(authenticationController.getCustomer().getCompany());
+		}
 		companyNameTextField.setEditable(false);
 		companyNameTextField.setColumns(10);
 		companyNameTextField.setBounds(39, 378, 216, 43);
@@ -191,7 +191,16 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		cancelButton.setRolloverEnabled(false);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Not implemented yet.");
+				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					HomepageCustomer homepage = new HomepageCustomer();
+					homepage.setVisible(true);
+					dispose();
+				} else {
+					HomepageEmployee homepage = new HomepageEmployee();
+					homepage.setVisible(true);
+					dispose();
+				}
+				
 			}
 		});
 		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
