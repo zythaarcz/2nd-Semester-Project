@@ -84,6 +84,11 @@ public class CreateVideo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		sideBarEmployee = new SideBarEmployee();
+		sideBarEmployee.setSize(0, 740);
+		sideBarEmployee.setVisible(false);
+		contentPane.add(sideBarEmployee);
+		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(CreateVideo.class.getResource("/images/logo.png")));
 		logo.setBounds(130, 28, 287, 111);
@@ -169,10 +174,6 @@ public class CreateVideo extends JFrame {
 		btnCancel.setBounds(120, 652, 200, 31);
 		contentPane.add(btnCancel);
 		
-		sideBarEmployee = new SideBarEmployee();
-		sideBarEmployee.setSize(0, 740);
-		sideBarEmployee.setVisible(false);
-		contentPane.add(sideBarEmployee);
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {

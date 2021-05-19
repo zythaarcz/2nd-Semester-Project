@@ -13,6 +13,10 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import modellayer.AuthenticatedUser;
+import modellayer.PersonTypes;
+
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
@@ -21,7 +25,8 @@ import java.awt.SystemColor;
 public class HomepageEmployee extends JFrame {
 
 	private JPanel contentPane;
-	private SideBarEmployee sidebar;
+	private SideBarEmployee sideBarEmployee;
+	private SideBarCustomer sideBarCustomer;
 
 	
 	/**
@@ -53,10 +58,17 @@ public class HomepageEmployee extends JFrame {
 		contentPane.setForeground(Color.LIGHT_GRAY);
 		setContentPane(contentPane);
 		
-		SideBarEmployee sidebar = new SideBarEmployee();
-		sidebar.setSize(0, 740);
-		contentPane.add(sidebar);
-		sidebar.setVisible(false);
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			sideBarCustomer = new SideBarCustomer();
+			((JPanel) sideBarCustomer).setSize(0, 740);
+			contentPane.add((JPanel) sideBarCustomer);
+			((JPanel) sideBarCustomer).setVisible(false);
+		} else {
+			sideBarEmployee = new SideBarEmployee();
+			((JPanel) sideBarEmployee).setSize(0, 740);
+			contentPane.add((JPanel) sideBarEmployee);
+			((JPanel) sideBarEmployee).setVisible(false);
+		}
 		
 		JLabel logoLabel = new JLabel("");
 		logoLabel.setIcon(new ImageIcon(HomepageEmployee.class.getResource("/images/logo.png")));
@@ -75,8 +87,13 @@ public class HomepageEmployee extends JFrame {
 		
 		sidebarButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			sidebar.setVisible(true);
-			sidebar.runSidebar();
+			if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+				((JPanel) sideBarCustomer).setVisible(true);
+				sideBarCustomer.runSidebar();
+			} else {
+				((JPanel) sideBarEmployee).setVisible(true);
+				sideBarEmployee.runSidebar();
+			}
 			}
 		});
 		sidebarButton.setBackground(SystemColor.controlHighlight);

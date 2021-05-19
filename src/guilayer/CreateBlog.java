@@ -99,7 +99,11 @@ public class CreateBlog extends JFrame {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		contentPane.add(scrollPane);
-
+		
+		sideBarEmployee = new SideBarEmployee();
+		sideBarEmployee.setSize(0, 740);
+		sideBarEmployee.setVisible(false);
+		contentPane.add(sideBarEmployee);
 		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(CreateBlog.class.getResource("/images/logo.png")));
@@ -178,16 +182,13 @@ public class CreateBlog extends JFrame {
 		btnCancel.setBounds(123, 654, 200, 31);
 		contentPane.add(btnCancel);
 		
-		sideBarEmployee = new SideBarEmployee();
-		sideBarEmployee.setSize(0, 740);
-		sideBarEmployee.setVisible(false);
-		contentPane.add(sideBarEmployee);
-		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sideBarEmployee.setVisible(true);
-				sideBarEmployee.setSize(225, 740);
+				
+					((JPanel) sideBarEmployee).setVisible(true);
+					sideBarEmployee.runSidebar();
+				
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(CreateBlog.class.getResource("/images/sidebarIcon35px.png")));

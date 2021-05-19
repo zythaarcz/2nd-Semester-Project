@@ -29,7 +29,9 @@ import javax.swing.SwingConstants;
 public class DailyExercise extends JFrame {
 
 	private JPanel contentPane;
-	Slider sidebar;
+	private SideBarCustomer sideBarCustomer;
+	private SideBarEmployee sideBarEmployee;
+
 
 
 	/**
@@ -46,13 +48,16 @@ public class DailyExercise extends JFrame {
 		setTitle("Daily exercise");
 		
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
-			sidebar = new SideBarCustomer();
+			sideBarCustomer = new SideBarCustomer();
+			((JPanel) sideBarCustomer).setSize(0, 740);
+			contentPane.add((JPanel) sideBarCustomer);
+			((JPanel) sideBarCustomer).setVisible(false);
 		} else {
-			sidebar = new SideBarEmployee();
+			sideBarEmployee = new SideBarEmployee();
+			((JPanel) sideBarEmployee).setSize(0, 740);
+			contentPane.add((JPanel) sideBarEmployee);
+			((JPanel) sideBarEmployee).setVisible(false);
 		}
-		((Slider) sidebar).setSize(0, 740);
-		contentPane.add((JPanel) sidebar);
-		((Slider) sidebar).setVisible(false);
 		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(DailyExercise.class.getResource("/images/logo.png")));
@@ -62,8 +67,13 @@ public class DailyExercise extends JFrame {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				((Slider) sidebar).setVisible(true);
-				((Slider) sidebar).runSidebar();				
+				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					((JPanel) sideBarCustomer).setVisible(true);
+					sideBarCustomer.runSidebar();
+				} else {
+					((JPanel) sideBarEmployee).setVisible(true);
+					sideBarEmployee.runSidebar();
+				}					
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(DailyExercise.class.getResource("/images/sidebarIcon35px.png")));

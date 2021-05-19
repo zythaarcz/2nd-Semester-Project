@@ -33,11 +33,11 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 	private JTextField lastNameTextField;
 	private JTextField companyNameTextField;
 	private JTextField reasonTextField;
-	private SideBarCustomer sidebar;
 	private JFormattedTextField dateTextField;
 
 	private AuthenticationController authenticationController;
 	private DietConsultationController dietConsultationController;
+	private SideBarCustomer sideBarCustomer;
 	/**
 	 * Create the frame.
 	 */
@@ -54,10 +54,10 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		setTitle("Book diet consultation");
 		contentPane.setLayout(null);
 		
-		sidebar = new SideBarCustomer();
-		sidebar.setSize(0, 740);
-		contentPane.add(sidebar);
-		sidebar.setVisible(false);
+		sideBarCustomer = new SideBarCustomer();
+		sideBarCustomer.setSize(0, 740);
+		sideBarCustomer.setVisible(false);
+		contentPane.add(sideBarCustomer);
 		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(DietConsultation.class.getResource("/images/logo.png")));
@@ -213,8 +213,8 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sidebar.setVisible(true);
-				sidebar.setSize(225, 740);
+				((JPanel) sideBarCustomer).setVisible(true);
+				sideBarCustomer.runSidebar();
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(DietConsultation.class.getResource("/images/sidebarIcon35px.png")));

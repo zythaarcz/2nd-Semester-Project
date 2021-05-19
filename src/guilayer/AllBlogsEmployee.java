@@ -35,7 +35,8 @@ public class AllBlogsEmployee extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<Blog> allBlogs = manageBlogController.retrieveAllBlogs();
 
-	private Object sidebar;
+	private SideBarCustomer sideBarCustomer;
+	private SideBarEmployee sideBarEmployee;
 
 	/**
 	 * Create the frame.
@@ -65,13 +66,16 @@ public class AllBlogsEmployee extends JFrame {
 		scrollPane.setViewportView(panel);
 		
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
-			sidebar = new SideBarCustomer();
+			sideBarCustomer = new SideBarCustomer();
+			((JPanel) sideBarCustomer).setSize(0, 740);
+			panel.add((JPanel) sideBarCustomer);
+			((JPanel) sideBarCustomer).setVisible(false);
 		} else {
-			sidebar = new SideBarEmployee();
+			sideBarEmployee = new SideBarEmployee();
+			((JPanel) sideBarEmployee).setSize(0, 740);
+			panel.add((JPanel) sideBarEmployee);
+			((JPanel) sideBarEmployee).setVisible(false);
 		}
-		((JPanel) sidebar).setSize(0, 740);
-		panel.add((JPanel) sidebar);
-		((JPanel) sidebar).setVisible(false);
 		
 		JLabel logoImage = new JLabel(new ImageIcon(AllBlogsEmployee.class.getResource("/images/logo.png")));
 		logoImage.setBounds(131, 10, 300, 102);
@@ -109,8 +113,13 @@ public class AllBlogsEmployee extends JFrame {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				((JPanel) sidebar).setVisible(true);
-				((JPanel) sidebar).setSize(225, 740);
+				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					((JPanel) sideBarCustomer).setVisible(true);
+					sideBarCustomer.runSidebar();
+				} else {
+					((JPanel) sideBarEmployee).setVisible(true);
+					sideBarEmployee.runSidebar();
+				}
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(AllBlogsEmployee.class.getResource("/images/sidebarIcon35px.png")));

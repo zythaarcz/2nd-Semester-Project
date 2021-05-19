@@ -25,7 +25,8 @@ import javax.swing.UIManager;
 public class DailyBlog extends JFrame {
 
 	private JPanel contentPane;
-	Slider sidebar;
+	private SideBarCustomer sideBarCustomer;
+	private SideBarEmployee sideBarEmployee;
 
 	/**
 	 * Create the frame.
@@ -48,19 +49,27 @@ public class DailyBlog extends JFrame {
 		scrollPane.setViewportView(panel);
 		
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
-			sidebar = new SideBarCustomer();
+			sideBarCustomer = new SideBarCustomer();
+			((JPanel) sideBarCustomer).setSize(0, 740);
+			panel.add((JPanel) sideBarCustomer);
+			((JPanel) sideBarCustomer).setVisible(false);
 		} else {
-			sidebar = new SideBarEmployee();
+			sideBarEmployee = new SideBarEmployee();
+			((JPanel) sideBarEmployee).setSize(0, 740);
+			panel.add((JPanel) sideBarEmployee);
+			((JPanel) sideBarEmployee).setVisible(false);
 		}
-		((Slider) sidebar).setSize(0, 740);
-		panel.add((Slider) sidebar);
-		((Slider) sidebar).setVisible(false);
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				((Slider) sidebar).setVisible(true);
-				((Slider) sidebar).runSidebar();				
+				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					((JPanel) sideBarCustomer).setVisible(true);
+					sideBarCustomer.runSidebar();
+				} else {
+					((JPanel) sideBarEmployee).setVisible(true);
+					sideBarEmployee.runSidebar();
+				}			
 			}
 		});
 		panel.setLayout(null);

@@ -46,7 +46,7 @@ public class Profile extends JFrame {
 	private String healthIssueString;
 	
 	private SideBarEmployee sideBarEmployee;
-	private SideBarCustomer sidebarCustomer;
+	private SideBarCustomer sideBarCustomer;
 	
 
 	/**
@@ -287,25 +287,27 @@ public class Profile extends JFrame {
 		btnChangePassword.setBounds(125, 619, 200, 31);
 		contentPane.add(btnChangePassword);	
 		
-		sideBarEmployee = new SideBarEmployee();
-		sideBarEmployee.setSize(0, 740);
-		sideBarEmployee.setVisible(false);
-		contentPane.add(sideBarEmployee);
-		
-		sidebarCustomer = new SideBarCustomer();
-		sidebarCustomer.setSize(0, 740);
-		sidebarCustomer.setVisible(false);
-		contentPane.add(sidebarCustomer);
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			sideBarCustomer = new SideBarCustomer();
+			((JPanel) sideBarCustomer).setSize(0, 740);
+			contentPane.add((JPanel) sideBarCustomer);
+			((JPanel) sideBarCustomer).setVisible(false);
+		} else {
+			sideBarEmployee = new SideBarEmployee();
+			((JPanel) sideBarEmployee).setSize(0, 740);
+			contentPane.add((JPanel) sideBarEmployee);
+			((JPanel) sideBarEmployee).setVisible(false);
+		}
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
-					sideBarEmployee.setVisible(true);
-					sideBarEmployee.setSize(225, 740);
-				} else if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
-					sidebarCustomer.setVisible(true);
-					sidebarCustomer.setSize(225, 740);
+				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					((JPanel) sideBarCustomer).setVisible(true);
+					sideBarCustomer.runSidebar();
+				} else {
+					((JPanel) sideBarEmployee).setVisible(true);
+					sideBarEmployee.runSidebar();
 				}
 			}
 		});

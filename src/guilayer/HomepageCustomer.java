@@ -36,7 +36,8 @@ import javax.swing.ScrollPaneConstants;
 public class HomepageCustomer extends JFrame {
 
 	private JPanel contentPane;
-	private SideBarCustomer sidebar;
+	private SideBarCustomer sideBarCustomer;
+	private SideBarEmployee sideBarEmployee;
 	private ManageVideoController manageVideoController = new ManageVideoController();
 	private ManageBlogController manageBlogController = new ManageBlogController();
 
@@ -71,11 +72,17 @@ public class HomepageCustomer extends JFrame {
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 		
-		sidebar = new SideBarCustomer();
-		sidebar.setLocation(0, 0);
-		sidebar.setSize(0, 740);
-		sidebar.setVisible(false);	
-		panel.add(sidebar);
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			sideBarCustomer = new SideBarCustomer();
+			((JPanel) sideBarCustomer).setSize(0, 740);
+			panel.add((JPanel) sideBarCustomer);
+			((JPanel) sideBarCustomer).setVisible(false);
+		} else {
+			sideBarEmployee = new SideBarEmployee();
+			((JPanel) sideBarEmployee).setSize(0, 740);
+			panel.add((JPanel) sideBarEmployee);
+			((JPanel) sideBarEmployee).setVisible(false);
+		}
 		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.setBounds(10, 10, 43, 39);
@@ -86,8 +93,13 @@ public class HomepageCustomer extends JFrame {
 
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sidebar.setVisible(true);
-				sidebar.runSidebar();
+				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					((JPanel) sideBarCustomer).setVisible(true);
+					sideBarCustomer.runSidebar();
+				} else {
+					((JPanel) sideBarEmployee).setVisible(true);
+					sideBarEmployee.runSidebar();
+				}
 			}
 		});
 		
@@ -125,7 +137,7 @@ public class HomepageCustomer extends JFrame {
 		sidebarButton.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/sidebarIcon35px.png")));
 		sidebarButton.setSelectedIcon(null);
 		contentPane.setLayout(null);
-		panel.add(sidebar);
+		panel.add(sideBarCustomer);
 		panel.add(sidebarButton);
 		panel.add(logoLabel);
 		
@@ -139,7 +151,7 @@ public class HomepageCustomer extends JFrame {
 		NewBlogLabel.setBounds(10, 513, 139, 28);
 		panel.add(NewBlogLabel);
 		
-		panel.setComponentZOrder(sidebar, 0);
+		panel.setComponentZOrder(sideBarCustomer, 0);
 		panel.setComponentZOrder(latestVideoPanel, 1);
 		panel.setComponentZOrder(latestBlogPanel, 2);
 
