@@ -81,7 +81,7 @@ public class EditBlog extends JFrame {
 		contentPane.add(logo);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(71, 484, 290, 139);
+		scrollPane.setBounds(70, 484, 269, 139);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
@@ -103,8 +103,17 @@ public class EditBlog extends JFrame {
 		JButton btnConfirmEdit = new JButton("Confirm");
 		btnConfirmEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manageBlogController.updateBlogInformation(blog.getId(), newImagePath, newHeader, newContentText, newDescription);
-				JOptionPane.showMessageDialog(contentPane, "The information about the blog was successfully updated.");
+				if(newHeader == null && newDescription == null
+						&& newImagePath == null && newContentText == null) {
+					JOptionPane.showMessageDialog(contentPane, "You did not changed any data, please check again!");
+				} else {
+					newHeader = txtHeader.getText();
+					newDescription = textPaneShortDescription.getText();
+					newImagePath = pathLbl.getText();
+					newContentText = textPaneContentText.getText();
+					manageBlogController.updateBlogInformation(blog.getId(), newImagePath, newHeader, newContentText, newDescription);
+					JOptionPane.showMessageDialog(contentPane, "The information about the blog was successfully updated.");
+				}
 			}
 		});
 		btnConfirmEdit.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -116,7 +125,7 @@ public class EditBlog extends JFrame {
 		txtHeader.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtHeader.setColumns(10);
 		txtHeader.setText(blog.getHeader());
-		txtHeader.setBounds(71, 275, 293, 39);
+		txtHeader.setBounds(70, 275, 269, 43);
 		txtHeader.setEditable(false);
 		contentPane.add(txtHeader);
 		
@@ -130,7 +139,7 @@ public class EditBlog extends JFrame {
 		textPaneShortDescription = new JTextPane();
 		textPaneShortDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textPaneShortDescription.setText(blog.getShortDescription());
-		textPaneShortDescription.setBounds(71, 349, 290, 100);
+		textPaneShortDescription.setBounds(70, 349, 269, 100);
 		textPaneShortDescription.setEditable(false);
 		contentPane.add(textPaneShortDescription);
 		
@@ -145,7 +154,7 @@ public class EditBlog extends JFrame {
 				btnEdit_headerOK.setEnabled(true);
 			}
 		});
-		btnEdit_header.setBounds(360, 275, 53, 39);
+		btnEdit_header.setBounds(339, 275, 43, 43);
 		contentPane.add(btnEdit_header);
 		
 		btnEdit_headerOK = new JButton("");
@@ -165,7 +174,7 @@ public class EditBlog extends JFrame {
 		btnEdit_headerOK.setVisible(false);
 		btnEdit_headerOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
 		btnEdit_headerOK.setBackground(SystemColor.menu);
-		btnEdit_headerOK.setBounds(360, 275, 53, 39);
+		btnEdit_headerOK.setBounds(339, 275, 43, 43);
 		contentPane.add(btnEdit_headerOK);
 		
 		btnEdit_contentText = new JButton("");
@@ -180,7 +189,7 @@ public class EditBlog extends JFrame {
 
 		});
 		btnEdit_contentText.setIcon(new ImageIcon(EditBlog.class.getResource("/images/settingsIcon32x32.png")));
-		btnEdit_contentText.setBounds(360, 484, 53, 39);
+		btnEdit_contentText.setBounds(339, 484, 43, 43);
 		contentPane.add(btnEdit_contentText);
 		
 		btnEdit_contentTextOK = new JButton("");
@@ -200,7 +209,7 @@ public class EditBlog extends JFrame {
 		btnEdit_contentTextOK.setVisible(false);
 		btnEdit_contentTextOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
 		btnEdit_contentTextOK.setBackground(SystemColor.menu);
-		btnEdit_contentTextOK.setBounds(360, 484, 53, 39);
+		btnEdit_contentTextOK.setBounds(339, 484, 43, 43);
 		contentPane.add(btnEdit_contentTextOK);
 		
 		btnEdit_description = new JButton("");
@@ -215,7 +224,7 @@ public class EditBlog extends JFrame {
 			}
 		});
 		btnEdit_description.setIcon(new ImageIcon(EditBlog.class.getResource("/images/settingsIcon32x32.png")));
-		btnEdit_description.setBounds(360, 349, 53, 39);
+		btnEdit_description.setBounds(339, 349, 43, 43);
 		contentPane.add(btnEdit_description);
 		
 		btnEdit_descriptionOK = new JButton("");
@@ -235,7 +244,7 @@ public class EditBlog extends JFrame {
 		btnEdit_descriptionOK.setVisible(false);
 		btnEdit_descriptionOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
 		btnEdit_descriptionOK.setBackground(SystemColor.menu);
-		btnEdit_descriptionOK.setBounds(360, 349, 53, 39);
+		btnEdit_descriptionOK.setBounds(339, 349, 43, 43);
 		contentPane.add(btnEdit_descriptionOK);
 		
 		JLabel lblContentText = new JLabel("Content text");
@@ -250,12 +259,12 @@ public class EditBlog extends JFrame {
 		
 		JLabel lblHeader = new JLabel("Header");
 		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblHeader.setBounds(71, 250, 100, 30);
+		lblHeader.setBounds(70, 250, 100, 30);
 		contentPane.add(lblHeader);
 		
 		JLabel lblImagePath = new JLabel("Image path");
 		lblImagePath.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblImagePath.setBounds(71, 174, 100, 30);
+		lblImagePath.setBounds(70, 174, 100, 30);
 		contentPane.add(lblImagePath);
 		
 		JButton btnBrowse = new JButton("Browse");
@@ -274,8 +283,9 @@ public class EditBlog extends JFrame {
 		contentPane.add(btnBrowse);
 		
 		pathLbl = new JLabel("select the image for blog..");
+		pathLbl.setText(blog.getImagePath());
 		pathLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		pathLbl.setBounds(71, 204, 201, 26);
+		pathLbl.setBounds(70, 204, 201, 26);
 		contentPane.add(pathLbl);
 	}
 	
