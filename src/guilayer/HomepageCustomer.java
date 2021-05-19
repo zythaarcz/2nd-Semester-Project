@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+
+import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,15 +17,19 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controllayer.ManageBlogController;
 import controllayer.ManageVideoController;
+import doryan.windowsnotificationapi.fr.Notification;
 import modellayer.AuthenticatedUser;
 import modellayer.Blog;
 import modellayer.PersonTypes;
 import modellayer.Video;
 
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.awt.TrayIcon.MessageType;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -38,6 +44,14 @@ public class HomepageCustomer extends JFrame {
 	 * Create the frame.
 	 */
 	public HomepageCustomer() {
+		try {
+			Notification.sendNotification("Office Fitness","DO EXERCISE!", MessageType.INFO);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
+		
 		setTitle("Homepage");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
