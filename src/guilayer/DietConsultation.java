@@ -185,10 +185,10 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 								JOptionPane.showMessageDialog(contentPane, "We are sorry, but another customer booked the meeting before you.\nTry another date.");
 							}
 			            } else {
-			            	JOptionPane.showMessageDialog(contentPane, "You can not chose past date.");
+			            	JOptionPane.showMessageDialog(contentPane, "You cannot chose past date.");
 			            }
 		            }else {
-		            	JOptionPane.showMessageDialog(contentPane, "Plase enter valid reason for consultation.");
+		            	JOptionPane.showMessageDialog(contentPane, "Please enter valid reason for consultation.");
 		            }   
 				} else {
 					JOptionPane.showMessageDialog(contentPane, "You must fill in the reason of diet meeting");
