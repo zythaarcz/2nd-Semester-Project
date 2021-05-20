@@ -73,13 +73,11 @@ public class SideBarEmployee extends Slider {
 		sidebarButton.setBackground(Color.DARK_GRAY);
 		
 		JButton viewProfileButton = new JButton("View Profile");
-		viewProfileButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		viewProfileButton.addActionListener(e -> {
 				Profile profile = new Profile();
 				profile.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		buttons.add(viewProfileButton);
 		viewProfileButton.setRolloverEnabled(false);
@@ -88,13 +86,11 @@ public class SideBarEmployee extends Slider {
 		viewProfileButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton manageVideosButton = new JButton("Manage Videos");
-		manageVideosButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		manageVideosButton.addActionListener(e -> {
 				AllVideosEmployee allVideosEmployee = new AllVideosEmployee();
 				allVideosEmployee.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		buttons.add(manageVideosButton);
 		manageVideosButton.setRolloverEnabled(false);
@@ -103,13 +99,11 @@ public class SideBarEmployee extends Slider {
 		manageVideosButton.setBackground(new Color(255, 208, 32));
 		
 		JButton manageBlogsButton = new JButton("Manage Blogs");
-		manageBlogsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		manageBlogsButton.addActionListener(e -> {
 				AllBlogsEmployee allBlogsEmployee = new AllBlogsEmployee();
 				allBlogsEmployee.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		buttons.add(manageBlogsButton);
 		manageBlogsButton.setRolloverEnabled(false);
@@ -118,14 +112,12 @@ public class SideBarEmployee extends Slider {
 		manageBlogsButton.setBackground(new Color(255, 208, 32));
 		
 		JButton logOutButton = new JButton("Log out");
-		logOutButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		logOutButton.addActionListener(e -> {
 				AuthenticatedUser.getInstance().setCurrentUser(null);
 				Authentication authentication = new Authentication();
 				authentication.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		buttons.add(logOutButton);
 		logOutButton.setRolloverEnabled(false);
@@ -137,7 +129,7 @@ public class SideBarEmployee extends Slider {
 		dietConsultationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO create manager diet consultationGUI
-				JOptionPane.showMessageDialog(dietConsultationButton, "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(dietConsultationButton, "Feature not implemented for manager yet.");
 			}
 		});
 		buttons.add(dietConsultationButton);
@@ -153,8 +145,7 @@ public class SideBarEmployee extends Slider {
 		JButton customerPreviewButton = new JButton("Customer Preview");
 		customerPreviewButton.setIconTextGap(1);
 		customerPreviewButton.setMargin(new Insets(2, 6, 2, 6));
-		customerPreviewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		customerPreviewButton.addActionListener(e -> {
 				if (!customerPreview.isVisible()) {
 					customerPreviewButton.setText("Manager view");
 					customerPreview.setVisible(true);
@@ -172,8 +163,6 @@ public class SideBarEmployee extends Slider {
 						jButton.setVisible(true);
 					}
 				}
-			}
-			
 		});
 		customerPreviewButton.setOpaque(true);
 		customerPreviewButton.setBorderPainted(false);

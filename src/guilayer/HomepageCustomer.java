@@ -91,8 +91,7 @@ public class HomepageCustomer extends JFrame {
 		sidebarButton.setBorderPainted(false);
 		sidebarButton.setBackground(Color.LIGHT_GRAY);
 
-		sidebarButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		sidebarButton.addActionListener(e -> {
 				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
 					((JPanel) sideBarCustomer).setVisible(true);
 					sideBarCustomer.runSidebar();
@@ -100,7 +99,6 @@ public class HomepageCustomer extends JFrame {
 					((JPanel) sideBarEmployee).setVisible(true);
 					sideBarEmployee.runSidebar();
 				}
-			}
 		});
 		
 		JLabel logoLabel = new JLabel("");

@@ -140,33 +140,27 @@ public class HomepageEmployee extends JFrame {
 		manageVideosButton.setSelected(true);
 		manageVideosButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		manageVideosButton.setBackground(Color.decode("#FFD020"));
-		manageVideosButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		manageVideosButton.addActionListener(e -> {
 				AllVideosEmployee avEmployee = new AllVideosEmployee();
 				avEmployee.setVisible(true);
 				dispose();
-			}
 		});
 		
 		JButton manageBlogsButton = new JButton("Manage Blogs");
 		manageBlogsButton.setRolloverEnabled(false);
-		manageBlogsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		manageBlogsButton.addActionListener(e -> {
 				AllBlogsEmployee abEmployee = new AllBlogsEmployee();
 				abEmployee.setVisible(true);
 				dispose();
-			}
 		});
 		manageBlogsButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		manageBlogsButton.setBackground(Color.decode("#FFD020"));
 		manageBlogsButton.setBorderPainted(false);
 		
 		JButton dietConsultationButton = new JButton("Diet Consultation");
-		dietConsultationButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		dietConsultationButton.addActionListener(e -> {
 				//TODO make manager version of diet consultation
-				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
-			}
+				JOptionPane.showMessageDialog(contentPane, "Feature not implemented for manager yet.");
 		});
 		dietConsultationButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dietConsultationButton.setBackground(Color.decode("#FFD020"));
@@ -206,10 +200,8 @@ public class HomepageEmployee extends JFrame {
 		JButton calendarButton = new JButton("Calendar");
 		calendarButton.setBackground(Color.decode("#FFD020"));
 		calendarButton.setBorderPainted(false);
-		calendarButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		calendarButton.addActionListener(e -> {
 				JOptionPane.showMessageDialog(contentPane, "Feature not implemented yet.");
-			}
 		});
 		calendarButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		

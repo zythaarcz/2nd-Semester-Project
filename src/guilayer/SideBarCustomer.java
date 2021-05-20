@@ -49,8 +49,7 @@ public class SideBarCustomer extends Slider{
 		blogButton.setBackground(new Color(255, 208, 32));
 		
 		JButton sidebarButton = new JButton("");
-		sidebarButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		sidebarButton.addActionListener(e -> {
 					Thread th = new Thread() {
 			            @Override
 			            public void run(){
@@ -66,7 +65,6 @@ public class SideBarCustomer extends Slider{
 			            };
 			            
 				};th.start();
-				}
 		});
 		sidebarButton.setIcon(new ImageIcon(SideBarCustomer.class.getResource("/images/arrowIconDS.png")));
 		sidebarButton.setOpaque(false);
@@ -89,37 +87,31 @@ public class SideBarCustomer extends Slider{
 		logOutButton.setBackground(new Color(255, 208, 32));
 		
 		JButton viewProfileButton = new JButton("View Profile");
-		viewProfileButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		viewProfileButton.addActionListener(e -> {
 				Profile profile = new Profile();
 				profile.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		viewProfileButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		viewProfileButton.setBorderPainted(false);
 		viewProfileButton.setBackground(new Color(255, 208, 32));
 		
 		JButton myProgressButton = new JButton("My Progress");
-		myProgressButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		myProgressButton.addActionListener(e -> {
 				//TODO connect with progress
 				JOptionPane.showMessageDialog(myProgressButton, "Feature not implemented yet.");
-			}
 		});
 		myProgressButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		myProgressButton.setBorderPainted(false);
 		myProgressButton.setBackground(new Color(255, 208, 32));
 		
 		JButton dailyExerciseButton = new JButton("Daily Exercise");
-		dailyExerciseButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		dailyExerciseButton.addActionListener(e -> {
 				DailyExercise dailyExercise = new DailyExercise(getLatestVideo());
 				dailyExercise.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		dailyExerciseButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dailyExerciseButton.setBorderPainted(false);
@@ -130,37 +122,31 @@ public class SideBarCustomer extends Slider{
 		lblNewLabel.setForeground(Color.WHITE);
 		
 		JButton leaderboardButton = new JButton("Leaderboard");
-		leaderboardButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		leaderboardButton.addActionListener(e -> {
 				//TODO connect when leaderboard is implemented
 				JOptionPane.showMessageDialog(leaderboardButton, "Feature not implemented yet.");
-			}
 		});
 		leaderboardButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		leaderboardButton.setBorderPainted(false);
 		leaderboardButton.setBackground(new Color(255, 208, 32));
 		
 		JButton allLessonsButton = new JButton("All Lessons");
-		allLessonsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		allLessonsButton.addActionListener(e -> {
 				AllVideosEmployee allVideos = new AllVideosEmployee();
 				allVideos.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		allLessonsButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		allLessonsButton.setBorderPainted(false);
 		allLessonsButton.setBackground(new Color(255, 208, 32));
 		
 		JButton dietConsultationButton = new JButton("Diet Consultation");
-		dietConsultationButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		dietConsultationButton.addActionListener(e -> {
 				DietConsultation dietConsultation = new DietConsultation();
 				dietConsultation.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-			}
 		});
 		dietConsultationButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dietConsultationButton.setBorderPainted(false);
