@@ -12,9 +12,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextPane;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import modellayer.AuthenticatedUser;
 import modellayer.Blog;
@@ -87,15 +90,15 @@ public class DailyBlog extends JFrame {
 		panel.add(logo);
 		
 		JLabel titleLbl = new JLabel(blog.getHeader());
-		titleLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
-		titleLbl.setBounds(23, 115, 185, 32);
+		titleLbl.setFont(new Font("Tahoma", Font.BOLD, 17));
+		titleLbl.setBounds(23, 115, 252, 32);
 		panel.add(titleLbl);
 		
 		JLabel dateLbl = new JLabel(blog.getDateIssued().toString());
 		dateLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		dateLbl.setForeground(Color.GRAY);
 		dateLbl.setFont(new Font("Tahoma", Font.BOLD, 17));
-		dateLbl.setBounds(317, 122, 98, 21);
+		dateLbl.setBounds(304, 122, 111, 21);
 		panel.add(dateLbl);
 		
 		JTextPane contentTextPane = new JTextPane();
@@ -106,10 +109,17 @@ public class DailyBlog extends JFrame {
 		contentTextPane.setBounds(23, 402, 392, 172);
 		panel.add(contentTextPane);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(23, 157, 392, 219);
-		panel.add(panel_1);
+		File file = new File(blog.getImagePath());
+		if(file.exists()) {
+			ImageIcon imageIcon = new ImageIcon(blog.getImagePath()); // load the image to a imageIcon
+			Image image = imageIcon.getImage(); // transform it 
+			Image newimg = image.getScaledInstance(320, 180,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+			imageIcon = new ImageIcon(newimg);  // transform it back
+			
+			JLabel blogImage = new JLabel(imageIcon);
+			blogImage.setBounds(52, 158, 320, 180);
+			panel.add(blogImage);
+		}
 		
 		
 	}
