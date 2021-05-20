@@ -171,21 +171,25 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 				if(validateString(reason, errorIconImagePath)) {
 					Date date = (Date) dateTextField.getValue();
 		            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		            
-		            if(LocalDate.now().isBefore(localDate)) {
-		            	boolean wasCreated = dietConsultationController.createDietConsultation(localDate, reason);
+		            if(!isNumeric(reason)) {
+		            	if(LocalDate.now().isBefore(localDate)) {
+			            	boolean wasCreated = dietConsultationController.createDietConsultation(localDate, reason);
+			            	
 
-						if(wasCreated) {
-							JOptionPane.showMessageDialog(contentPane, "The meeting was created.");		
-							HomepageCustomer homepageCustomer = new HomepageCustomer();
-							homepageCustomer.setVisible(true);
-							dispose();
-						} else {
-							JOptionPane.showMessageDialog(contentPane, "We are sorry, but another customer booked the meeting before you.\nTry another date.");
-						}
-		            } else {
-		            	JOptionPane.showMessageDialog(contentPane, "You can not chose past date.");
-		            }
+							if(wasCreated) {
+								JOptionPane.showMessageDialog(contentPane, "The meeting was created.");		
+								HomepageCustomer homepageCustomer = new HomepageCustomer();
+								homepageCustomer.setVisible(true);
+								dispose();
+							} else {
+								JOptionPane.showMessageDialog(contentPane, "We are sorry, but another customer booked the meeting before you.\nTry another date.");
+							}
+			            } else {
+			            	JOptionPane.showMessageDialog(contentPane, "You can not chose past date.");
+			            }
+		            }else {
+		            	JOptionPane.showMessageDialog(contentPane, "Plase enter valid reason for consultation.");
+		            }   
 				} else {
 					JOptionPane.showMessageDialog(contentPane, "You must fill in the reason of diet meeting");
 				}
@@ -264,5 +268,15 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		} 
 		
 		return isValid;
+	}
+	
+	private boolean isNumeric(String line) {
+		int intValue;
+		try {
+			intValue = Integer.parseInt(reasonTextField.getText());
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 }

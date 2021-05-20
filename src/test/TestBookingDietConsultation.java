@@ -64,5 +64,14 @@ public class TestBookingDietConsultation {
 		//Assert
 
 	}
-
+	//Scenario 4, numeric value written to reason text field
+	@Test
+	public void testIfConsultationAddedWhenNumericValue() {
+		
+		//Arrange
+		
+		//Act
+		
+		//Assert
+	}
 }
