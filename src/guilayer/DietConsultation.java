@@ -165,20 +165,23 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 				if(validateString(reason, errorIconImagePath)) {
 					Date date = (Date) dateTextField.getValue();
 		            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-					boolean wasCreated = dietConsultationController.createDietConsultation(localDate, reason);
-					
-					if(wasCreated) {
-						JOptionPane.showMessageDialog(contentPane, "The meeting was created.");		
-						HomepageCustomer homepageCustomer = new HomepageCustomer();
-						homepageCustomer.setVisible(true);
-						dispose();
-					}
-					else {
-						JOptionPane.showMessageDialog(contentPane, "We are sorry, but another customer booked the meeting before you.\nTry another date.");
-					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "You must fill in the reason of diet meeting");
+		            
+		            if(LocalDate.now().isBefore(localDate)) {
+		            	boolean wasCreated = dietConsultationController.createDietConsultation(localDate, reason);
+
+						if(wasCreated) {
+							JOptionPane.showMessageDialog(contentPane, "The meeting was created.");		
+							HomepageCustomer homepageCustomer = new HomepageCustomer();
+							homepageCustomer.setVisible(true);
+							dispose();
+						} else {
+							JOptionPane.showMessageDialog(contentPane, "We are sorry, but another customer booked the meeting before you.\nTry another date.");
+						}
+		            } else {
+		            	JOptionPane.showMessageDialog(contentPane, "You can not chose past date.");
+		            }
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "You must fill in the reason of diet meeting");
 				}
 			}
 		});

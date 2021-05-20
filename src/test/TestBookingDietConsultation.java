@@ -51,5 +51,18 @@ public class TestBookingDietConsultation {
 		//Assert
 		assertFalse(customer2.getExecuted());
 	}
+	
+	//Scenario 3, past date selected
+	@Test
+	public void testIfCustomerEnteredPastDate() {
+		
+		//Arrange
+		
+		
+		//Act
+		
+		//Assert
+
+	}
 
 }
