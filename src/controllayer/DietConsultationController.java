@@ -8,6 +8,7 @@ import databaselayer.ConsultationDAO;
 import databaselayer.ConsultationDAOIF;
 import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
+import modellayer.Video;
 
 public class DietConsultationController {
 	
@@ -61,6 +62,31 @@ public class DietConsultationController {
 	
 	public int getLastInsertedId() {
 		return consultationDao.getLastInsertedId();
+	}
+	
+	public DietMeeting retrieveConsultationCountByDate(LocalDate date) {
+		DietMeeting dietMeeting = null;
+		try {
+			dietMeeting = consultationDao.retrieveConsultationByDate(date);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dietMeeting;
+	}
+	
+	public DietMeeting retrieveConsultationByDate(LocalDate date) {
+		DietMeeting dietMeeting = null;
+		
+		try {
+			dietMeeting = consultationDao.retrieveConsultationByDate(date);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dietMeeting;
 	}
 
 }

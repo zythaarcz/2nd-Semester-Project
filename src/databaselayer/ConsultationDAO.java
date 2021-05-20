@@ -9,15 +9,22 @@ import java.util.ArrayList;
 
 import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
+import modellayer.Video;
 
 public class ConsultationDAO implements ConsultationDAOIF {
 
 	private static final String INSERT_CONSULTATION = "INSERT into DietMeeting VALUES (?, ?, ?, ?)";
 	private PreparedStatement psInsertConsultation;
+	
+	private static final String SELECT_CONSULTATION_BY_DATE = "SELECT * FROM DietMeeting WHERE wantedDate = ?";
+	private PreparedStatement psSelectConsultationByDate;
+	
 	private static final String RETRIEVE_ALL_CONSULTATIONS = "SELECT * from DietMeeting";
 	private PreparedStatement psRetrieveAllConsultation;
+	
 	private static final String RETRIEVE_COUNT_CONSULTATIONS = "SELECT COUNT(*) AS total from DietMeeting WHERE wantedDate=?";
 	private PreparedStatement psRetrieveCountConsultations;
+	
 	private static final String DELETE_CONSULTATION = "DELETE from DietMeeting WHERE id = ?";
 	private PreparedStatement psDeleteConsultation;
 
@@ -36,6 +43,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		connection = DBConnection.getInstance().getDBconnection();
 
 		try {
+			psSelectConsultationByDate = connection.prepareStatement(SELECT_CONSULTATION_BY_DATE);
 			psInsertConsultation = connection.prepareStatement(INSERT_CONSULTATION);
 			psRetrieveAllConsultation = connection.prepareStatement(RETRIEVE_ALL_CONSULTATIONS);
 			psRetrieveCountConsultations = connection.prepareStatement(RETRIEVE_COUNT_CONSULTATIONS);
@@ -98,6 +106,22 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		}
 
 		return meetings;
+	}
+	
+	@Override
+	public DietMeeting retrieveConsultationByDate(LocalDate date) throws SQLException {
+		DietMeeting dietMeeting = null;
+		ResultSet rs;
+		
+		psSelectConsultationByDate.setObject(1, date);
+		
+		rs = psSelectConsultationByDate.executeQuery();
+		
+		while(rs.next()) {
+			dietMeeting = buildObject(rs);
+		}
+		
+		return dietMeeting;
 	}
 
 	@Override

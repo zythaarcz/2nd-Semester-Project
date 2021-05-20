@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modellayer.DietMeeting;
+import modellayer.Video;
 
 public interface ConsultationDAOIF {	
+	DietMeeting retrieveConsultationByDate(LocalDate date) throws SQLException;
 	public boolean insertConsultation(LocalDate date, String reason) throws SQLException;
 	public ArrayList<DietMeeting> retrieveAllConsultations() throws SQLException;
 	public int retrieveConsultationCountByDate(LocalDate date) throws SQLException;
