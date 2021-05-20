@@ -245,7 +245,7 @@ public class EditVideo extends JFrame {
 			public void actionPerformed(ActionEvent e) {			
 				if(newHeader == null && newDescription == null
 						&& newPoints == 0 && newCategory == null) {
-					JOptionPane.showMessageDialog(contentPane, "You did not changed any data, please check again!");
+					JOptionPane.showMessageDialog(contentPane, "You did not change any data, please check again!");
 				} else {
 					newHeader = txtTitle.getText();
 					newDescription = textPaneDescription.getText();

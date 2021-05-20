@@ -38,6 +38,7 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 	private AuthenticationController authenticationController;
 	private DietConsultationController dietConsultationController;
 	private SideBarCustomer sideBarCustomer;
+	private SideBarEmployee sideBarEmployee;
 	/**
 	 * Create the frame.
 	 */
@@ -58,6 +59,11 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		sideBarCustomer.setSize(0, 740);
 		sideBarCustomer.setVisible(false);
 		contentPane.add(sideBarCustomer);
+		
+		sideBarEmployee = new SideBarEmployee();
+		sideBarEmployee.setSize(0, 740);
+		sideBarEmployee.setVisible(false);
+		contentPane.add(sideBarEmployee);
 		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(DietConsultation.class.getResource("/images/logo.png")));
@@ -216,8 +222,13 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				((JPanel) sideBarCustomer).setVisible(true);
-				sideBarCustomer.runSidebar();
+				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+					((JPanel) sideBarCustomer).setVisible(true);
+					sideBarCustomer.runSidebar();
+				} else {
+					((JPanel) sideBarEmployee).setVisible(true);
+					sideBarEmployee.runSidebar();
+				}
 			}
 		});
 		sidebarButton.setIcon(new ImageIcon(DietConsultation.class.getResource("/images/sidebarIcon35px.png")));

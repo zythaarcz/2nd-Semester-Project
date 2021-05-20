@@ -105,7 +105,7 @@ public class EditBlog extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(newHeader == null && newDescription == null
 						&& newImagePath == null && newContentText == null) {
-					JOptionPane.showMessageDialog(contentPane, "You did not changed any data, please check again!");
+					JOptionPane.showMessageDialog(contentPane, "You did not change any data, please check again!");
 				} else {
 					newHeader = txtHeader.getText();
 					newDescription = textPaneShortDescription.getText();
