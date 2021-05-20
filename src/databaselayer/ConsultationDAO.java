@@ -106,29 +106,6 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		return count;
 	}
 	
-	private boolean doMultipleMeetingsExist(LocalDate date) {
-		ArrayList<DietMeeting> allMeetings = null;
-		int counter = 0;
-		
-		try {
-			allMeetings = retrieveAllConsultations();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(DietMeeting meeting : allMeetings) {
-			if(meeting.getWantedDate().compareTo(date) == 0) {
-				counter ++;
-			}
-		}
-		
-		return (counter >= 2) ? true : false;
-		
-		
-	}
-	
-	
 	
 	private DietMeeting buildObject(ResultSet rs) throws SQLException {
 		DietMeeting meeting = null;
