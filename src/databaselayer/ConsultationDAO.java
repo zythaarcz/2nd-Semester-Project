@@ -84,7 +84,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		} catch (SQLException e) {
 			connection.rollback();
 		} finally {
-			connection.close();
+			connection.setAutoCommit(true);
 		}
 		return executed;
 	}

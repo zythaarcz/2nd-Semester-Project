@@ -1,6 +1,5 @@
 package guilayer;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,12 +9,9 @@ import javax.swing.border.EmptyBorder;
 import controllayer.AuthenticationController;
 
 import javax.swing.JTextField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -31,7 +27,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import modellayer.AuthenticatedUser;
-import modellayer.PersonTypes;
 
 public class Authentication extends JFrame {
 
