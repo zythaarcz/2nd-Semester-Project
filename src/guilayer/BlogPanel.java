@@ -80,7 +80,9 @@ public class BlogPanel extends JPanel {
 				//TODO: Delete also the image from project directory
 				
 				manageBlogController.deleteBlog(blog.getId());
+				manageBlogController.deleteImageFromBlog(blog.getImagePath());
 				AllBlogsEmployee allBlogs = new AllBlogsEmployee();
+				
 				allBlogs.setVisible(true);
 				((JFrame) getTopLevelAncestor()).dispose();
 			}

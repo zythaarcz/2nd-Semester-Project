@@ -271,8 +271,10 @@ public class EditBlog extends JFrame {
 		btnBrowse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectedPicture = selectPicture();
-				newImagePath = selectedPicture.getPath();
-				pathLbl.setText(newImagePath);
+				if(selectedPicture != null) {
+					newImagePath = selectedPicture.getPath();
+					pathLbl.setText(newImagePath);
+				}
 			}
 		});
 		btnBrowse.setRolloverEnabled(false);

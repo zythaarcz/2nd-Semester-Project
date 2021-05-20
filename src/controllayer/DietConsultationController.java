@@ -45,5 +45,22 @@ public class DietConsultationController {
 		return allConsultations;
 		
 	}
+	
+	public boolean deleteConsultation(int id) {
+		boolean succeeded = false;
+		try {
+			succeeded = consultationDao.deleteConsultationById(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return succeeded;
+	}
+	
+	
+	public int getLastInsertedId() {
+		return consultationDao.getLastInsertedId();
+	}
 
 }

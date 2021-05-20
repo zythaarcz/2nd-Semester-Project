@@ -1,5 +1,9 @@
 package controllayer;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -83,6 +87,16 @@ public class ManageBlogController {
 		try {
 			manageBlogDao.deleteBlog(id);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteImageFromBlog(String path) {
+		 Path pathToBeDeleted = Paths.get(path);
+		 try {
+			Files.delete(pathToBeDeleted);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -104,8 +104,10 @@ public class CreateBlog extends JFrame {
 		btnBrowse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedPicture = selectPicture();
-				imagePathString = selectedPicture.getPath();
-				pathLbl.setText(imagePathString);
+				if(selectedPicture != null) {
+					imagePathString = selectedPicture.getPath();
+					pathLbl.setText(imagePathString);
+				}
 			}
 		});
 		btnBrowse.setRolloverEnabled(false);
@@ -287,7 +289,7 @@ public class CreateBlog extends JFrame {
 	}
 	
 	private String copyPicture(File picture) {
-		File destination = new File(System.getProperty("user.dir"), DirectoryPaths.BLOG_IMAGES);
+		File destination = new File(DirectoryPaths.BLOG_IMAGES);
 		
 		try {
 			FileUtils.copyFileToDirectory(picture, destination);
