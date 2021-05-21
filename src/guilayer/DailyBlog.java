@@ -10,6 +10,8 @@ import helpers.Slider;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -112,7 +114,8 @@ public class DailyBlog extends JFrame {
 		contentTextPane.setText(blog.getContentText());
 		contentTextPane.setBackground(SystemColor.menu);
 		contentTextPane.setEditable(false);
-		contentTextPane.setBounds(23, 402, 392, 338);
+		contentTextPane.setBounds(23, 352, 392, 338);
+		contentTextPane.setSize(392, getContentHeight(contentTextPane.getText()));
 		panel.add(contentTextPane);
 		
 		File file = new File(blog.getImagePath());
@@ -126,7 +129,15 @@ public class DailyBlog extends JFrame {
 			blogImage.setBounds(52, 158, 320, 180);
 			panel.add(blogImage);
 		}
-		
-		d.setSize(440, 722 + contentTextPane.getHeight());
+		d.setSize(440, 342 + contentTextPane.getHeight());
+	}
+		public int getContentHeight(String content) {
+		    JEditorPane dummyEditorPane=new JEditorPane();
+		    dummyEditorPane.setSize(340,Short.MAX_VALUE);
+		    dummyEditorPane.setText(content);
+		    dummyEditorPane.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+		    return dummyEditorPane.getPreferredSize().height;
+
 	}
 }
