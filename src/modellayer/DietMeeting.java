@@ -8,6 +8,7 @@ public class DietMeeting {
 	private String reason;
 	private Customer customer;
 	private Employee employee;
+	private int id;
 	
 	public DietMeeting(LocalDate wantedDate, String reason) {
 		this.wantedDate = wantedDate;
@@ -44,6 +45,14 @@ public class DietMeeting {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

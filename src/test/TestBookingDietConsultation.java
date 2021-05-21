@@ -3,7 +3,10 @@ package test;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,6 +26,7 @@ public class TestBookingDietConsultation {
 	public static void setUp() throws Exception {
 		authenticationController = new AuthenticationController();
 		authenticationController.authenticateUser("matej@gmail.com", "123");
+		dietConsultationController = new DietConsultationController();
 		
 	}
 	
@@ -84,13 +88,19 @@ public class TestBookingDietConsultation {
 	public void testDietConsultationBookedSuccessfully() {
 		//Arrange
 		DietMeeting consultation;
-		String expectedConsultationDate = "2021-06-24";
+		LocalDate expectedConsultationDate = LocalDate.of(2021, Month.JUNE, 24);
 		
 		//Act
-		dietConsultationController.createDietConsultation(2021-06-24, "Back pain");
-		consultation = dietConsultationController.retrieveConsultationByDate(2021-06-24);
+		dietConsultationController.createDietConsultation(LocalDate.of(2021, Month.JUNE, 24), "Back pain");
+		consultation = dietConsultationController.retrieveConsultationByDate(LocalDate.of(2021, Month.JUNE, 24));
 		
 		//Assert
 		assertEquals("Expected diet consultation date should be: 2021-06-24", expectedConsultationDate, consultation.getWantedDate());
+	}
+	
+	@AfterClass
+	public static void tearDown() throws Exception {
+		int id = dietConsultationController.retrieveConsultationByDate(LocalDate.of(2021, Month.JUNE, 24)).getId();
+		dietConsultationController.deleteConsultation(id);
 	}
 }

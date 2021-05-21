@@ -158,6 +158,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 			meeting = new DietMeeting(rs.getDate("wantedDate").toLocalDate(), rs.getString("reason"));
 			meeting.setCustomer(personDao.retrieveCustomerById(rs.getInt("customerId")));
 			meeting.setEmployee(personDao.retrieveEmployeeById(rs.getInt("employeeId")));
+			meeting.setId(rs.getInt("id"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
