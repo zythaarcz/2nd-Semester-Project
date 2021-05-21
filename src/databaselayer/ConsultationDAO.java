@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
 import modellayer.Video;
@@ -56,8 +58,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 	}
 
 	@Override
-	public boolean insertConsultation(LocalDate date, String reason) throws SQLException {
-		boolean executed = false;
+	public void insertConsultation(LocalDate date, String reason) throws SQLException{
 		psInsertConsultation.setObject(1, date);
 		psInsertConsultation.setString(2, reason);
 		psInsertConsultation.setInt(3, AuthenticatedUser.getInstance().getCurrentUser().getId());
@@ -65,28 +66,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		// Jiri (id=2) is always responsible for consultation
 		psInsertConsultation.setInt(4, 2);
 
-		try {
-			
-			connection.setAutoCommit(false);
-			psInsertConsultation.executeUpdate();
-
-			if (retrieveConsultationCountByDate(date) < 2) {
-				ResultSet generatedKeys = psInsertConsultation.getGeneratedKeys();
-				if (generatedKeys.next()) {
-					setLastInsertedId((int) generatedKeys.getLong(1));
-				}
-
-				connection.commit();
-				executed = true;
-			} else {
-				throw new SQLException();
-			}
-		} catch (SQLException e) {
-			connection.rollback();
-		} finally {
-			connection.setAutoCommit(true);
-		}
-		return executed;
+		psInsertConsultation.executeUpdate();
 	}
 
 	@Override

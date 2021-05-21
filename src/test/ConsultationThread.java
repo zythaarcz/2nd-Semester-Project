@@ -17,20 +17,14 @@ public class ConsultationThread implements Runnable{
 	}
 	@Override
 	public void run() {
-		LocalDate date = LocalDate.of(2021, 5, 26); 
+		
 		try {
 			Thread.sleep((long) (Math.random() * 1000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		wasExecuted = dietConsultationController.createDietConsultation(date, "I need to get slim");
-		consultationId = dietConsultationController.getLastInsertedId();
 		
-	}
-	
-	public void stop() {
-		//Delete consultation from Database
-		dietConsultationController.deleteConsultation(consultationId);
+		
 	}
 	
 	public boolean getExecuted() {

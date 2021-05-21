@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import databaselayer.ConsultationDAO;
 import databaselayer.ConsultationDAOIF;
 import modellayer.AuthenticatedUser;
@@ -25,13 +27,14 @@ public class DietConsultationController {
 	 * Returning boolean value whether or not was diet consultation successfully created
 	 * */
 	public boolean createDietConsultation (LocalDate date, String reason) {
-		boolean wasInserted = false;
-		try {
-			wasInserted = consultationDao.insertConsultation(date, reason);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+		boolean wasInserted = true;
+			try {
+				consultationDao.insertConsultation(date, reason);
+			}catch (SQLException e) {
+				// catched the sql exception
+				wasInserted = false;
+			}
+
 		return wasInserted;
 	}
 	

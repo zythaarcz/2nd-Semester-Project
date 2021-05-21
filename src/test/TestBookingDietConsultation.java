@@ -14,6 +14,7 @@ import controllayer.AuthenticationController;
 import controllayer.DietConsultationController;
 import controllayer.ManageBlogController;
 import controllayer.ManageVideoController;
+import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
 import modellayer.Video;
 
@@ -33,32 +34,20 @@ public class TestBookingDietConsultation {
 	@Test
 	public void testTwoCustomersBookingTheSameDate() {
 		//Arrange
-		ConsultationThread customer1 = new ConsultationThread("Customer 1");
-		ConsultationThread customer2 = new ConsultationThread("Customer 2");
-		
-		Thread tr1 = new Thread(customer1);
-		Thread tr2 = new Thread(customer2);
-		
-		//Act
-		tr1.start();	
-		tr2.start();
+		LocalDate date = LocalDate.of(2021, 5, 26); 
+		boolean customer1Executed = false;
+		boolean customer2Executed = false;
 
-		try {
-			tr1.join();
-			customer1.stop();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		//Act
+		customer1Executed = dietConsultationController.createDietConsultation(date, "I need to get slim.");
 		
-		try {
-			tr2.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		AuthenticatedUser.getInstance().setCurrentUser(null);
+		authenticationController.authenticateUser("dan@gmail.com", "123");
+		customer2Executed = dietConsultationController.createDietConsultation(date, "I need to get huge.");
+
 		//Assert
-		assertFalse(customer2.getExecuted());
+		assertTrue(customer1Executed);
+		assertFalse(customer2Executed);
 	}
 	
 	//Scenario 3, past date selected
@@ -72,6 +61,7 @@ public class TestBookingDietConsultation {
 		//Assert
 
 	}
+	
 	//Scenario 4, numeric value written to reason text field
 	@Test
 	public void testIfConsultationAddedWhenNumericValue() {
