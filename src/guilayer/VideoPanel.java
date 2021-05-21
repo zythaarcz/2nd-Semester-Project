@@ -35,11 +35,6 @@ public class VideoPanel extends JPanel {
 		setBackground(Color.ORANGE);
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(11, 42, 378, 245);
-		add(panel);
-		
 		JLabel nameLabel = new JLabel("");
 		nameLabel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -122,6 +117,20 @@ public class VideoPanel extends JPanel {
 		deleteVideoButton.setBorderPainted(false);
 		deleteVideoButton.setBounds(366, 332, 23, 21);
 		add(deleteVideoButton);
+		
+		JLabel thumbnailLabel = new JLabel("");
+		thumbnailLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DailyExercise dailyExercise = new DailyExercise(video);
+				dailyExercise.setVisible(true);
+				setSize(0, 750);
+				((JFrame) getTopLevelAncestor()).dispose();
+			}
+		});
+		thumbnailLabel.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/videoThumbnail.png")));
+		thumbnailLabel.setBounds(11, 53, 374, 211);
+		add(thumbnailLabel);
 
 	}
 }

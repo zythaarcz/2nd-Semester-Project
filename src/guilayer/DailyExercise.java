@@ -22,9 +22,15 @@ import javax.swing.JTextPane;
 import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
+import java.awt.Desktop;
+
 import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 public class DailyExercise extends JFrame {
 
@@ -119,10 +125,6 @@ public class DailyExercise extends JFrame {
 		titleLbl.setBounds(31, 121, 175, 31);
 		contentPane.add(titleLbl);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(31, 190, 374, 206);
-		contentPane.add(panel);
-		
 		JLabel pointsLbl = new JLabel("");
 		pointsLbl.setText("+" + video.getPointsForCompletion()+ " Points");
 		pointsLbl.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -158,5 +160,28 @@ public class DailyExercise extends JFrame {
 		btnDone.setBackground(new Color(255, 208, 32));
 		btnDone.setBounds(300, 526, 105, 31);
 		contentPane.add(btnDone);
+		
+		JButton playButton = new JButton("");
+		playButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		playButton.setSelectedIcon(new ImageIcon(DailyExercise.class.getResource("/images/play-button_ds_yellow.png")));
+		playButton.setBorderPainted(false);
+		playButton.setOpaque(false);
+		playButton.setContentAreaFilled(false);
+		playButton.addActionListener(e -> {
+			try {
+		        Desktop.getDesktop().browse(new URI(video.getUrl()));
+		    } catch (IOException | URISyntaxException e1) {
+		        e1.printStackTrace();
+		    }
+		});
+		playButton.setForeground(Color.YELLOW);
+		playButton.setIcon(new ImageIcon(DailyExercise.class.getResource("/images/play-button_ds_yellow.png")));
+		playButton.setBounds(161, 225, 120, 120);
+		contentPane.add(playButton);
+		
+		JLabel thumbnailLabel = new JLabel("");
+		thumbnailLabel.setIcon(new ImageIcon(DailyExercise.class.getResource("/images/videoThumbnail.png")));
+		thumbnailLabel.setBounds(31, 183, 374, 211);
+		contentPane.add(thumbnailLabel);
 	}
 }
