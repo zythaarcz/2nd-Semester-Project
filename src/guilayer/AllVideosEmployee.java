@@ -92,12 +92,14 @@ public class AllVideosEmployee extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Sort by:");
-		lblNewLabel_1.setBounds(50, 194, 37, 13);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(50, 181, 62, 34);
 		panel.add(lblNewLabel_1);
 		
 		String[] filterTypes = {"Newest added", "Oldest added", "Most watched"};
 		JComboBox comboBox = new JComboBox(filterTypes);
-		comboBox.setBounds(92, 191, 196, 19);
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBox.setBounds(122, 181, 196, 34);
 		panel.add(comboBox);
 		
 		JButton addVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/addVideoButton.png")));

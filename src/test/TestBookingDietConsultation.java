@@ -67,7 +67,6 @@ public class TestBookingDietConsultation {
 		
 		//Arrange
 		
-		
 		//Act
 		
 		//Assert

@@ -143,11 +143,13 @@ public class DailyExercise extends JFrame {
 		JLabel exerciseDoneLbl = new JLabel("You have already done this exercise.");
 		exerciseDoneLbl.setFont(new Font("Tahoma", Font.BOLD, 14));
 		exerciseDoneLbl.setBounds(80, 567, 276, 36);
+		exerciseDoneLbl.setVisible(false);
 		contentPane.add(exerciseDoneLbl);
 		
 		JButton btnDone = new JButton("Done");
 		btnDone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(btnDone, "Feature not implemented yet.");
 			}
 		});
 		btnDone.setRolloverEnabled(false);

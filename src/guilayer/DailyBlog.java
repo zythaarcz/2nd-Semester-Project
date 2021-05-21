@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 
@@ -24,6 +25,7 @@ import modellayer.Blog;
 import modellayer.PersonTypes;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.ScrollPaneConstants;
 
 public class DailyBlog extends JFrame {
 
@@ -45,10 +47,14 @@ public class DailyBlog extends JFrame {
 		setTitle("Blog");
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 0, 440, 722);
 		contentPane.add(scrollPane);
 		
+		Dimension d = new Dimension(440, 722);
+		
 		JPanel panel = new JPanel();
+		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
 		
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
@@ -106,7 +112,7 @@ public class DailyBlog extends JFrame {
 		contentTextPane.setText(blog.getContentText());
 		contentTextPane.setBackground(SystemColor.menu);
 		contentTextPane.setEditable(false);
-		contentTextPane.setBounds(23, 402, 392, 172);
+		contentTextPane.setBounds(23, 402, 392, 338);
 		panel.add(contentTextPane);
 		
 		File file = new File(blog.getImagePath());
@@ -121,6 +127,6 @@ public class DailyBlog extends JFrame {
 			panel.add(blogImage);
 		}
 		
-		
+		d.setSize(440, 722 + contentTextPane.getHeight());
 	}
 }
