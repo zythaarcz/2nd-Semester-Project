@@ -40,6 +40,30 @@ public class PersonDAO implements PersonDAOIF {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public Person authenticatePerson(String email, String password) throws SQLException {
+		// TODO Auto-generated method stub
+		Person person = null;
+		ResultSet rs;
+		psSelectAuthenticatedUser.setString(1, email);
+		rs = psSelectAuthenticatedUser.executeQuery();
+
+		if (rs.next()) {
+			String dbEmail = rs.getString("email");
+			String dbPassword = rs.getString("password");
+
+			if (dbEmail.equals(email) && dbPassword.equals(password)) {
+				// User puts right credentials
+				int personId = rs.getInt("id");
+				person = retrievePersonById(personId);
+			}
+		}
+
+		return person;
+	}
+	
+	
 
 	@Override
 	public Person retrievePersonById(int id) throws SQLException {
@@ -92,28 +116,6 @@ public class PersonDAO implements PersonDAOIF {
 		}
 		
 		return customer;
-	}
-
-	@Override
-	public Person authenticatePerson(String email, String password) throws SQLException {
-		// TODO Auto-generated method stub
-		Person person = null;
-		ResultSet rs;
-		psSelectAuthenticatedUser.setString(1, email);
-		rs = psSelectAuthenticatedUser.executeQuery();
-
-		if (rs.next()) {
-			String dbEmail = rs.getString("email");
-			String dbPassword = rs.getString("password");
-
-			if (dbEmail.equals(email) && dbPassword.equals(password)) {
-				// User puts right credentials
-				int personId = rs.getInt("id");
-				person = retrievePersonById(personId);
-			}
-		}
-
-		return person;
 	}
 
 	private Employee buildObjectEmployee(ResultSet rs, Person person) throws SQLException {

@@ -24,9 +24,10 @@ public class ManageBlogController {
 			e.printStackTrace();
 		}
 	}
-	
+	/*
+	 * Creating blog based on user input
+	 * */
 	public void createBlog(String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued) {
-		// TODO: Uncomment when singleton is created
 		try {
 			manageBlogDao.insertBlog(imagePath, header, contentText, shortDescription, dateIssued, AuthenticatedUser.getInstance().getCurrentUser().getId());
 		} catch (SQLException e) {
@@ -35,6 +36,9 @@ public class ManageBlogController {
 		}
 	}
 	
+	/*
+	 * Updating blog based on user input
+	 * */
 	public void updateBlogInformation(int id, String imagePath, String header, String contentText, String shortDescription) {
 		try {
 			manageBlogDao.updateBlog(id, imagePath, header, contentText, shortDescription);
@@ -50,7 +54,6 @@ public class ManageBlogController {
 		try {
 			blog = manageBlogDao.retrieveBlog(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -63,7 +66,6 @@ public class ManageBlogController {
 		try {
 			blog = manageBlogDao.retrieveBlogByName(header);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -76,7 +78,6 @@ public class ManageBlogController {
 		try {
 			allBlogs = manageBlogDao.retrieveAllBlogs();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -87,17 +88,18 @@ public class ManageBlogController {
 		try {
 			manageBlogDao.deleteBlog(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	/*
+	 * When deleting a blog post, we need to make sure that also a image from project directory is deleted as well
+	 * */
 	public void deleteImageFromBlog(String path) {
 		 Path pathToBeDeleted = Paths.get(path);
 		 try {
 			Files.delete(pathToBeDeleted);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

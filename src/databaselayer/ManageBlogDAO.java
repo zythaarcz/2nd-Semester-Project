@@ -119,20 +119,6 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 		return blog;
 	}
 	
-	private Blog buildObject(ResultSet rs) throws SQLException {
-		Blog blog = null;
-		
-		try {
-			blog = new Blog(rs.getString("imagePath"), rs.getString("header"), rs.getString("contentText"), rs.getString("shortDescription"), rs.getDate("dateIssued").toLocalDate());
-			blog.setId(rs.getInt("id"));
-			blog.setEmployee(personDao.retrieveEmployeeById(rs.getInt("employeeId")));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return blog;
-	}
-
 	@Override
 	public ArrayList<Blog> retrieveAllBlogs() throws SQLException {
 		ArrayList<Blog> allBlogs = new ArrayList<>();
@@ -148,4 +134,17 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 		return allBlogs;
 	}
 	
+	private Blog buildObject(ResultSet rs) throws SQLException {
+		Blog blog = null;
+		
+		try {
+			blog = new Blog(rs.getString("imagePath"), rs.getString("header"), rs.getString("contentText"), rs.getString("shortDescription"), rs.getDate("dateIssued").toLocalDate());
+			blog.setId(rs.getInt("id"));
+			blog.setEmployee(personDao.retrieveEmployeeById(rs.getInt("employeeId")));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return blog;
+	}
 }

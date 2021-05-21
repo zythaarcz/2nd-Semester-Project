@@ -21,19 +21,24 @@ public class DietConsultationController {
 			e.printStackTrace();
 		}
 	}
-	
+	/*
+	 * Returning boolean value whether or not was diet consultation successfully created
+	 * */
 	public boolean createDietConsultation (LocalDate date, String reason) {
 		boolean wasInserted = false;
 		try {
 			wasInserted = consultationDao.insertConsultation(date, reason);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return wasInserted;
 	}
 	
+	/*
+	 * This method is not used anywhere, but we made it for future reference
+	 * Responsible for returning a list of all consultations in a database
+	 * */
 	public ArrayList<DietMeeting> retrieveAllConsultations() {
 		ArrayList<DietMeeting> allConsultations = new ArrayList<>();
 		try {
@@ -52,14 +57,15 @@ public class DietConsultationController {
 		try {
 			succeeded = consultationDao.deleteConsultationById(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return succeeded;
 	}
 	
-	
+	/*
+	 * TODO: We still need to figure out if this should be part of the code or not
+	 * */
 	public int getLastInsertedId() {
 		return consultationDao.getLastInsertedId();
 	}

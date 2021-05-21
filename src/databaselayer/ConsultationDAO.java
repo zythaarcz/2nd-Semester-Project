@@ -62,7 +62,7 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		psInsertConsultation.setString(2, reason);
 		psInsertConsultation.setInt(3, AuthenticatedUser.getInstance().getCurrentUser().getId());
 
-		// Jiri is always responsible for consultation
+		// Jiri (id=2) is always responsible for consultation
 		psInsertConsultation.setInt(4, 2);
 
 		try {
@@ -91,7 +91,6 @@ public class ConsultationDAO implements ConsultationDAOIF {
 
 	@Override
 	public ArrayList<DietMeeting> retrieveAllConsultations() throws SQLException {
-		// TODO Auto-generated method stub
 		ArrayList<DietMeeting> meetings = null;
 
 		ResultSet rs;
@@ -124,6 +123,9 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		return dietMeeting;
 	}
 
+	/*
+	 * Retrieving number of records in a database of consultations with the same date
+	 * */
 	@Override
 	public int retrieveConsultationCountByDate(LocalDate date) throws SQLException {
 		int count = 0;

@@ -79,7 +79,6 @@ public class ManageVideoDAO implements ManageVideoDAOIF{
 		psDeleteVideo.setInt(1, id);
 		
 		psDeleteVideo.executeUpdate();
-		
 	}
 
 	
@@ -122,8 +121,8 @@ public class ManageVideoDAO implements ManageVideoDAOIF{
 			video = new Video(rs.getString("url"), rs.getString("header"), rs.getString("shortDescription"), rs.getString("category"), rs.getInt("pointsForCompletion"));
 			video.setId(rs.getInt("id"));
 			// TODO: When EmployeeDAO and CustomerDAO are done, uncomment this
-			// video.setEmployee(EmployeeDAO.getEmployee(rs.getInt("employeeId");
-			// video.setListOfCustomers(CustomerDAO.getListOfCustomersForVideo(rs.getInt("id")));
+			 //video.setEmployee(EmployeeDAO.getEmployee(rs.getInt("employeeId");
+			 //video.setListOfCustomers(CustomerDAO.getListOfCustomersForVideo(rs.getInt("id")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

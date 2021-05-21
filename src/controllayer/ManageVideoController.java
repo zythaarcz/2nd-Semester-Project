@@ -21,20 +21,23 @@ public class ManageVideoController {
 		}
 	}
 	
+	/*
+	 * Creating video based on user input
+	 * */
 	public void createVideo(String url, String header, String shortDescription, String category, int pointsForCompletion) {
 		try {
 			manageVideoDao.insertVideo(url, header, shortDescription, category, pointsForCompletion, AuthenticatedUser.getInstance().getCurrentUser().getId());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+	/*
+	 * Updating video based on user input
+	 * */
 	public void updateVideoInformation(int id, String header, String shortDescription, String category, int pointsForCompletion) {
 		try {
 			manageVideoDao.updateVideo(id, header, shortDescription, category, pointsForCompletion);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -45,7 +48,6 @@ public class ManageVideoController {
 		try {
 			video = manageVideoDao.retrieveVideo(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -58,7 +60,6 @@ public class ManageVideoController {
 		try {
 			video = manageVideoDao.retrieveVideoByName(header);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -71,7 +72,6 @@ public class ManageVideoController {
 		try {
 			allVideos = manageVideoDao.retrieveAllVideos();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -82,7 +82,6 @@ public class ManageVideoController {
 		try {
 			manageVideoDao.deleteVideo(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

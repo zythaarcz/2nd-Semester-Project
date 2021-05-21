@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class Slider extends JPanel {
 
 	/**
-	 * Create the panel.
+	 * Animation of the side bar
 	 */
 	public Slider() {
 		
