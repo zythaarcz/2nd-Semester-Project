@@ -51,29 +51,6 @@ public class TestBookingDietConsultation {
 		assertFalse(customer2Executed);
 	}
 	
-	//Scenario 3, past date selected
-	@Test
-	public void testIfCustomerEnteredPastDate() {
-		
-		//Arrange
-		
-		//Act
-		
-		//Assert
-
-	}
-	
-	//Scenario 4, numeric value written to reason text field
-	@Test
-	public void testIfConsultationAddedWhenNumericValue() {
-		
-		//Arrange
-		
-		//Act
-		
-		//Assert
-	}
-	
 	@Test
 	public void testDietConsultationBookedSuccessfully() {
 		//Arrange
@@ -91,7 +68,10 @@ public class TestBookingDietConsultation {
 	
 	@AfterClass
 	public static void tearDown() throws Exception {
-		int id = dietConsultationController.retrieveConsultationByDate(LocalDate.of(2021, Month.JUNE, 24)).getId();
-		dietConsultationController.deleteConsultation(id);
+		int firstId = dietConsultationController.retrieveConsultationByDate(LocalDate.of(2021, Month.JUNE, 24)).getId();
+		dietConsultationController.deleteConsultation(firstId);
+		
+		int secondId = dietConsultationController.retrieveConsultationByDate(LocalDate.of(2021, 5, 26)).getId();
+		dietConsultationController.deleteConsultation(secondId);
 	}
 }
