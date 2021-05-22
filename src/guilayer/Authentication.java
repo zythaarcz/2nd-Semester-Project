@@ -148,12 +148,6 @@ public class Authentication extends JFrame {
 				        e1.printStackTrace();
 				    }
 			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
 		});
 		
 	}

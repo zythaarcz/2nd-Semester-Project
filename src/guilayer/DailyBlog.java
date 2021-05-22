@@ -26,6 +26,7 @@ import modellayer.AuthenticatedUser;
 import modellayer.Blog;
 import modellayer.PersonTypes;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.ScrollPaneConstants;
 
@@ -51,6 +52,7 @@ public class DailyBlog extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 0, 440, 722);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		contentPane.add(scrollPane);
 		
 		Dimension d = new Dimension(440, 722);
@@ -130,6 +132,12 @@ public class DailyBlog extends JFrame {
 			panel.add(blogImage);
 		}
 		d.setSize(440, 342 + contentTextPane.getHeight());
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			   public void run() { 
+			       scrollPane.getVerticalScrollBar().setValue(0);
+			   }
+		});
 	}
 		public int getContentHeight(String content) {
 		    JEditorPane dummyEditorPane=new JEditorPane();

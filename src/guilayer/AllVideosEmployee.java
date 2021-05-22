@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import controllayer.ManageVideoController;
@@ -58,6 +59,7 @@ public class AllVideosEmployee extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 440, 750);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
@@ -161,6 +163,12 @@ public class AllVideosEmployee extends JFrame {
 			//panel.set
 			panel.add(videoPanel);
 			}		
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			   public void run() { 
+			       scrollPane.getVerticalScrollBar().setValue(0);
+			   }
+		});
 	}
 	public ArrayList<VideoPanel> createAllVideoPanels() {
 		allVideos = manageVideoController.retrieveAllVideos();

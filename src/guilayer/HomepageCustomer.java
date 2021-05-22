@@ -2,6 +2,7 @@ package guilayer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -32,6 +33,7 @@ import java.awt.TrayIcon.MessageType;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 
 public class HomepageCustomer extends JFrame {
 
@@ -64,6 +66,7 @@ public class HomepageCustomer extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 440, 722);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
@@ -152,6 +155,12 @@ public class HomepageCustomer extends JFrame {
 		panel.setComponentZOrder(sideBarCustomer, 0);
 		panel.setComponentZOrder(latestVideoPanel, 1);
 		panel.setComponentZOrder(latestBlogPanel, 2);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			   public void run() { 
+			       scrollPane.getVerticalScrollBar().setValue(0);
+			   }
+		});
 
 	}
 

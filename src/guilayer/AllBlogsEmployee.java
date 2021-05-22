@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -57,6 +59,7 @@ public class AllBlogsEmployee extends JFrame {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 0, 440, 750);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
@@ -156,6 +159,12 @@ public class AllBlogsEmployee extends JFrame {
 			}
 			panel.add(blogPanel);
 			}
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			   public void run() { 
+			       scrollPane.getVerticalScrollBar().setValue(0);
+			   }
+		});
 	}
 	
 	public ArrayList<BlogPanel> createAllBlogPanels() {
