@@ -9,6 +9,11 @@ public class Employee extends Person{
 		this.position = position;
 	}
 	
+	@Override
+	public String toString() {
+		return getFirstName() + " " + getLastName();
+	}
+	
 	public String getPosition() {
 		return position;
 	}

@@ -35,15 +35,16 @@ public class TestBookingDietConsultation {
 	public void testTwoCustomersBookingTheSameDate() {
 		//Arrange
 		LocalDate date = LocalDate.of(2021, 5, 26); 
+		int employeeID = 2;
 		boolean customer1Executed = false;
 		boolean customer2Executed = false;
 
 		//Act
-		customer1Executed = dietConsultationController.createDietConsultation(date, "I need to get slim.");
+		customer1Executed = dietConsultationController.createDietConsultation(date, "I need to get slim.", employeeID);
 		
 		AuthenticatedUser.getInstance().setCurrentUser(null);
 		authenticationController.authenticateUser("dan@gmail.com", "123");
-		customer2Executed = dietConsultationController.createDietConsultation(date, "I need to get huge.");
+		customer2Executed = dietConsultationController.createDietConsultation(date, "I need to get huge.", employeeID);
 
 		//Assert
 		assertTrue(customer1Executed);
@@ -77,10 +78,11 @@ public class TestBookingDietConsultation {
 	public void testDietConsultationBookedSuccessfully() {
 		//Arrange
 		DietMeeting consultation;
+		int employeeID = 2;
 		LocalDate expectedConsultationDate = LocalDate.of(2021, Month.JUNE, 24);
 		
 		//Act
-		dietConsultationController.createDietConsultation(LocalDate.of(2021, Month.JUNE, 24), "Back pain");
+		dietConsultationController.createDietConsultation(LocalDate.of(2021, Month.JUNE, 24), "Back pain", employeeID);
 		consultation = dietConsultationController.retrieveConsultationByDate(LocalDate.of(2021, Month.JUNE, 24));
 		
 		//Assert

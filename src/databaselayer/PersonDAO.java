@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modellayer.Customer;
 import modellayer.Employee;
@@ -22,6 +23,9 @@ public class PersonDAO implements PersonDAOIF {
 
 	private static final String SELECT_AUTHENTICATEDUSER = "SELECT * FROM Authentication WHERE email = ?";
 	private PreparedStatement psSelectAuthenticatedUser;
+	
+	private static final String SELECT_ALLEMPLOYEES = "SELECT * FROM Employee";
+	private PreparedStatement psSelectAllEmployees;
 
 	public PersonDAO() throws SQLException {
 		initPreparedStatement();
@@ -36,6 +40,7 @@ public class PersonDAO implements PersonDAOIF {
 			psSelectAuthenticatedUser = connection.prepareStatement(SELECT_AUTHENTICATEDUSER);
 			psSelectEmployee = connection.prepareStatement(SELECT_EMPLOYEE);
 			psSelectCustomer = connection.prepareStatement(SELECT_CUSTOMER);
+			psSelectAllEmployees = connection.prepareStatement(SELECT_ALLEMPLOYEES);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -117,6 +122,24 @@ public class PersonDAO implements PersonDAOIF {
 		
 		return customer;
 	}
+	
+	@Override
+	public ArrayList<Employee> retrieveAllEmployees() throws SQLException {
+		ArrayList<Employee> allEmployees = new ArrayList<>();
+		Person person = null;
+		
+		ResultSet rs;
+		
+		rs = psSelectAllEmployees.executeQuery();
+		
+		while (rs.next()) {
+			person = retrievePersonById(rs.getInt("id"));
+			allEmployees.add(buildObjectEmployee(rs, person));
+		}
+	
+		
+		return allEmployees;
+	}
 
 	private Employee buildObjectEmployee(ResultSet rs, Person person) throws SQLException {
 		Employee empToReturn = null;
@@ -158,5 +181,4 @@ public class PersonDAO implements PersonDAOIF {
 		}
 		return customer;
 	}
-
 }

@@ -8,17 +8,22 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import databaselayer.ConsultationDAO;
 import databaselayer.ConsultationDAOIF;
+import databaselayer.PersonDAO;
+import databaselayer.PersonDAOIF;
 import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
+import modellayer.Employee;
 import modellayer.Video;
 
 public class DietConsultationController {
 	
 	private ConsultationDAOIF consultationDao;
+	private PersonDAOIF personDao;
 	
 	public DietConsultationController() {
 		try {
 			consultationDao = new ConsultationDAO();
+			personDao = new PersonDAO();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -26,10 +31,10 @@ public class DietConsultationController {
 	/*
 	 * Returning boolean value whether or not was diet consultation successfully created
 	 * */
-	public boolean createDietConsultation (LocalDate date, String reason) {
+	public boolean createDietConsultation (LocalDate date, String reason, int employeeID) {
 		boolean wasInserted = true;
 			try {
-				consultationDao.insertConsultation(date, reason);
+				consultationDao.insertConsultation(date, reason, employeeID);
 			}catch (SQLException e) {
 				// catched the sql exception
 				wasInserted = false;
@@ -96,6 +101,19 @@ public class DietConsultationController {
 		}
 		
 		return dietMeeting;
+	}
+	
+	public ArrayList<Employee> retrieveAllEmployees() {
+		ArrayList<Employee> allEmployees = null;
+		
+		try {
+			allEmployees = personDao.retrieveAllEmployees();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return allEmployees;
 	}
 
 }
