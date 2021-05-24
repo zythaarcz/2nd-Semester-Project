@@ -307,13 +307,13 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		}
 	}
 	
-	private ArrayList<String> getNamesOfEmployees(ArrayList<Employee> employees) {
-		ArrayList<String> nameOfEmployees = new ArrayList<>();
-		
-		for(Employee employee : employees) {
-			nameOfEmployees.add(employee.getFirstName() + " " + employee.getLastName());
-		}
-		
-		return nameOfEmployees;
-	}
+//	private ArrayList<String> getNamesOfEmployees(ArrayList<Employee> employees) {
+//		ArrayList<String> nameOfEmployees = new ArrayList<>();
+//		
+//		for(Employee employee : employees) {
+//			nameOfEmployees.add(employee.getFirstName() + " " + employee.getLastName());
+//		}
+//		
+//		return nameOfEmployees;
+//	}
 }
