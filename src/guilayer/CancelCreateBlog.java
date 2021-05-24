@@ -21,19 +21,6 @@ public class CancelCreateBlog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private AllBlogsEmployee allBlogsEmployee;
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		try {
-//			CancelCreateVideo dialog = new CancelCreateVideo();
-//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dialog.setVisible(true);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	/**
 	 * Create the dialog.
 	 */

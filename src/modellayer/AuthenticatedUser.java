@@ -2,7 +2,6 @@ package modellayer;
 
 public class AuthenticatedUser {
 	private static AuthenticatedUser authedUser;
-	
 	private Person currentUser;
 	
 	public static AuthenticatedUser getInstance() {

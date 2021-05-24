@@ -23,8 +23,8 @@ public class CalendarWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	Calendar calendar = new Calendar();
-	java.util.Calendar selectedDate = java.util.Calendar.getInstance();
+	private Calendar calendar = new Calendar();
+	private java.util.Calendar selectedDate = java.util.Calendar.getInstance();
 	protected PropertyChangeSupport changeSupport; //the calendar windows raises event that the selectedDate has changed
 
 	/**

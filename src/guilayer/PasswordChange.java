@@ -25,19 +25,6 @@ public class PasswordChange extends JDialog {
 	private String savedConfirmPasswordString;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PasswordChange dialog = new PasswordChange();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
 	 */
 	public PasswordChange() {
