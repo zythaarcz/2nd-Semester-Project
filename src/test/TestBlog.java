@@ -31,10 +31,10 @@ public class TestBlog {
 	public void testIfBlogExistsInDatabase() {
 		// Arrange
 		Blog blog;
-		String expectedBlogHeader = "blog about body exercise";
+		String expectedBlogHeader = "hardcore training to get big";
 				
 		// Act
-		blog = manageBlogController.retrieveBlog(5);
+		blog = manageBlogController.retrieveBlog(14);
 				
 		// Assert
 		assertEquals("Expected blog header should be: blog about body exercise", expectedBlogHeader, blog.getHeader().toLowerCase());
@@ -63,7 +63,7 @@ public class TestBlog {
 		String expectedNewBlogHeader = "Changed testBlogHeader";
 		
 		//Act
-		blog = manageBlogController.retrieveBlog(7);
+		blog = manageBlogController.retrieveBlog(15);
 		oldBlog = blog;
 		manageBlogController.updateBlogInformation(blog.getId(), "testBlogImagePath", "Changed testBlogHeader", "testBlogContentText", "testBlogShortDescription");
 		blog = manageBlogController.retrieveBlog(blog.getId());

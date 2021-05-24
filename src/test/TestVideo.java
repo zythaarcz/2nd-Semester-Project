@@ -31,13 +31,13 @@ public class TestVideo {
 	public void testIfVideoExistsInDatabase() {
 		// Arrange
 		Video video;
-		String expectedVideoHeader = "cool fix back";
+		String expectedVideoHeader = "introduction";
 				
 		// Act
-		video = manageVideoController.retrieveVideo(2);
+		video = manageVideoController.retrieveVideo(23);
 				
 		// Assert
-		assertEquals("Expected video header should be Cool fix back", expectedVideoHeader, video.getHeader().toLowerCase());
+		assertEquals("Expected video header should be: introduction", expectedVideoHeader, video.getHeader().toLowerCase());
 	}
 	
 	//testing CREATE video and inserting into database
@@ -63,7 +63,7 @@ public class TestVideo {
 		String expectedNewVideoHeader = "Changed testVideoHeader";
 		
 		//Act
-		video = manageVideoController.retrieveVideo(1);
+		video = manageVideoController.retrieveVideo(23);
 		oldVideo = video;
 		manageVideoController.updateVideoInformation(video.getId(), "Changed testVideoHeader", "testVideoShortDescription", "testVideoCategory", 50);
 		video = manageVideoController.retrieveVideo(video.getId());

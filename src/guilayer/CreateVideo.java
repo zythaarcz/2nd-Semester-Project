@@ -214,7 +214,7 @@ public class CreateVideo extends JFrame {
 			{
 				pointsForCompletion = Integer.parseInt(textFieldPointsForCompletion.getText());
 				
-				//manageVideoController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
+				manageVideoController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
 				
 				System.out.println(urlString);
 				System.out.println(headerString);
