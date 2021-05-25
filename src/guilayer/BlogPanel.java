@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
@@ -79,12 +80,16 @@ public class BlogPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//TODO: Delete also the image from project directory
 				
-				manageBlogController.deleteBlog(blog.getId());
-				manageBlogController.deleteImageFromBlog(blog.getImagePath());
-				AllBlogsEmployee allBlogs = new AllBlogsEmployee();
+				int choise = JOptionPane.showConfirmDialog(textPane, "Are you sure to delete this blog?");
 				
-				allBlogs.setVisible(true);
-				((JFrame) getTopLevelAncestor()).dispose();
+				if(choise == 0) {
+					manageBlogController.deleteBlog(blog.getId());
+					manageBlogController.deleteImageFromBlog(blog.getImagePath());
+					AllBlogsEmployee allBlogs = new AllBlogsEmployee();
+					
+					allBlogs.setVisible(true);
+					((JFrame) getTopLevelAncestor()).dispose();
+				}
 			}
 		});
 		deleteBlogButton.setIcon(new ImageIcon(BlogPanel.class.getResource("/images/deleteButton.png")));

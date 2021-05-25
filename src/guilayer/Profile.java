@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllayer.AuthenticationController;
 import modellayer.AuthenticatedUser;
 import modellayer.PersonTypes;
 
@@ -26,6 +27,8 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
 public class Profile extends JFrame {
+	
+	private AuthenticationController authenticationController;
 
 	private JPanel contentPane;
 	private JTextField txtName;
@@ -52,6 +55,8 @@ public class Profile extends JFrame {
 	 * Create the frame.
 	 */
 	public Profile() {
+		authenticationController = new AuthenticationController();
+		
 		passwordChangeDialog = new PasswordChange();
 		passwordChangeDialog.setVisible(false);
 				
@@ -201,16 +206,41 @@ public class Profile extends JFrame {
 		txtName.setHorizontalAlignment(JTextField.CENTER);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
-		
-		txtDateOfBirth = new JTextField();
-		txtDateOfBirth.setText("27.04.20201");
-		txtDateOfBirth.setHorizontalAlignment(SwingConstants.CENTER);
-		txtDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtDateOfBirth.setEditable(false);
-		txtDateOfBirth.setColumns(10);
-		txtDateOfBirth.setBounds(103, 332, 240, 43);
-		contentPane.add(txtDateOfBirth);
-		
+
+		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+			txtDateOfBirth = new JTextField();
+			txtDateOfBirth.setText(authenticationController.getCustomer().getDateOfBirth().toString());
+			txtDateOfBirth.setHorizontalAlignment(SwingConstants.CENTER);
+			txtDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			txtDateOfBirth.setEditable(false);
+			txtDateOfBirth.setColumns(10);
+			txtDateOfBirth.setBounds(103, 332, 240, 43);
+			contentPane.add(txtDateOfBirth);
+			
+			txtCompanyName = new JTextField();
+			txtCompanyName.setEditable(false);
+			txtCompanyName.setText(authenticationController.getCustomer().getCompany());
+			txtCompanyName.setHorizontalAlignment(SwingConstants.CENTER);
+			txtCompanyName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			txtCompanyName.setColumns(10);
+			txtCompanyName.setBounds(103, 491, 200, 43);
+			contentPane.add(txtCompanyName);
+			
+			String[] filterStrings = {"Health issue: none","Back pain", "Neck pain", "Knees injury", "Arm injury"};
+			JComboBox healthIssuesComboBox = new JComboBox(filterStrings);
+			healthIssuesComboBox.setSelectedItem(authenticationController.getCustomer().getHealthIssue());
+			healthIssuesComboBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					healthIssueString = String.valueOf(healthIssuesComboBox.getSelectedItem());
+					System.out.println(healthIssueString);
+				}
+			});
+			healthIssuesComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			healthIssuesComboBox.setBounds(103, 544, 240, 43);
+			((JLabel)healthIssuesComboBox.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+			contentPane.add(healthIssuesComboBox);
+		}
+
 		txtEmail = new JTextField();
 		txtEmail.setEditable(false);
 		txtEmail.setText(AuthenticatedUser.getInstance().getCurrentUser().getEmail());
@@ -228,35 +258,7 @@ public class Profile extends JFrame {
 		txtPhoneNumber.setColumns(10);
 		txtPhoneNumber.setBounds(103, 438, 200, 43);
 		contentPane.add(txtPhoneNumber);
-		
-		txtCompanyName = new JTextField();
-		txtCompanyName.setEditable(false);
-		txtCompanyName.setText("Company name");
-		txtCompanyName.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCompanyName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtCompanyName.setColumns(10);
-		txtCompanyName.setBounds(103, 491, 200, 43);
-		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
-			txtCompanyName.setVisible(false);
-		}
-		contentPane.add(txtCompanyName);
-		
-		String[] filterStrings = {"Health issue: none","Back pain", "Neck pain", "Knees injury", "Arm injury"};
-		JComboBox healthIssuesComboBox = new JComboBox(filterStrings);
-		healthIssuesComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				healthIssueString = String.valueOf(healthIssuesComboBox.getSelectedItem());
-				System.out.println(healthIssueString);
-			}
-		});
-		healthIssuesComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		healthIssuesComboBox.setBounds(103, 544, 240, 43);
-		((JLabel)healthIssuesComboBox.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
-		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
-			healthIssuesComboBox.setVisible(false);
-		}
-		contentPane.add(healthIssuesComboBox);
-		
+				
 		JButton btnChangePassword = new JButton("Change password");
 		btnChangePassword.setRolloverEnabled(false);
 		btnChangePassword.addActionListener(new ActionListener() {

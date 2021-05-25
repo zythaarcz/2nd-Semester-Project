@@ -76,10 +76,14 @@ public class VideoPanel extends JPanel {
 			JButton deleteVideoButton = new JButton("");
 			deleteVideoButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					manageVideoController.deleteVideo(video.getId());
-					AllVideosEmployee allVideos = new AllVideosEmployee();
-					allVideos.setVisible(true);
-					((JFrame) getTopLevelAncestor()).dispose();
+					int choise = JOptionPane.showConfirmDialog(textPane, "Are you sure to delete this video?");
+
+					if(choise == 0) {
+						manageVideoController.deleteVideo(video.getId());
+						AllVideosEmployee allVideos = new AllVideosEmployee();
+						allVideos.setVisible(true);
+						((JFrame) getTopLevelAncestor()).dispose();
+					}
 				}
 			});
 			deleteVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/deleteButton.png")));
