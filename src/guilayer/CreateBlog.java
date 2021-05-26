@@ -66,6 +66,7 @@ public class CreateBlog extends JFrame {
 		cancelCreateBlog = new CancelCreateBlog(this);
 		cancelCreateBlog.setVisible(false);
 		manageBlogController = new ManageBlogController();
+		imagePathString = "";
 		
 		setResizable(false);
 		setTitle("Create blog");
@@ -107,6 +108,9 @@ public class CreateBlog extends JFrame {
 				if(selectedPicture != null) {
 					imagePathString = selectedPicture.getPath();
 					pathLbl.setText(imagePathString);
+				}
+				else {
+					imagePathString = "";
 				}
 			}
 		});
@@ -226,7 +230,6 @@ public class CreateBlog extends JFrame {
 		headerString = textFieldHeader.getText();
 		shortDescriptionString = textPaneShortDescription.getText();
 		contentTextString = textPaneContentText.getText();
-		
 		boolean isImagePathValid = validateStrings(imagePathString, errorIconImagePath);
 		boolean isHeaderValid = validateStrings(headerString, errorIconHeader);
 		boolean isShortDescriptionValid = validateStrings(shortDescriptionString, errorIconShortDescription);
