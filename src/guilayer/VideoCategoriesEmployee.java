@@ -22,21 +22,6 @@ public class VideoCategoriesEmployee extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel logoImage;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VideoCategoriesEmployee frame = new VideoCategoriesEmployee();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
