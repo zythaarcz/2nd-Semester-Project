@@ -109,7 +109,7 @@ public class EditBlog extends JFrame {
 				} else {
 					newHeader = txtHeader.getText();
 					newDescription = textPaneShortDescription.getText();
-					newImagePath = pathLbl.getText();
+					newImagePath = copyPicture(selectedPicture);
 					newContentText = textPaneContentText.getText();
 					manageBlogController.updateBlogInformation(blog.getId(), newImagePath, newHeader, newContentText, newDescription);
 					JOptionPane.showMessageDialog(contentPane, "The information about the blog was successfully updated.");
@@ -311,7 +311,7 @@ public class EditBlog extends JFrame {
 	}
 	
 	private String copyPicture(File picture) {
-		File destination = new File(System.getProperty("user.dir"), DirectoryPaths.BLOG_IMAGES);
+		File destination = new File(DirectoryPaths.BLOG_IMAGES);
 		
 		try {
 			FileUtils.copyFileToDirectory(picture, destination);

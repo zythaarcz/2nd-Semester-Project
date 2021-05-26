@@ -31,13 +31,13 @@ public class TestBlog {
 	public void testIfBlogExistsInDatabase() {
 		// Arrange
 		Blog blog;
-		String expectedBlogHeader = "hardcore training to get big";
+		String expectedBlogHeader = "home gym equipments";
 				
 		// Act
 		blog = manageBlogController.retrieveBlog(14);
 				
 		// Assert
-		assertEquals("Expected blog header should be: blog about body exercise", expectedBlogHeader, blog.getHeader().toLowerCase());
+		assertEquals("Expected blog header should be: home gym equipments", expectedBlogHeader, blog.getHeader().toLowerCase());
 	}
 	
 	//testing CREATE blog and inserting into database
