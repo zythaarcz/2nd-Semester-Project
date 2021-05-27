@@ -29,5 +29,4 @@ public class BlogImage extends JPanel{
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);          
     }
-
 }

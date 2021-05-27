@@ -9,7 +9,7 @@ import org.junit.Test;
 import databaselayer.DBConnection;
 
 public class TestDatabaseConnection {
-	
+
 	DBConnection connection = null;
 
 	@Before
@@ -20,13 +20,12 @@ public class TestDatabaseConnection {
 	@Test
 	public void wasConnected() {
 		assertNotNull("Connected - connection cannot be null", connection);
-		
+
 		DBConnection.closeConnection();
 		boolean wasNullified = DBConnection.instanceIsNull();
 		assertTrue("Disconnected - instance set to null", wasNullified);
-		
-		connection = DBConnection.getInstance();
-		assertNotNull("Connected - connection cannot be null", connection);		
-	}
 
+		connection = DBConnection.getInstance();
+		assertNotNull("Connected - connection cannot be null", connection);
+	}
 }

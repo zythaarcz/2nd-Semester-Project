@@ -45,7 +45,6 @@ public class AllBlogsEmployee extends JFrame {
 	 */
 	public AllBlogsEmployee() {
 		ArrayList<BlogPanel> allBlogPanels = createAllBlogPanels();
-
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,6 +104,7 @@ public class AllBlogsEmployee extends JFrame {
 		addBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateBlog blog = new CreateBlog();
+				blog.setLocationRelativeTo(null);
 				blog.setVisible(true);
 				dispose();
 			}
@@ -175,5 +175,4 @@ public class AllBlogsEmployee extends JFrame {
 		}
 		return allBlogPanels;
 	}
-	
 }

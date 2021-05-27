@@ -48,19 +48,19 @@ public class DailyBlog extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setTitle("Blog");
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 0, 440, 722);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		contentPane.add(scrollPane);
-		
+
 		Dimension d = new Dimension(440, 722);
-		
+
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
-		
+
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
 			sideBarCustomer = new SideBarCustomer();
 			((JPanel) sideBarCustomer).setSize(0, 740);
@@ -72,7 +72,7 @@ public class DailyBlog extends JFrame {
 			panel.add((JPanel) sideBarEmployee);
 			((JPanel) sideBarEmployee).setVisible(false);
 		}
-		
+
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -82,7 +82,7 @@ public class DailyBlog extends JFrame {
 				} else {
 					((JPanel) sideBarEmployee).setVisible(true);
 					sideBarEmployee.runSidebar();
-				}			
+				}
 			}
 		});
 		panel.setLayout(null);
@@ -93,24 +93,24 @@ public class DailyBlog extends JFrame {
 		sidebarButton.setBackground(Color.LIGHT_GRAY);
 		sidebarButton.setBounds(10, 10, 47, 39);
 		panel.add(sidebarButton);
-		
+
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(DailyBlog.class.getResource("/images/logo.png")));
 		logo.setBounds(150, 10, 278, 98);
 		panel.add(logo);
-		
+
 		JLabel titleLbl = new JLabel(blog.getHeader());
 		titleLbl.setFont(new Font("Tahoma", Font.BOLD, 17));
 		titleLbl.setBounds(23, 115, 252, 32);
 		panel.add(titleLbl);
-		
+
 		JLabel dateLbl = new JLabel(blog.getDateIssued().toString());
 		dateLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		dateLbl.setForeground(Color.GRAY);
 		dateLbl.setFont(new Font("Tahoma", Font.BOLD, 17));
 		dateLbl.setBounds(304, 122, 111, 21);
 		panel.add(dateLbl);
-		
+
 		JTextPane contentTextPane = new JTextPane();
 		contentTextPane.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		contentTextPane.setText(blog.getContentText());
@@ -119,33 +119,33 @@ public class DailyBlog extends JFrame {
 		contentTextPane.setBounds(23, 352, 392, 338);
 		contentTextPane.setSize(392, getContentHeight(contentTextPane.getText()));
 		panel.add(contentTextPane);
-		
+
 		File file = new File(blog.getImagePath());
-		if(file.exists()) {
+		if (file.exists()) {
 			ImageIcon imageIcon = new ImageIcon(blog.getImagePath()); // load the image to a imageIcon
-			Image image = imageIcon.getImage(); // transform it 
-			Image newimg = image.getScaledInstance(320, 180,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-			imageIcon = new ImageIcon(newimg);  // transform it back
-			
+			Image image = imageIcon.getImage(); // transform it
+			Image newimg = image.getScaledInstance(320, 180, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+			imageIcon = new ImageIcon(newimg); // transform it back
+
 			JLabel blogImage = new JLabel(imageIcon);
 			blogImage.setBounds(52, 158, 320, 180);
 			panel.add(blogImage);
 		}
 		d.setSize(440, 342 + contentTextPane.getHeight());
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
-			   public void run() { 
-			       scrollPane.getVerticalScrollBar().setValue(0);
-			   }
+			public void run() {
+				scrollPane.getVerticalScrollBar().setValue(0);
+			}
 		});
 	}
-		public int getContentHeight(String content) {
-		    JEditorPane dummyEditorPane=new JEditorPane();
-		    dummyEditorPane.setSize(340,Short.MAX_VALUE);
-		    dummyEditorPane.setText(content);
-		    dummyEditorPane.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-		    return dummyEditorPane.getPreferredSize().height;
+	public int getContentHeight(String content) {
+		JEditorPane dummyEditorPane = new JEditorPane();
+		dummyEditorPane.setSize(340, Short.MAX_VALUE);
+		dummyEditorPane.setText(content);
+		dummyEditorPane.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
+		return dummyEditorPane.getPreferredSize().height;
 	}
 }

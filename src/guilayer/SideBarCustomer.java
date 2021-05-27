@@ -41,6 +41,7 @@ public class SideBarCustomer extends Slider{
 		blogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AllBlogsEmployee allBlogs = new AllBlogsEmployee();
+				allBlogs.setLocationRelativeTo(null);
 				allBlogs.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -79,6 +80,7 @@ public class SideBarCustomer extends Slider{
 			public void actionPerformed(ActionEvent e) {
 				AuthenticatedUser.getInstance().setCurrentUser(null);
 				Authentication authentication = new Authentication();
+				authentication.setLocationRelativeTo(null);
 				authentication.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -91,6 +93,7 @@ public class SideBarCustomer extends Slider{
 		JButton viewProfileButton = new JButton("View Profile");
 		viewProfileButton.addActionListener(e -> {
 				Profile profile = new Profile();
+				profile.setLocationRelativeTo(null);
 				profile.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -102,7 +105,7 @@ public class SideBarCustomer extends Slider{
 		JButton myProgressButton = new JButton("My Progress");
 		myProgressButton.addActionListener(e -> {
 				//TODO connect with progress
-				JOptionPane.showMessageDialog(myProgressButton, "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(((JFrame) getTopLevelAncestor()), "Feature not implemented yet.");
 		});
 		myProgressButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		myProgressButton.setBorderPainted(false);
@@ -111,6 +114,7 @@ public class SideBarCustomer extends Slider{
 		JButton dailyExerciseButton = new JButton("Daily Exercise");
 		dailyExerciseButton.addActionListener(e -> {
 				DailyExercise dailyExercise = new DailyExercise(getLatestVideo());
+				dailyExercise.setLocationRelativeTo(null);
 				dailyExercise.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -126,7 +130,7 @@ public class SideBarCustomer extends Slider{
 		JButton leaderboardButton = new JButton("Leaderboard");
 		leaderboardButton.addActionListener(e -> {
 				//TODO connect when leaderboard is implemented
-				JOptionPane.showMessageDialog(leaderboardButton, "Feature not implemented yet.");
+				JOptionPane.showMessageDialog(((JFrame) getTopLevelAncestor()), "Feature not implemented yet.");
 		});
 		leaderboardButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		leaderboardButton.setBorderPainted(false);
@@ -135,6 +139,7 @@ public class SideBarCustomer extends Slider{
 		JButton allLessonsButton = new JButton("All Lessons");
 		allLessonsButton.addActionListener(e -> {
 				AllVideosEmployee allVideos = new AllVideosEmployee();
+				allVideos.setLocationRelativeTo(null);
 				allVideos.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -146,6 +151,7 @@ public class SideBarCustomer extends Slider{
 		JButton dietConsultationButton = new JButton("Diet Consultation");
 		dietConsultationButton.addActionListener(e -> {
 				DietConsultation dietConsultation = new DietConsultation();
+				dietConsultation.setLocationRelativeTo(null);
 				dietConsultation.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();

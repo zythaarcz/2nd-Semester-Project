@@ -21,7 +21,6 @@ public class Employee extends Person{
 	public void setPosition(String position) {
 		this.position = position;
 	}
-
 }
 
 	

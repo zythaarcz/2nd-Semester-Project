@@ -52,12 +52,10 @@ public class DietConsultationController {
 		try {
 			allConsultations = consultationDao.retrieveAllConsultations();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return allConsultations;
-		
 	}
 	
 	public boolean deleteConsultation(int id) {
@@ -83,7 +81,6 @@ public class DietConsultationController {
 		try {
 			dietMeeting = consultationDao.retrieveConsultationByDate(date);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -96,7 +93,6 @@ public class DietConsultationController {
 		try {
 			dietMeeting = consultationDao.retrieveConsultationByDate(date);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -109,7 +105,6 @@ public class DietConsultationController {
 		try {
 			allEmployees = personDao.retrieveAllEmployees();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

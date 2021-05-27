@@ -31,7 +31,6 @@ public class ManageBlogController {
 		try {
 			manageBlogDao.insertBlog(imagePath, header, contentText, shortDescription, dateIssued, AuthenticatedUser.getInstance().getCurrentUser().getId());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -43,7 +42,6 @@ public class ManageBlogController {
 		try {
 			manageBlogDao.updateBlog(id, imagePath, header, contentText, shortDescription);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

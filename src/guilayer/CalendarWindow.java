@@ -39,7 +39,6 @@ public class CalendarWindow extends JFrame{
 		setSize(235, 200);
 		calendar.setTheme(ThemeType.Light);
 
-
 		contentPane.add(calendar, BorderLayout.CENTER);
 
 		changeSupport = new PropertyChangeSupport(this);
@@ -80,9 +79,4 @@ public class CalendarWindow extends JFrame{
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		changeSupport.addPropertyChangeListener(listener);
 	}
-
-	
-	
-
-
 }

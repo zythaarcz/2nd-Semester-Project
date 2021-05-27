@@ -43,10 +43,10 @@ public class BlogPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DailyBlog dailyBlog = new DailyBlog(blog);
+				dailyBlog.setLocationRelativeTo(null);
 				dailyBlog.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
-				
 			}
 		});
 		nameLabel.setText(blog.getHeader());
@@ -65,6 +65,7 @@ public class BlogPanel extends JPanel {
 		editBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditBlog editBlog = new EditBlog(blog);
+				editBlog.setLocationRelativeTo(null);
 				editBlog.setVisible(true);
 				((JFrame) getTopLevelAncestor()).dispose();
 			}
@@ -78,15 +79,14 @@ public class BlogPanel extends JPanel {
 		deleteBlogButton = new JButton("");
 		deleteBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO: Delete also the image from project directory
-				
+			
 				int choise = JOptionPane.showConfirmDialog(textPane, "Are you sure to delete this blog?");
 				
 				if(choise == 0) {
 					manageBlogController.deleteBlog(blog.getId());
 					manageBlogController.deleteImageFromBlog(blog.getImagePath());
 					AllBlogsEmployee allBlogs = new AllBlogsEmployee();
-					
+					allBlogs.setLocationRelativeTo(null);
 					allBlogs.setVisible(true);
 					((JFrame) getTopLevelAncestor()).dispose();
 				}
@@ -112,6 +112,7 @@ public class BlogPanel extends JPanel {
 			blogImage.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				DailyBlog dailyBlog = new DailyBlog(blog);
+				dailyBlog.setLocationRelativeTo(null);
 				dailyBlog.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();

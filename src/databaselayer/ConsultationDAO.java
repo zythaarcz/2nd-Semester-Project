@@ -54,7 +54,6 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -155,5 +154,4 @@ public class ConsultationDAO implements ConsultationDAOIF {
 	public void setLastInsertedId(int id) {
 		this.lastInsertedId = id;
 	}
-
 }

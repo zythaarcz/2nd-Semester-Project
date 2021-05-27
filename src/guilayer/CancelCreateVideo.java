@@ -21,19 +21,6 @@ public class CancelCreateVideo extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private AllVideosEmployee allVideoEmployee;
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		try {
-//			CancelCreateVideo dialog = new CancelCreateVideo();
-//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dialog.setVisible(true);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	/**
 	 * Create the dialog.
 	 */
@@ -49,6 +36,7 @@ public class CancelCreateVideo extends JDialog {
 			btnYes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					allVideoEmployee = new AllVideosEmployee();
+					allVideoEmployee.setLocationRelativeTo(null);
 					allVideoEmployee.setVisible(true);
 					frame.dispose();
 					dispose();

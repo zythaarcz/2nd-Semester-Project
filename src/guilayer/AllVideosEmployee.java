@@ -28,15 +28,15 @@ import java.awt.Color;
 
 public class AllVideosEmployee extends JFrame {
 	ManageVideoController manageVideoController = new ManageVideoController();
-	
+
 	private JPanel contentPane;
 	private JLabel logoImage;
 	private CreateVideo createVideo;
 	private EditVideo editVideo;
-	
+
 	private SideBarCustomer sideBarCustomer;
 	private SideBarEmployee sideBarEmployee;
-	
+
 	ArrayList<Video> allVideos = manageVideoController.retrieveAllVideos();
 
 	/**
@@ -46,9 +46,9 @@ public class AllVideosEmployee extends JFrame {
 		setTitle("All Lessons");
 		ArrayList<VideoPanel> allVideoPanels = createAllVideoPanels();
 		setResizable(false);
-		createVideo= new CreateVideo();
+		createVideo = new CreateVideo();
 		createVideo.setVisible(false);
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
@@ -56,17 +56,17 @@ public class AllVideosEmployee extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 440, 750);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		
+
 		contentPane.add(scrollPane);
-		
+
 		JPanel panel = new JPanel();
-		Dimension d = new Dimension(440,750);
+		Dimension d = new Dimension(440, 750);
 		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
@@ -82,42 +82,43 @@ public class AllVideosEmployee extends JFrame {
 			panel.add((JPanel) sideBarEmployee);
 			((JPanel) sideBarEmployee).setVisible(false);
 		}
-		
-		
+
 		logoImage = new JLabel(new ImageIcon(VideoCategories.class.getResource("/images/logo.png")));
 		logoImage.setBounds(131, 10, 300, 102);
 		panel.add(logoImage);
-		
+
 		JLabel lblNewLabel = new JLabel("All videos");
 		lblNewLabel.setBounds(172, 145, 86, 26);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Sort by:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(50, 181, 62, 34);
 		panel.add(lblNewLabel_1);
-		
-		String[] filterTypes = {"Newest added", "Oldest added", "Most watched"};
+
+		String[] filterTypes = { "Newest added", "Oldest added", "Most watched" };
 		JComboBox comboBox = new JComboBox(filterTypes);
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBox.setBounds(122, 181, 196, 34);
 		panel.add(comboBox);
-		
-		JButton addVideoButton = new JButton(new ImageIcon(AllVideosEmployee.class.getResource("/images/addVideoButton.png")));
+
+		JButton addVideoButton = new JButton(
+				new ImageIcon(AllVideosEmployee.class.getResource("/images/addVideoButton.png")));
 		addVideoButton.setBounds(174, 235, 83, 59);
 		addVideoButton.setOpaque(false);
 		addVideoButton.setBorderPainted(false);
 		addVideoButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addVideoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				createVideo.setLocationRelativeTo(null);
 				createVideo.setVisible(true);
 				dispose();
 			}
 		});
 		addVideoButton.setBackground(SystemColor.window);
 		panel.add(addVideoButton);
-		
+
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,39 +138,37 @@ public class AllVideosEmployee extends JFrame {
 		sidebarButton.setBackground(Color.LIGHT_GRAY);
 		sidebarButton.setBounds(10, 10, 45, 39);
 		panel.add(sidebarButton);
-		
+
 		int yPosition = 300;
 		int height = 100;
-		
+
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
 			addVideoButton.setVisible(false);
 			yPosition = 240;
 		}
-		
-		
+
 		for (VideoPanel videoPanel : allVideoPanels) {
-			
+
 			videoPanel.setBounds(10, yPosition, 400, 370);
 			videoPanel.setVisible(true);
 			yPosition = yPosition + 380;
-			
-			
+
 			d.setSize(440, height + yPosition);
 			if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
 				videoPanel.deleteVideoButton.setVisible(false);
 				videoPanel.editVideoButton.setVisible(false);
 				videoPanel.textPane.setSize(378, 58);
 			}
-			//panel.set
 			panel.add(videoPanel);
-			}		
-		
+		}
+
 		SwingUtilities.invokeLater(new Runnable() {
-			   public void run() { 
-			       scrollPane.getVerticalScrollBar().setValue(0);
-			   }
+			public void run() {
+				scrollPane.getVerticalScrollBar().setValue(0);
+			}
 		});
 	}
+
 	public ArrayList<VideoPanel> createAllVideoPanels() {
 		allVideos = manageVideoController.retrieveAllVideos();
 		ArrayList<VideoPanel> allVideoPanels = new ArrayList<>();

@@ -3,7 +3,7 @@ package modellayer;
 import java.time.LocalDate;
 
 public class Blog {
-	
+
 	private int id;
 	private String imagePath;
 	private String header;
@@ -11,7 +11,7 @@ public class Blog {
 	private String shortDescription;
 	private LocalDate dateIssued;
 	private Employee employee;
-	
+
 	public Blog(String imagePath, String header, String contentText, String shortDescription, LocalDate dateIssued) {
 		this.imagePath = imagePath;
 		this.header = header;
@@ -59,15 +59,15 @@ public class Blog {
 	public void setDateIssued(LocalDate dateIssued) {
 		this.dateIssued = dateIssued;
 	}
-	
+
 	public Employee getEmployee() {
 		return employee;
 	}
-	
+
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -75,5 +75,4 @@ public class Blog {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 }

@@ -28,7 +28,6 @@ public class ManageVideoDAO implements ManageVideoDAOIF{
 	private PreparedStatement psDeleteVideo;
 	
 	public ManageVideoDAO() throws SQLException {
-		
 		initPreparedStatement();		
 	}
 	
@@ -144,6 +143,4 @@ public class ManageVideoDAO implements ManageVideoDAOIF{
 		
 		return allVideos;
 	}
-
-
 }

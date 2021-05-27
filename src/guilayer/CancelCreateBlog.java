@@ -37,6 +37,7 @@ public class CancelCreateBlog extends JDialog {
 			btnYes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					allBlogsEmployee = new AllBlogsEmployee();
+					allBlogsEmployee.setLocationRelativeTo(null);
 					allBlogsEmployee.setVisible(true);
 					frame.dispose();
 					dispose();

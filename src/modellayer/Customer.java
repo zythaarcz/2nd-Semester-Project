@@ -59,5 +59,4 @@ public class Customer extends Person {
 	public void setTimeToRemind(String timeToRemind) {
 		this.timeToRemind = timeToRemind;
 	}
-
 }

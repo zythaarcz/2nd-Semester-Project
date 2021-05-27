@@ -75,6 +75,7 @@ public class SideBarEmployee extends Slider {
 		JButton viewProfileButton = new JButton("View Profile");
 		viewProfileButton.addActionListener(e -> {
 				Profile profile = new Profile();
+				profile.setLocationRelativeTo(null);
 				profile.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -88,6 +89,7 @@ public class SideBarEmployee extends Slider {
 		JButton manageVideosButton = new JButton("Manage Videos");
 		manageVideosButton.addActionListener(e -> {
 				AllVideosEmployee allVideosEmployee = new AllVideosEmployee();
+				allVideosEmployee.setLocationRelativeTo(null);
 				allVideosEmployee.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -101,6 +103,7 @@ public class SideBarEmployee extends Slider {
 		JButton manageBlogsButton = new JButton("Manage Blogs");
 		manageBlogsButton.addActionListener(e -> {
 				AllBlogsEmployee allBlogsEmployee = new AllBlogsEmployee();
+				allBlogsEmployee.setLocationRelativeTo(null);
 				allBlogsEmployee.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -115,6 +118,7 @@ public class SideBarEmployee extends Slider {
 		logOutButton.addActionListener(e -> {
 				AuthenticatedUser.getInstance().setCurrentUser(null);
 				Authentication authentication = new Authentication();
+				authentication.setLocationRelativeTo(null);
 				authentication.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -129,7 +133,7 @@ public class SideBarEmployee extends Slider {
 		dietConsultationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO create manager diet consultationGUI
-				JOptionPane.showMessageDialog(dietConsultationButton, "Feature not implemented for manager yet.");
+				JOptionPane.showMessageDialog(((JFrame) getTopLevelAncestor()), "Feature not implemented for manager yet.");
 			}
 		});
 		buttons.add(dietConsultationButton);

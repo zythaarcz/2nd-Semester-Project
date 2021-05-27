@@ -158,7 +158,6 @@ public class CreateVideo extends JFrame {
 		btnCancel.setBounds(120, 652, 200, 31);
 		contentPane.add(btnCancel);
 		
-		
 		JButton sidebarButton = new JButton("");
 		sidebarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -237,8 +236,7 @@ public class CreateVideo extends JFrame {
 		    	errorIconPointsForCompletion.setVisible(true);
 		    	textFieldPointsForCompletion.setText("");
 		    }
-		}
-			
+		}	
 	}
 	
 	private void cancelCreateVideo() {
@@ -258,6 +256,5 @@ public class CreateVideo extends JFrame {
 		} 
 		
 		return isValid;
-		
 	}
 }

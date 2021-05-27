@@ -22,7 +22,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class VideoPanel extends JPanel {
-	
+
 	private ManageVideoController manageVideoController = new ManageVideoController();
 	protected JButton editVideoButton;
 	protected JButton deleteVideoButton;
@@ -34,12 +34,13 @@ public class VideoPanel extends JPanel {
 	public VideoPanel(Video video) {
 		setBackground(Color.ORANGE);
 		setLayout(null);
-		
+
 		JLabel nameLabel = new JLabel("");
 		nameLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DailyExercise dailyExercise = new DailyExercise(video);
+				dailyExercise.setLocationRelativeTo(null);
 				dailyExercise.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -50,19 +51,19 @@ public class VideoPanel extends JPanel {
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		nameLabel.setBounds(11, 10, 378, 22);
 		add(nameLabel);
-		
+
 		textPane = new JTextPane();
 		textPane.setText(video.getShortDescription());
 		textPane.setEditable(false);
 		textPane.setBounds(11, 295, 345, 58);
 		add(textPane);
-		
-		
-		if(AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
+
+		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Employee) {
 			JButton editVideoButton = new JButton("");
 			editVideoButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					EditVideo editVideo = new EditVideo(video);
+					editVideo.setLocationRelativeTo(null);
 					editVideo.setVisible(true);
 					((JFrame) getTopLevelAncestor()).dispose();
 				}
@@ -72,15 +73,16 @@ public class VideoPanel extends JPanel {
 			editVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/editVideoButton.png")));
 			editVideoButton.setBounds(366, 297, 23, 21);
 			add(editVideoButton);
-			
+
 			JButton deleteVideoButton = new JButton("");
 			deleteVideoButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int choise = JOptionPane.showConfirmDialog(textPane, "Are you sure to delete this video?");
 
-					if(choise == 0) {
+					if (choise == 0) {
 						manageVideoController.deleteVideo(video.getId());
 						AllVideosEmployee allVideos = new AllVideosEmployee();
+						allVideos.setLocationRelativeTo(null);
 						allVideos.setVisible(true);
 						((JFrame) getTopLevelAncestor()).dispose();
 					}
@@ -92,11 +94,12 @@ public class VideoPanel extends JPanel {
 			deleteVideoButton.setBounds(366, 332, 23, 21);
 			add(deleteVideoButton);
 		}
-		
+
 		editVideoButton = new JButton("");
 		editVideoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditVideo editVideo = new EditVideo(video);
+				editVideo.setLocationRelativeTo(null);
 				editVideo.setVisible(true);
 				((JFrame) getTopLevelAncestor()).dispose();
 			}
@@ -106,12 +109,13 @@ public class VideoPanel extends JPanel {
 		editVideoButton.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/editVideoButton.png")));
 		editVideoButton.setBounds(366, 297, 23, 21);
 		add(editVideoButton);
-		
+
 		deleteVideoButton = new JButton("");
 		deleteVideoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manageVideoController.deleteVideo(video.getId());
 				AllVideosEmployee allVideos = new AllVideosEmployee();
+				allVideos.setLocationRelativeTo(null);
 				allVideos.setVisible(true);
 				((JFrame) getTopLevelAncestor()).dispose();
 			}
@@ -121,12 +125,13 @@ public class VideoPanel extends JPanel {
 		deleteVideoButton.setBorderPainted(false);
 		deleteVideoButton.setBounds(366, 332, 23, 21);
 		add(deleteVideoButton);
-		
+
 		JLabel thumbnailLabel = new JLabel("");
 		thumbnailLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DailyExercise dailyExercise = new DailyExercise(video);
+				dailyExercise.setLocationRelativeTo(null);
 				dailyExercise.setVisible(true);
 				setSize(0, 750);
 				((JFrame) getTopLevelAncestor()).dispose();
@@ -135,6 +140,5 @@ public class VideoPanel extends JPanel {
 		thumbnailLabel.setIcon(new ImageIcon(VideoPanel.class.getResource("/images/videoThumbnail.png")));
 		thumbnailLabel.setBounds(11, 53, 374, 211);
 		add(thumbnailLabel);
-
 	}
 }

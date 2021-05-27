@@ -24,21 +24,19 @@ public class DBConnection {
     private static DBConnection  instance = null;
 
     // the constructor is private to ensure that only one object of this class is created
-    private DBConnection()
-    {
+    private DBConnection() {
     	String url = driver + databaseName + userName + password;
 
-        try{
+        try {
             //load of driver
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             System.out.println("Driver class loaded ok");
-          
-        }
-        catch(Exception e){
+        } catch(Exception e) {
             System.out.println("Cannot find the driver");
             System.out.println(e.getMessage());
         }
-        try{
+        
+        try {
             //connection to the database
         	connection = DriverManager.getConnection(url);
         	connection.setAutoCommit(true);
@@ -47,7 +45,7 @@ public class DBConnection {
             System.out.println("Driver " + databaseMetaData.getDriverName());
             System.out.println("Database product name " + databaseMetaData.getDatabaseProductName());
         }//end try
-        catch(Exception e){
+        catch(Exception e) {
             System.out.println("Problems with the connection to the database:");
             System.out.println(e.getMessage());
             System.out.println(url);
@@ -55,36 +53,31 @@ public class DBConnection {
     }//end  constructor
 	   
   //closeDb: closes the connection to the database
-    public static void closeConnection()
-    {
-       	try{
+    public static void closeConnection() {
+       	try {
        		connection.close();
             instance= null;
             System.out.println("The connection is closed");
-        }
-         catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error trying to close the database " +  e.getMessage());
-         }
+        }
     }//end closeDB
 		
     //getDBcon: returns the singleton instance of the DB connection
-    public  Connection getDBconnection()
-    {
+    public  Connection getDBconnection() {
        return connection;
     }
+    
     //this method is used to get the instance of the connection
-    public static DBConnection getInstance()
-    {
-        if (instance == null)
-        {
+    public static DBConnection getInstance() {
+        if (instance == null) {
           instance = new DBConnection();
         }
+        
         return instance;
     }
     
-    public static boolean instanceIsNull()
-    {
+    public static boolean instanceIsNull() {
        return (instance == null);
     }    
-
 }//end DbConnection

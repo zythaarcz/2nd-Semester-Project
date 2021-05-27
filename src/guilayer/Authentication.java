@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -46,6 +47,7 @@ public class Authentication extends JFrame {
 			public void run() {
 				try {
 					Authentication frame = new Authentication();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -104,18 +106,19 @@ public class Authentication extends JFrame {
 					switch(AuthenticatedUser.getInstance().getCurrentUser().getPersonType()) {
 					case Customer:
 						HomepageCustomer hpCustomer = new HomepageCustomer();
+						hpCustomer.setLocationRelativeTo(null);
 						hpCustomer.setVisible(true);
 						dispose();
 						break;
 					case Employee:
 						HomepageEmployee hpEmployee = new HomepageEmployee();
+						hpEmployee.setLocationRelativeTo(null);
 						hpEmployee.setVisible(true);
 						dispose();
 						break;
 					}
 				}
 				else {
-					//TODO: display message to user to try again
 					JOptionPane.showMessageDialog(contentPane, "Email or password is wrong. Try again!");
 				}
 			}
@@ -141,14 +144,12 @@ public class Authentication extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				 try {
-			         
-				        Desktop.getDesktop().browse(new URI("https://officefitness.cz/en/"));
+					 Desktop.getDesktop().browse(new URI("https://officefitness.cz/en/"));
 				         
 				    } catch (IOException | URISyntaxException e1) {
 				        e1.printStackTrace();
 				    }
 			}
 		});
-		
 	}
 }

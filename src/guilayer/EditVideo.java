@@ -56,7 +56,7 @@ public class EditVideo extends JFrame {
 	 */
 	public EditVideo(Video video) {
 		manageVideoController = new ManageVideoController();
-				
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -75,6 +75,7 @@ public class EditVideo extends JFrame {
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				allVideos = new AllVideosEmployee();
+				allVideos.setLocationRelativeTo(null);
 				allVideos.setVisible(true);
 				dispose();
 			}
@@ -99,7 +100,7 @@ public class EditVideo extends JFrame {
 		editButton_title.setBounds(339, 195, 43, 43);
 		editButton_title.setBackground(SystemColor.menu);
 		contentPane.add(editButton_title);
-		
+
 		editButton_titleOK = new JButton("");
 		editButton_titleOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -108,7 +109,7 @@ public class EditVideo extends JFrame {
 				editButton_title.setEnabled(true);
 				editButton_titleOK.setVisible(false);
 				editButton_titleOK.setEnabled(false);
-				
+
 				newHeader = txtTitle.getText();
 				System.out.println(newHeader);
 			}
@@ -135,7 +136,7 @@ public class EditVideo extends JFrame {
 		editButton_description.setBackground(SystemColor.menu);
 		editButton_description.setBounds(339, 273, 43, 43);
 		contentPane.add(editButton_description);
-		
+
 		editButton_descriptionOK = new JButton("");
 		editButton_descriptionOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -144,7 +145,7 @@ public class EditVideo extends JFrame {
 				editButton_description.setEnabled(true);
 				editButton_descriptionOK.setVisible(false);
 				editButton_descriptionOK.setEnabled(false);
-				
+
 				newDescription = textPaneDescription.getText();
 				System.out.println(newDescription);
 			}
@@ -155,7 +156,6 @@ public class EditVideo extends JFrame {
 		editButton_descriptionOK.setBackground(SystemColor.menu);
 		editButton_descriptionOK.setBounds(339, 273, 43, 43);
 		contentPane.add(editButton_descriptionOK);
-		
 
 		JButton editButton_points = new JButton("");
 		editButton_points.setIcon(new ImageIcon(EditVideo.class.getResource("/images/settingsIcon32x32.png")));
@@ -172,7 +172,7 @@ public class EditVideo extends JFrame {
 		editButton_points.setBackground(SystemColor.menu);
 		editButton_points.setBounds(339, 450, 43, 43);
 		contentPane.add(editButton_points);
-		
+
 		editButton_pointsOK = new JButton("");
 		editButton_pointsOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -181,12 +181,11 @@ public class EditVideo extends JFrame {
 				editButton_points.setEnabled(true);
 				editButton_pointsOK.setVisible(false);
 				editButton_pointsOK.setEnabled(false);
-				
+
 				try {
 					newPoints = Integer.parseInt(txtPoints.getText());
-					System.out.println(newPoints);	
-				}
-				catch (NumberFormatException e) {
+					System.out.println(newPoints);
+				} catch (NumberFormatException e) {
 					txtPoints.setText(String.valueOf(video.getPointsForCompletion()));
 					JOptionPane.showMessageDialog(contentPane, "You must enter numbers not characters!");
 				}
@@ -198,7 +197,7 @@ public class EditVideo extends JFrame {
 		editButton_pointsOK.setBackground(SystemColor.menu);
 		editButton_pointsOK.setBounds(339, 450, 43, 43);
 		contentPane.add(editButton_pointsOK);
-		
+
 		txtTitle = new JTextField();
 		txtTitle.setText(video.getHeader());
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -207,7 +206,7 @@ public class EditVideo extends JFrame {
 		txtTitle.setColumns(10);
 		txtTitle.setBounds(70, 195, 269, 43);
 		contentPane.add(txtTitle);
-		
+
 		txtPoints = new JTextField();
 		txtPoints.setText(String.valueOf(video.getPointsForCompletion()));
 		txtPoints.setHorizontalAlignment(SwingConstants.CENTER);
@@ -216,18 +215,19 @@ public class EditVideo extends JFrame {
 		txtPoints.setColumns(10);
 		txtPoints.setBounds(70, 450, 269, 43);
 		contentPane.add(txtPoints);
-		
+
 		JLabel lblPoints = new JLabel("Points for completion");
 		lblPoints.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPoints.setBounds(70, 423, 185, 30);
 		contentPane.add(lblPoints);
-		
+
 		JLabel lblCategory = new JLabel("Category");
 		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblCategory.setBounds(70, 503, 162, 30);
 		contentPane.add(lblCategory);
-		
-		String[] filterStrings = {"Uncategorized","Neck training", "Upper body training", "Lower body training", "Pain relief techniques"};
+
+		String[] filterStrings = { "Uncategorized", "Neck training", "Upper body training", "Lower body training",
+				"Pain relief techniques" };
 		JComboBox comboBoxCategory = new JComboBox(filterStrings);
 		comboBoxCategory.setSelectedItem(video.getCategory());
 		comboBoxCategory.addActionListener(new ActionListener() {
@@ -239,20 +239,21 @@ public class EditVideo extends JFrame {
 		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBoxCategory.setBounds(70, 528, 312, 43);
 		contentPane.add(comboBoxCategory);
-		
+
 		JButton btnConfirmEdit = new JButton("Confirm");
 		btnConfirmEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
-				if(newHeader == null && newDescription == null
-						&& newPoints == 0 && newCategory == null) {
+			public void actionPerformed(ActionEvent e) {
+				if (newHeader == null && newDescription == null && newPoints == 0 && newCategory == null) {
 					JOptionPane.showMessageDialog(contentPane, "You did not change any data, please check again!");
 				} else {
 					newHeader = txtTitle.getText();
 					newDescription = textPaneDescription.getText();
 					newCategory = comboBoxCategory.getSelectedItem().toString();
 					newPoints = Integer.parseInt(txtPoints.getText());
-					manageVideoController.updateVideoInformation(video.getId(), newHeader, newDescription, newCategory, newPoints);
-					JOptionPane.showMessageDialog(contentPane, "The information about the video was successfully updated.");
+					manageVideoController.updateVideoInformation(video.getId(), newHeader, newDescription, newCategory,
+							newPoints);
+					JOptionPane.showMessageDialog(contentPane,
+							"The information about the video was successfully updated.");
 				}
 			}
 		});
@@ -260,19 +261,19 @@ public class EditVideo extends JFrame {
 		btnConfirmEdit.setBackground(new Color(255, 208, 32));
 		btnConfirmEdit.setBounds(248, 625, 97, 33);
 		contentPane.add(btnConfirmEdit);
-		
+
 		textPaneDescription = new JTextPane();
 		textPaneDescription.setText(video.getShortDescription());
 		textPaneDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textPaneDescription.setEditable(false);
 		textPaneDescription.setBounds(70, 273, 269, 139);
 		contentPane.add(textPaneDescription);
-		
+
 		JLabel lblHeader = new JLabel("Header");
 		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblHeader.setBounds(70, 170, 100, 30);
 		contentPane.add(lblHeader);
-		
+
 		JLabel lblShortDescription = new JLabel("Short description");
 		lblShortDescription.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblShortDescription.setBounds(70, 248, 162, 30);

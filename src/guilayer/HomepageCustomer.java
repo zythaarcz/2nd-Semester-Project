@@ -48,13 +48,13 @@ public class HomepageCustomer extends JFrame {
 	 */
 	public HomepageCustomer() {
 		try {
-			Notification.sendNotification("Office Fitness","DO EXERCISE!", MessageType.INFO);
+			Notification.sendNotification("Office Fitness", "DO EXERCISE!", MessageType.INFO);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
-		
+
 		setTitle("Homepage");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,19 +62,19 @@ public class HomepageCustomer extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.LIGHT_GRAY);
 		setContentPane(contentPane);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 440, 722);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		contentPane.add(scrollPane);
-		
+
 		JPanel panel = new JPanel();
-		Dimension d = new Dimension(440,930);
+		Dimension d = new Dimension(440, 930);
 		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
-		
+
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
 			sideBarCustomer = new SideBarCustomer();
 			((JPanel) sideBarCustomer).setSize(0, 740);
@@ -86,7 +86,7 @@ public class HomepageCustomer extends JFrame {
 			panel.add((JPanel) sideBarEmployee);
 			((JPanel) sideBarEmployee).setVisible(false);
 		}
-		
+
 		JButton sidebarButton = new JButton("");
 		sidebarButton.setBounds(10, 10, 43, 39);
 		sidebarButton.setOpaque(false);
@@ -95,21 +95,21 @@ public class HomepageCustomer extends JFrame {
 		sidebarButton.setBackground(Color.LIGHT_GRAY);
 
 		sidebarButton.addActionListener(e -> {
-				if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
-					((JPanel) sideBarCustomer).setVisible(true);
-					sideBarCustomer.runSidebar();
-				} else {
-					((JPanel) sideBarEmployee).setVisible(true);
-					sideBarEmployee.runSidebar();
-				}
+			if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
+				((JPanel) sideBarCustomer).setVisible(true);
+				sideBarCustomer.runSidebar();
+			} else {
+				((JPanel) sideBarEmployee).setVisible(true);
+				sideBarEmployee.runSidebar();
+			}
 		});
-		
+
 		JLabel logoLabel = new JLabel("");
 		logoLabel.setBounds(139, 2, 280, 96);
 		logoLabel.setIcon(new ImageIcon(HomepageCustomer.class.getResource("/images/logo.png")));
 
 		VideoPanel latestVideoPanel = new VideoPanel(getLatestVideo());
-		
+
 		latestVideoPanel.setBounds(10, 133, 400, 370);
 		latestVideoPanel.setVisible(true);
 
@@ -120,9 +120,9 @@ public class HomepageCustomer extends JFrame {
 		}
 		// panel.set
 		panel.add(latestVideoPanel);
-		
+
 		BlogPanel latestBlogPanel = new BlogPanel(getLatestBlog());
-		//315
+		// 315
 		latestBlogPanel.setBounds(10, 547, 400, 370);
 		latestBlogPanel.setVisible(true);
 
@@ -141,25 +141,25 @@ public class HomepageCustomer extends JFrame {
 		panel.add(sideBarCustomer);
 		panel.add(sidebarButton);
 		panel.add(logoLabel);
-		
+
 		JLabel NewLessonLabel = new JLabel("Newest Lesson");
 		NewLessonLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		NewLessonLabel.setBounds(10, 101, 139, 28);
 		panel.add(NewLessonLabel);
-		
+
 		JLabel NewBlogLabel = new JLabel("Newest Blog Post");
 		NewBlogLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		NewBlogLabel.setBounds(10, 513, 139, 28);
 		panel.add(NewBlogLabel);
-		
+
 		panel.setComponentZOrder(sideBarCustomer, 0);
 		panel.setComponentZOrder(latestVideoPanel, 1);
 		panel.setComponentZOrder(latestBlogPanel, 2);
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
-			   public void run() { 
-			       scrollPane.getVerticalScrollBar().setValue(0);
-			   }
+			public void run() {
+				scrollPane.getVerticalScrollBar().setValue(0);
+			}
 		});
 
 	}

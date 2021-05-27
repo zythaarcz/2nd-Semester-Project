@@ -71,20 +71,20 @@ public class PasswordChange extends JDialog {
 			contentPanel.add(confirmPasswordField);
 		}
 	}
-	
+
 	private void getNewPassword() {
 		String newPasswordString = String.valueOf(newPasswordField.getPassword());
 		String confirmPasswordString = String.valueOf(confirmPasswordField.getPassword());
-		if(newPasswordString.equals("") || confirmPasswordString.equals("")) {
+		if (newPasswordString.equals("") || confirmPasswordString.equals("")) {
 			JOptionPane.showMessageDialog(this, "Fields can not be empty!");
 		} else {
-			if(newPasswordString.equals(confirmPasswordString)) {
+			if (newPasswordString.equals(confirmPasswordString)) {
 				savedNewPasswordString = newPasswordString;
 				savedConfirmPasswordString = confirmPasswordString;
-				
+
 				System.out.println(savedNewPasswordString);
 				System.out.println(savedConfirmPasswordString);
-				
+
 				newPasswordField.setText("");
 				confirmPasswordField.setText("");
 				JOptionPane.showMessageDialog(this, "Password changed but not updated in database(not implemented)");

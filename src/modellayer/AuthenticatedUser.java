@@ -18,5 +18,4 @@ public class AuthenticatedUser {
 	public void setCurrentUser(Person user) {
 		this.currentUser = user;
 	}
-	
 }

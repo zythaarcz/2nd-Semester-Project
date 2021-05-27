@@ -50,8 +50,7 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 	
 	@Override
@@ -83,7 +82,6 @@ public class ManageBlogDAO implements ManageBlogDAOIF {
 		psDeleteBlog.setInt(1, id);
 		
 		psDeleteBlog.executeUpdate();
-		
 	}
 
 	

@@ -48,7 +48,6 @@ public class PersonDAO implements PersonDAOIF {
 	
 	@Override
 	public Person authenticatePerson(String email, String password) throws SQLException {
-		// TODO Auto-generated method stub
 		Person person = null;
 		ResultSet rs;
 		psSelectAuthenticatedUser.setString(1, email);

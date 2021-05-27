@@ -14,5 +14,4 @@ public interface ManageBlogDAOIF {
 	void deleteBlog(int id) throws SQLException;
 	ArrayList<Blog> retrieveAllBlogs() throws SQLException;
 	Blog retrieveBlogByName(String header) throws SQLException;
-
 }
