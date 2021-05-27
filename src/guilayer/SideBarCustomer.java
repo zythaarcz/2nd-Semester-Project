@@ -33,6 +33,8 @@ public class SideBarCustomer extends Slider{
 	 * Create the panel.
 	 */
 	public SideBarCustomer() {
+		
+		setAutoscrolls(true);
 		setBackground(Color.DARK_GRAY);
 		
 		JButton blogButton = new JButton("Blog");
