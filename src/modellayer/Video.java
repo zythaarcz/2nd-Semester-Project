@@ -1,7 +1,5 @@
 package modellayer;
 
-import java.util.ArrayList;
-
 public class Video {
 	
 	private int id;
@@ -11,8 +9,6 @@ public class Video {
 	private String category;
 	private int pointsForCompletion;
 	private Employee employee;
-	// TODO: Maybe delete this? Do we need it? I don't think so
-	private ArrayList<Customer> listOfCustomers;
 	
 	public Video(String url, String header, String shortDescription, String category, int pointsForCompletion) {
 		this.url = url;
@@ -68,14 +64,6 @@ public class Video {
 	
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
-	}
-	
-	public ArrayList<Customer> getListOfCustomers() {
-		return listOfCustomers;
-	}
-	
-	public void setListOfCustomers(ArrayList<Customer> listOfCustomers) {
-		this.listOfCustomers = listOfCustomers;
 	}
 	
 	public void setId(int id) {

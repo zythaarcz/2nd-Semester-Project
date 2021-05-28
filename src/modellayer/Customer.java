@@ -1,6 +1,7 @@
 package modellayer;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Customer extends Person {
 	
@@ -9,6 +10,8 @@ public class Customer extends Person {
 	private LocalDate dateOfBirth;
 	private String healthIssue;
 	private String timeToRemind;
+	
+	private ArrayList<Video> listOfWatchedVideos;
 
 	public Customer(String firstName, String lastName, String phoneNumber, String email, String address, String company,
 			LocalDate dateOfBirth, String healthIssue, String timeToRemind) {
@@ -58,5 +61,13 @@ public class Customer extends Person {
 
 	public void setTimeToRemind(String timeToRemind) {
 		this.timeToRemind = timeToRemind;
+	}
+	
+	public ArrayList<Video> getListOfWatchedVideos() {
+		return listOfWatchedVideos;
+	}
+
+	public void setListOfWatchedVideos(ArrayList<Video> listOfWatchedVideos) {
+		this.listOfWatchedVideos = listOfWatchedVideos;
 	}
 }
