@@ -176,12 +176,10 @@ public class DietConsultation extends JFrame implements PropertyChangeListener {
 		JComboBox<Employee> comboBox = new JComboBox<Employee>();
 		comboBox.setModel(new DefaultComboBoxModel<Employee>(employee.toArray(new Employee[0])));
 		employeeID = ((Employee) comboBox.getSelectedItem()).getId();
-		System.out.println(employeeID);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Employee employee = (Employee) comboBox.getSelectedItem();
 				employeeID = employee.getId();
-				System.out.println(employee.getFirstName());
 			}
 		});
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));

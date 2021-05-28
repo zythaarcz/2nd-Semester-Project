@@ -232,10 +232,6 @@ public class CreateBlog extends JFrame {
 			String newImagePath = copyPicture(selectedPicture);
 			manageBlogController.createBlog(newImagePath, headerString, contentTextString, shortDescriptionString,
 					LocalDate.now());
-			System.out.println(imagePathString);
-			System.out.println(headerString);
-			System.out.println(shortDescriptionString);
-			System.out.println(contentTextString);
 
 			JOptionPane.showMessageDialog(contentPane, "Blog was successfully created!");
 

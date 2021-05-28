@@ -167,7 +167,6 @@ public class EditBlog extends JFrame {
 				btnEdit_headerOK.setEnabled(false);
 
 				newHeader = txtHeader.getText();
-				System.out.println(newHeader);
 			}
 		});
 		btnEdit_headerOK.setEnabled(false);
@@ -202,7 +201,6 @@ public class EditBlog extends JFrame {
 				btnEdit_contentTextOK.setEnabled(false);
 
 				newContentText = textPaneContentText.getText();
-				System.out.println(newContentText);
 			}
 		});
 		btnEdit_contentTextOK.setEnabled(false);
@@ -236,7 +234,6 @@ public class EditBlog extends JFrame {
 				btnEdit_descriptionOK.setEnabled(false);
 
 				newDescription = textPaneShortDescription.getText();
-				System.out.println(newDescription);
 			}
 		});
 		btnEdit_descriptionOK.setEnabled(false);

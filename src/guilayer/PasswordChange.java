@@ -80,9 +80,6 @@ public class PasswordChange extends JDialog {
 				savedNewPasswordString = newPasswordString;
 				savedConfirmPasswordString = confirmPasswordString;
 
-				System.out.println(savedNewPasswordString);
-				System.out.println(savedConfirmPasswordString);
-
 				newPasswordField.setText("");
 				confirmPasswordField.setText("");
 				JOptionPane.showMessageDialog(this, "Password changed but not updated in database(not implemented)");

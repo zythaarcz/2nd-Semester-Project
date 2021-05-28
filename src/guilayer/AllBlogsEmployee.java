@@ -39,6 +39,7 @@ public class AllBlogsEmployee extends JFrame {
 	 * Create the frame.
 	 */
 	public AllBlogsEmployee() {
+		setTitle("Blogs");
 		ArrayList<BlogPanel> allBlogPanels = createAllBlogPanels();
 		
 		setResizable(false);
@@ -142,9 +143,7 @@ public class AllBlogsEmployee extends JFrame {
 			
 			blogPanel.setBounds(10, yPosition, 400, 370);
 			blogPanel.setVisible(true);
-			yPosition = yPosition + 380;
-			System.out.println();
-			
+			yPosition = yPosition + 380;	
 			
 			d.setSize(440, height + yPosition);
 			if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {

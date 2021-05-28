@@ -210,12 +210,6 @@ public class CreateVideo extends JFrame {
 				
 				manageVideoController.createVideo(urlString, headerString, shortDescriptionString, categoryString, pointsForCompletion);
 				
-				System.out.println(urlString);
-				System.out.println(headerString);
-				System.out.println(shortDescriptionString);
-				System.out.println(categoryString);
-				System.out.println(pointsForCompletion);
-				
 				errorIconPointsForCompletion.setVisible(false);
 				
 				JOptionPane.showMessageDialog(contentPane, "Video was successfully created!");

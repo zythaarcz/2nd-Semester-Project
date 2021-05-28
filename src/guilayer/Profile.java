@@ -52,6 +52,7 @@ public class Profile extends JFrame {
 	 * Create the frame.
 	 */
 	public Profile() {
+		setTitle("Profile");
 		authenticationController = new AuthenticationController();
 
 		passwordChangeDialog = new PasswordChange();
@@ -90,7 +91,6 @@ public class Profile extends JFrame {
 				btnSettingsEmailOK.setEnabled(false);
 
 				emailString = txtEmail.getText();
-				System.out.println(emailString);
 			}
 		});
 		btnSettingsEmailOK.setEnabled(false);
@@ -126,7 +126,6 @@ public class Profile extends JFrame {
 				btnSettingsCompanyNameOK.setEnabled(false);
 
 				companyNameString = txtCompanyName.getText();
-				System.out.println(companyNameString);
 			}
 		});
 		btnSettingsCompanyNameOK.setIcon(new ImageIcon(Profile.class.getResource("/images/settingsIconOK32x32.png")));
@@ -165,7 +164,6 @@ public class Profile extends JFrame {
 				btnSettingsPhoneNumberOK.setEnabled(false);
 
 				phoneNumberString = txtPhoneNumber.getText();
-				System.out.println(phoneNumberString);
 			}
 		});
 		btnSettingsPhoneNumberOK.setEnabled(false);
@@ -229,7 +227,6 @@ public class Profile extends JFrame {
 			healthIssuesComboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					healthIssueString = String.valueOf(healthIssuesComboBox.getSelectedItem());
-					System.out.println(healthIssueString);
 				}
 			});
 			healthIssuesComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));

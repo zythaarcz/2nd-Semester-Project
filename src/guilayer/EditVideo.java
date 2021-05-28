@@ -96,7 +96,6 @@ public class EditVideo extends JFrame {
 				editButton_titleOK.setEnabled(false);
 
 				newHeader = txtTitle.getText();
-				System.out.println(newHeader);
 			}
 		});
 		editButton_titleOK.setEnabled(false);
@@ -132,7 +131,6 @@ public class EditVideo extends JFrame {
 				editButton_descriptionOK.setEnabled(false);
 
 				newDescription = textPaneDescription.getText();
-				System.out.println(newDescription);
 			}
 		});
 		editButton_descriptionOK.setEnabled(false);
@@ -169,7 +167,6 @@ public class EditVideo extends JFrame {
 
 				try {
 					newPoints = Integer.parseInt(txtPoints.getText());
-					System.out.println(newPoints);
 				} catch (NumberFormatException e) {
 					txtPoints.setText(String.valueOf(video.getPointsForCompletion()));
 					JOptionPane.showMessageDialog(contentPane, "You must enter numbers not characters!");
@@ -218,7 +215,6 @@ public class EditVideo extends JFrame {
 		comboBoxCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				newCategory = String.valueOf(comboBoxCategory.getSelectedItem());
-				System.out.println(newCategory);
 			}
 		});
 		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
