@@ -4,16 +4,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import databaselayer.ConsultationDAO;
 import databaselayer.ConsultationDAOIF;
 import databaselayer.PersonDAO;
 import databaselayer.PersonDAOIF;
-import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
 import modellayer.Employee;
-import modellayer.Video;
 
 public class DietConsultationController {
 	

@@ -1,18 +1,10 @@
 package guilayer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import org.apache.commons.io.FileUtils;
-
-import controllayer.ManageBlogController;
-import controllayer.ManageVideoController;
 import libs.DirectoryPaths;
 import modellayer.Blog;
 
@@ -21,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -33,6 +24,10 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+
+import org.apache.commons.io.FileUtils;
+
+import controllayer.ManageBlogController;
 
 public class EditBlog extends JFrame {
 

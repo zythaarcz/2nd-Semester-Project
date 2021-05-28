@@ -2,7 +2,6 @@ package guilayer;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -44,6 +43,7 @@ public class AllVideosEmployee extends JFrame {
 	 */
 	public AllVideosEmployee() {
 		setTitle("All Lessons");
+		//Initializing video panels
 		ArrayList<VideoPanel> allVideoPanels = createAllVideoPanels();
 		setResizable(false);
 		createVideo = new CreateVideo();
@@ -70,7 +70,7 @@ public class AllVideosEmployee extends JFrame {
 		panel.setPreferredSize(d);
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
-
+		
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
 			sideBarCustomer = new SideBarCustomer();
 			((JPanel) sideBarCustomer).setSize(0, 740);

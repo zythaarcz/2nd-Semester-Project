@@ -7,11 +7,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import modellayer.AuthenticatedUser;
 import modellayer.DietMeeting;
-import modellayer.Video;
 
 public class ConsultationDAO implements ConsultationDAOIF {
 

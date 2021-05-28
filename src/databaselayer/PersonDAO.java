@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import modellayer.Customer;
 import modellayer.Employee;
 import modellayer.Person;
-import modellayer.Video;
 
 public class PersonDAO implements PersonDAOIF {
 	private static final String SELECT_PERSON = "SELECT * FROM Person WHERE id = ?";

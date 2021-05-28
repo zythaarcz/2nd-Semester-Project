@@ -4,9 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-
-import helpers.Slider;
-
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,7 +24,6 @@ import modellayer.Blog;
 import modellayer.PersonTypes;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.ScrollPaneConstants;
 
 public class DailyBlog extends JFrame {

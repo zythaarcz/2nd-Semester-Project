@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modellayer.Blog;
-import modellayer.Video;
 
 public interface ManageBlogDAOIF {
 	Blog retrieveBlog(int id) throws SQLException;

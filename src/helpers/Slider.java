@@ -8,10 +8,6 @@ public class Slider extends JPanel {
 	/**
 	 * Animation of the side bar
 	 */
-	public Slider() {
-
-	}
-
 	public void runSidebar() {
 		Thread th = new Thread() {
 			@Override

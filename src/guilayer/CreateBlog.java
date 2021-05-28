@@ -1,8 +1,5 @@
 package guilayer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -11,8 +8,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controllayer.ManageBlogController;
 import libs.DirectoryPaths;
-import modellayer.AuthenticatedUser;
-import modellayer.PersonTypes;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

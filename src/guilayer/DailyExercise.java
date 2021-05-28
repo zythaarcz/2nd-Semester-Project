@@ -1,13 +1,9 @@
 package guilayer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import helpers.Slider;
 import modellayer.AuthenticatedUser;
 import modellayer.PersonTypes;
 import modellayer.Video;
@@ -20,13 +16,11 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextPane;
 import java.awt.SystemColor;
-import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
 import java.awt.Desktop;
 
 import javax.swing.SwingConstants;

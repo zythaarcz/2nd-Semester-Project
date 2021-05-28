@@ -1,13 +1,9 @@
 package guilayer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Font;

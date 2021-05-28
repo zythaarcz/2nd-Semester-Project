@@ -1,11 +1,9 @@
 package databaselayer;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modellayer.DietMeeting;
-import modellayer.Video;
 
 public interface ConsultationDAOIF {	
 	public DietMeeting retrieveConsultationByDate(LocalDate date) throws SQLException;

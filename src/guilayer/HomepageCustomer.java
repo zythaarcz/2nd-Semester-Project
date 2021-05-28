@@ -2,11 +2,8 @@ package guilayer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.ImageIcon;
 
 import java.awt.AWTException;
@@ -14,7 +11,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controllayer.ManageBlogController;
 import controllayer.ManageVideoController;
@@ -24,10 +20,8 @@ import modellayer.Blog;
 import modellayer.PersonTypes;
 import modellayer.Video;
 
-import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.TrayIcon.MessageType;
 

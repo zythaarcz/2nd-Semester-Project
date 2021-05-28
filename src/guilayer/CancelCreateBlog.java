@@ -1,7 +1,6 @@
 package guilayer;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -10,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
 
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;

@@ -1,8 +1,5 @@
 package guilayer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,9 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Dimension;
 import javax.swing.JLabel;
-import javax.swing.Icon;
 import java.awt.Font;
-import java.awt.Window;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -66,7 +61,7 @@ public class AllBlogsEmployee extends JFrame {
 		panel.setPreferredSize(d);
 		panel.setLayout(null);
 		scrollPane.setViewportView(panel);
-		
+
 		if (AuthenticatedUser.getInstance().getCurrentUser().getPersonType() == PersonTypes.Customer) {
 			sideBarCustomer = new SideBarCustomer();
 			((JPanel) sideBarCustomer).setSize(0, 740);
