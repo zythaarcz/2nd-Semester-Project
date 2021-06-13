@@ -80,9 +80,9 @@ public class BlogPanel extends JPanel {
 		deleteBlogButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				int choise = JOptionPane.showConfirmDialog(textPane, "Are you sure to delete this blog?");
+				int choice = JOptionPane.showConfirmDialog(textPane, "Are you sure to delete this blog?");
 				
-				if(choise == 0) {
+				if(choice == 0) {
 					manageBlogController.deleteBlog(blog.getId());
 					manageBlogController.deleteImageFromBlog(blog.getImagePath());
 					AllBlogsEmployee allBlogs = new AllBlogsEmployee();

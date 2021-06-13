@@ -102,20 +102,20 @@ public class ConsultationDAO implements ConsultationDAOIF {
 	/*
 	 * Retrieving number of records in a database of consultations with the same date
 	 * */
-	@Override
-	public int retrieveConsultationCountByDate(LocalDate date) throws SQLException {
-		int count = 0;
-		psRetrieveCountConsultations.setObject(1, date);
-
-		ResultSet rs;
-		rs = psRetrieveCountConsultations.executeQuery();
-
-		while (rs.next()) {
-			count = rs.getInt("total");
-		}
-
-		return count;
-	}
+//	@Override
+//	public int retrieveConsultationCountByDate(LocalDate date) throws SQLException {
+//		int count = 0;
+//		psRetrieveCountConsultations.setObject(1, date);
+//
+//		ResultSet rs;
+//		rs = psRetrieveCountConsultations.executeQuery();
+//
+//		while (rs.next()) {
+//			count = rs.getInt("total");
+//		}
+//
+//		return count;
+//	}
 
 	public boolean deleteConsultationById(int id) throws SQLException {
 		boolean deletionSucceeded = false;
@@ -144,11 +144,11 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		return meeting;
 	}
 
-	public int getLastInsertedId() {
-		return lastInsertedId;
-	}
-
-	public void setLastInsertedId(int id) {
-		this.lastInsertedId = id;
-	}
+//	public int getLastInsertedId() {
+//		return lastInsertedId;
+//	}
+//
+//	public void setLastInsertedId(int id) {
+//		this.lastInsertedId = id;
+//	}
 }

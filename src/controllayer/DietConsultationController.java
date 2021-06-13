@@ -68,20 +68,20 @@ public class DietConsultationController {
 	/*
 	 * TODO: We still need to figure out if this should be part of the code or not
 	 * */
-	public int getLastInsertedId() {
-		return consultationDao.getLastInsertedId();
-	}
+//	public int getLastInsertedId() {
+//		return consultationDao.getLastInsertedId();
+//	}
 	
-	public DietMeeting retrieveConsultationCountByDate(LocalDate date) {
-		DietMeeting dietMeeting = null;
-		try {
-			dietMeeting = consultationDao.retrieveConsultationByDate(date);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return dietMeeting;
-	}
+//	public DietMeeting retrieveConsultationCountByDate(LocalDate date) {
+//		DietMeeting dietMeeting = null;
+//		try {
+//			dietMeeting = consultationDao.retrieveConsultationByDate(date);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return dietMeeting;
+//	}
 	
 	public DietMeeting retrieveConsultationByDate(LocalDate date) {
 		DietMeeting dietMeeting = null;
