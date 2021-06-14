@@ -59,7 +59,6 @@ public class ConsultationDAO implements ConsultationDAOIF {
 		psInsertConsultation.setString(2, reason);
 		psInsertConsultation.setInt(3, AuthenticatedUser.getInstance().getCurrentUser().getId());
 
-		// Jiri (id=2) is always responsible for consultation
 		psInsertConsultation.setInt(4, employeeId);
 
 		psInsertConsultation.executeUpdate();
